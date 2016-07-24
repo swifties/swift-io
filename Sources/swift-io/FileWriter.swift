@@ -83,7 +83,6 @@ class FileWriter: BufferedWriter
             let bytesWritten = try dataToWrite.withUnsafeBytes({
                 (bytes: UnsafePointer<UInt8>) throws -> Int in
                     let count = stream.write(bytes, maxLength: dataToWrite.count)
-                    print(stream.streamError)
                     return count
             })
             

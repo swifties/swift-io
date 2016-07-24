@@ -4,7 +4,7 @@
 //  Created by Dusan Saiko on 06/07/16.
 
 import XCTest
-@testable import swiftio 
+@testable import swift_io 
 
 class FileWriterTests: XCTestCase
 {

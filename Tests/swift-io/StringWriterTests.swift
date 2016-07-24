@@ -4,7 +4,7 @@
 
 import Foundation
 import XCTest
-@testable import swiftio
+@testable import swift_io
 
 class StringWriterTests: XCTestCase
 {
