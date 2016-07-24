@@ -17,9 +17,9 @@
 import Foundation
 
 /**
- Simple sycnhronized and buffered FileWriter implementation
+ Simple unsychronized buffered FileWriter implementation
 */
-class FileWriter: BufferedWriter
+class OutputStreamWriter: BufferedWriter
 {
     
     let url: URL
@@ -63,15 +63,15 @@ class FileWriter: BufferedWriter
     }
     
     /**
-     Initializer to write data into url
-     - Parameter path: file path to write to
+     Initializer to write data into file
+     - Parameter file: file path to write to
      - Parameter appendFile: True if file should be appended
      - Parameter bufferSize: size of data buffer, default 1MB
      - Throws: IOException if initialization is not successfull
      */
-    convenience init(path: String, appendFile: Bool = false, bufferSize: Int? = nil) throws
+    convenience init(file: String, appendFile: Bool = false, bufferSize: Int? = nil) throws
     {
-        try self.init(url: URL(fileURLWithPath: path), appendFile: appendFile, bufferSize: bufferSize)
+        try self.init(url: URL(fileURLWithPath: file), appendFile: appendFile, bufferSize: bufferSize)
     }
     
     override func flushData(data: Data) throws {

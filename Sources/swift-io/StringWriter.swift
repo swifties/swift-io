@@ -29,6 +29,6 @@ public class StringWriter: BufferedWriter
     }
     
     override func flushData(data: Data) throws {
-        string.append(String(data: data, encoding: .utf8)!)
+        string.append(String(data: data, encoding: BufferedWriter.STRING_ENCODING)!)
     }
 }

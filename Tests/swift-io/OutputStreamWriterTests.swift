@@ -9,7 +9,7 @@ import XCTest
 class FileWriterTests: XCTestCase
 {
     func test_closing() {
-        let writer = try! FileWriter(path: NSTemporaryDirectory()+"file.csv")
+        let writer = try! OutputStreamWriter(file: NSTemporaryDirectory()+"file.txt")
         defer {
             try! writer.close()
         }
@@ -18,9 +18,9 @@ class FileWriterTests: XCTestCase
     }
     
     func test_write() {
-        let url = URL(fileURLWithPath: NSTemporaryDirectory()+"file.csv")
+        let url = URL(fileURLWithPath: NSTemporaryDirectory()+"file.txt")
         
-        let writer = try! FileWriter(url: url, appendFile: false, bufferSize: 5)
+        let writer = try! OutputStreamWriter(url: url, appendFile: false, bufferSize: 5)
         defer {
             try! writer.close()
         }
@@ -35,15 +35,15 @@ class FileWriterTests: XCTestCase
         let s = try! String(contentsOf: url)
         XCTAssertEqual(s, strings.joined(separator: ""))
     }
-
+    
     func test_append() {
-        let url = URL(fileURLWithPath: NSTemporaryDirectory()+"file.csv")
+        let url = URL(fileURLWithPath: NSTemporaryDirectory()+"file.txt")
         
-        let writer1 = try! FileWriter(url: url, appendFile: false)
+        let writer1 = try! OutputStreamWriter(url: url, appendFile: false)
         try! writer1.write(string: "Hello ")
         try! writer1.close()
 
-        let writer2 = try! FileWriter(url: url, appendFile: true)
+        let writer2 = try! OutputStreamWriter(url: url, appendFile: true)
         try! writer2.write(string: "World!")
         try! writer2.close()
 
@@ -52,9 +52,7 @@ class FileWriterTests: XCTestCase
     }
     
     func test_unwritable() {
-        let url = URL(fileURLWithPath: "/rootX/file.sh")
-        
-        let writer = try? FileWriter(url: url, appendFile: false, bufferSize: 5)
+        let writer = try? OutputStreamWriter(file: "/rootX/file.sh", appendFile: false, bufferSize: 5)
         XCTAssertNil(writer)
     }
 }
