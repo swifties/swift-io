@@ -1,0 +1,7 @@
+- review all swiftdoc
+- review method public access
+- test on linux
+- measure tests vs Java version
+- consider using struts somewhere
+- measure memory leaks
+- csv -> json
