@@ -17,64 +17,29 @@
 import Foundation
 
 /**
- Simple unsychronized buffered FileWriter implementation
+ Simple unsychronized buffered OutputStreamWriter implementation
 */
-class OutputStreamWriter: BufferedWriter
+public class OutputStreamWriter: BufferedWriter
 {
-    
-    let url: URL
-    let stream: NSOutputStream
-    
-    /**
-        Initializer to write data into url
-        - Parameter url: file url to write to
-        - Parameter appendFile: True if file should be appended
-        - Parameter bufferSize: size of data buffer, default 1MB
-        - Throws: IOException if initialization is not successfull
-    */
-    init(url: URL, appendFile: Bool = false, bufferSize: Int? = nil) throws
-    {
-        self.url = url
-        let fileManager = FileManager.default
-        
-        guard let path = url.path else { throw IOException.InvalidPath(url: url) }
-        
-        //create file if not exists
-        if(!fileManager.fileExists(atPath: path)) {
-            if(!fileManager.createFile(atPath: path, contents: nil, attributes: nil)) {
-                throw IOException.ErrorCreatingFile(url: url)
-            }
-        }
-
-        if(!FileManager.default.isWritableFile(atPath: path)) {
-            throw IOException.ErrorWritingIntoFile(url: url)
-        }
-
-        if let stream = NSOutputStream(url: url, append: appendFile)
-        {
-            stream.schedule(in: RunLoop.current, forMode: .defaultRunLoopMode)
-            self.stream = stream
-            self.stream.open()
-        } else {
-            throw IOException.ErrorWritingIntoFile(url: url)
-        }
-        
-        super.init(bufferSize: bufferSize ?? BufferedWriter.DEFAULT_BUFFER_SIZE)
-    }
+    var stream: NSOutputStream
+    var closed: Bool
     
     /**
-     Initializer to write data into file
-     - Parameter file: file path to write to
-     - Parameter appendFile: True if file should be appended
-     - Parameter bufferSize: size of data buffer, default 1MB
-     - Throws: IOException if initialization is not successfull
+     Initializer to write data into the passed stream.
+     - Parameter stream: Stream which needs to be already opened
      */
-    convenience init(file: String, appendFile: Bool = false, bufferSize: Int? = nil) throws
+    init(stream: NSOutputStream, bufferSize: Int = BufferedWriter.DEFAULT_BUFFER_SIZE, sourceDescription: String? = nil) //TODO
     {
-        try self.init(url: URL(fileURLWithPath: file), appendFile: appendFile, bufferSize: bufferSize)
+        self.stream = stream
+        self.closed = false
+        super.init(sourceDescription: sourceDescription ?? stream.description, bufferSize: bufferSize)
     }
     
     override func flushData(data: Data) throws {
+        if(closed) {
+            throw IOException.StreamAlreadyClosed(sourceDescription: sourceDescription)
+        }
+        
         var count = 0
         
         //write loop in case data are not written in one piece
@@ -87,14 +52,15 @@ class OutputStreamWriter: BufferedWriter
             })
             
             if ( bytesWritten <= 0) {
-                throw IOException.ErrorWritingIntoFile(url: url)
+                throw IOException.ErrorWritingIntoStream(sourceDescription: sourceDescription)
             }
             count += bytesWritten
         }
     }
     
-    override func close() throws {
+    override public func close() throws {
         try super.close()
         stream.close()
+        closed = true
     }
 }

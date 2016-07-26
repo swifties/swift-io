@@ -23,14 +23,14 @@ import Foundation
 public protocol Writer {
     
     /**
-     Writes data to this stream
+     Writes Data to this stream
      - Parameter data: Data to be written into the stream
      - Throws: IOException if an I/O error occurs
     */
     func write(data: Data) throws
 
     /**
-     Writes data to this stream
+     Writes String to this stream
      - Parameter data: Data to be written into the stream
      - Throws: IOException if an I/O error occurs
      */

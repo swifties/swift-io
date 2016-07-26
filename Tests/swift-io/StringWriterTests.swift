@@ -19,17 +19,8 @@ class StringWriterTests: XCTestCase
         try! stream.write(string: s2)
         
         try! stream.close()
-        try! stream.close() //double close is OK
-        
-        do {
-            try stream.flush()
-            XCTAssertTrue(false) //unreachable - dlouble flush will fail
-        } catch IOException.StreamAlreadyClosed {
-            XCTAssertTrue(true) //this is fine
-        } catch {
-            XCTAssertTrue(false) //unknown exception?
-        }
-        
+        try! stream.close()
+
         XCTAssertEqual(stream.string, s1+s2)
     }
 }

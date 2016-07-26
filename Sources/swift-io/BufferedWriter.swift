@@ -20,22 +20,23 @@ import Foundation
 /**
  Simple unsynchronized buffered writer.
  Subclases need to implemend flushData(_) and close() methods.
- close() method is already called from deffer()
+ deinit() calls close() automatically
  */
-public class BufferedWriter {
+public class BufferedWriter: Writer {
     static let DEFAULT_BUFFER_SIZE  = 1024 * 1024
-    static let STRING_ENCODING      = String.Encoding.utf8
     
-    let bufferSize: Int
-    var buffer:     Data?
+    let bufferSize:                 Int
+    let sourceDescription:          String
+    var buffer:                     Data
     
     /**
      Initializer
      - Parameter bufferSize: caching buffer size. Default 1 MB
      */
-    init(bufferSize: Int = DEFAULT_BUFFER_SIZE) {
-        self.bufferSize = bufferSize
-        self.buffer = Data()
+    init(sourceDescription: String, bufferSize: Int = DEFAULT_BUFFER_SIZE) {
+        self.sourceDescription      = sourceDescription
+        self.bufferSize             = bufferSize
+        self.buffer                 = Data(capacity: bufferSize)!
     }
     
     deinit {
@@ -48,54 +49,49 @@ public class BufferedWriter {
     }
     
     /**
-     Flush and close the stream.
-     If stream already closed, does not throw.
-     To be overwitten by subclasses. Overrides need to call this super method
-     */
-    public func close() throws {
-        if let buffer = buffer {
-            try flushData(data: buffer)
-            self.buffer = nil
-        }
-    }
-    
-    /**
      Flush the stream
      */
     public func flush() throws {
-        if let buffer = buffer {
-            try flushData(data: buffer)
-            self.buffer = Data()
-        } else {
-            throw IOException.StreamAlreadyClosed
+        //if closed, this will throw an exception
+        try flushData(data: buffer)
+        
+        //refresh buffer only when needed
+        if(buffer.count > 0) {
+            self.buffer = Data(capacity: bufferSize)!
         }
     }
     
     /**
-     Unsynchronized buffered writer method
+     Unsynchronized buffered write
      - Parameter data: Data to be written.
      */
     public func write(data: Data) throws
     {
-        if let buffer = buffer {
-            if(buffer.count + data.count > bufferSize) {
-                try flushData(data: buffer)
-                try flushData(data: data)
-                self.buffer = Data()
-            } else {
-                self.buffer!.append(data)
-            }
+        if(buffer.count + data.count > bufferSize) {
+            try flush()
+            try flushData(data: data)
         } else {
-            throw IOException.StreamAlreadyClosed
+            self.buffer.append(data)
         }
     }
     
     public func write(string: String) throws {
-        if let data = string.data(using: BufferedWriter.STRING_ENCODING) {
+        if let data = string.data(using: StringWriter.DEFAULT_STRING_ENCODING) {
             try write(data: data)
+        } else {
+            throw Exception.InvalidData(string: string)
         }
     }
-    
+
+    /**
+     Closes the stream by flushing the data
+     */
+    public func close() throws {
+        if(buffer.count > 0) {
+            try flushData(data: buffer)
+        }
+    }
+
     /**
      Method to be overwritten. Write data to the stream.
      */

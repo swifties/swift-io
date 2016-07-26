@@ -9,7 +9,7 @@ import XCTest
 class FileWriterTests: XCTestCase
 {
     func test_closing() {
-        let writer = try! OutputStreamWriter(file: NSTemporaryDirectory()+"file.txt")
+        let writer = try! FileWriter(file: NSTemporaryDirectory()+"file.txt")
         defer {
             try! writer.close()
         }
@@ -20,7 +20,7 @@ class FileWriterTests: XCTestCase
     func test_write() {
         let url = URL(fileURLWithPath: NSTemporaryDirectory()+"file.txt")
         
-        let writer = try! OutputStreamWriter(url: url, appendFile: false, bufferSize: 5)
+        let writer = try! FileWriter(url: url, appendFile: false, bufferSize: 5)
         defer {
             try! writer.close()
         }
@@ -32,6 +32,16 @@ class FileWriterTests: XCTestCase
         }
         try! writer.close()
         
+        do {
+            try writer.flush()
+            XCTAssertTrue(false) //unreachable - dlouble flush will fail
+        } catch IOException.StreamAlreadyClosed {
+            XCTAssertTrue(true) //this is fine
+        } catch {
+            XCTAssertTrue(false) //unknown exception?
+        }
+
+        
         let s = try! String(contentsOf: url)
         XCTAssertEqual(s, strings.joined(separator: ""))
     }
@@ -39,11 +49,11 @@ class FileWriterTests: XCTestCase
     func test_append() {
         let url = URL(fileURLWithPath: NSTemporaryDirectory()+"file.txt")
         
-        let writer1 = try! OutputStreamWriter(url: url, appendFile: false)
+        let writer1 = try! FileWriter(url: url, appendFile: false)
         try! writer1.write(string: "Hello ")
         try! writer1.close()
 
-        let writer2 = try! OutputStreamWriter(url: url, appendFile: true)
+        let writer2 = try! FileWriter(url: url, appendFile: true)
         try! writer2.write(string: "World!")
         try! writer2.close()
 
@@ -52,7 +62,7 @@ class FileWriterTests: XCTestCase
     }
     
     func test_unwritable() {
-        let writer = try? OutputStreamWriter(file: "/rootX/file.sh", appendFile: false, bufferSize: 5)
+        let writer = try? FileWriter(file: "/rootX/file.sh", appendFile: false, bufferSize: 5)
         XCTAssertNil(writer)
     }
 }

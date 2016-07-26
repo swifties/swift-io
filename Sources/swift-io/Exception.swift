@@ -18,6 +18,8 @@ import Foundation
 
 public enum Exception: ErrorProtocol {
     case MethodNotImplemented
+
+    case InvalidData                    (string: String)
     case IndexOutOfRange                (range: Range<Int>, index: Int)
     case ArraySizeTooSmall              (size: Int, requestedSize: Int)
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F9E362D91D4551AE00327955 /* BufferedWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E362D81D4551AE00327955 /* BufferedWriter.swift */; };
+		F9E362DB1D45662900327955 /* FileWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E362DA1D45662900327955 /* FileWriter.swift */; };
 		_LinkFileRef_swift_io_via_swift_ioTestSuite /* swift_io.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_swift_io" /* swift_io.framework */; };
 		"__src_cc_ref_Sources/swift-io/Exception.swift" /* Exception.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Sources/swift-io/Exception.swift" /* Exception.swift */; };
 		"__src_cc_ref_Sources/swift-io/FileWriter.swift" /* OutputStreamWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Sources/swift-io/FileWriter.swift" /* OutputStreamWriter.swift */; };
@@ -16,7 +17,7 @@
 		"__src_cc_ref_Sources/swift-io/StringWriter.swift" /* StringWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Sources/swift-io/StringWriter.swift" /* StringWriter.swift */; };
 		"__src_cc_ref_Sources/swift-io/Writer.swift" /* Writer.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Sources/swift-io/Writer.swift" /* Writer.swift */; };
 		"__src_cc_ref_Sources/swift-io/csv/CSVWriter.swift" /* CSVWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Sources/swift-io/csv/CSVWriter.swift" /* CSVWriter.swift */; };
-		"__src_cc_ref_Tests/swift-io/FileWriterTests.swift" /* OutputStreamWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Tests/swift-io/FileWriterTests.swift" /* OutputStreamWriterTests.swift */; };
+		"__src_cc_ref_Tests/swift-io/FileWriterTests.swift" /* FileWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Tests/swift-io/FileWriterTests.swift" /* FileWriterTests.swift */; };
 		"__src_cc_ref_Tests/swift-io/StringWriterTests.swift" /* StringWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Tests/swift-io/StringWriterTests.swift" /* StringWriterTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		F9E362D81D4551AE00327955 /* BufferedWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferedWriter.swift; sourceTree = "<group>"; };
+		F9E362DA1D45662900327955 /* FileWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileWriter.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_Sources/swift-io/Exception.swift" /* Exception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exception.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_Sources/swift-io/FileWriter.swift" /* OutputStreamWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputStreamWriter.swift; sourceTree = "<group>"; };
@@ -40,7 +42,7 @@
 		"__PBXFileRef_Sources/swift-io/StringWriter.swift" /* StringWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringWriter.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_Sources/swift-io/Writer.swift" /* Writer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Writer.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_Sources/swift-io/csv/CSVWriter.swift" /* CSVWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CSVWriter.swift; path = csv/CSVWriter.swift; sourceTree = "<group>"; };
-		"__PBXFileRef_Tests/swift-io/FileWriterTests.swift" /* OutputStreamWriterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputStreamWriterTests.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Tests/swift-io/FileWriterTests.swift" /* FileWriterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileWriterTests.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_Tests/swift-io/StringWriterTests.swift" /* StringWriterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringWriterTests.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_swift-io.xcodeproj/Configs/Project.xcconfig" /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = "swift-io.xcodeproj/Configs/Project.xcconfig"; sourceTree = "<group>"; };
 		__PBXFileRef_swift_ioTestSuite_Info.plist /* swift_ioTestSuite_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = swift_ioTestSuite_Info.plist; path = "swift-io.xcodeproj/swift_ioTestSuite_Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -74,6 +76,18 @@
 				"__PBXFileRef_Sources/swift-io/csv/CSVWriter.swift" /* CSVWriter.swift */,
 			);
 			name = csv;
+			sourceTree = "<group>";
+		};
+		F9E362DC1D45669B00327955 /* writer */ = {
+			isa = PBXGroup;
+			children = (
+				F9E362D81D4551AE00327955 /* BufferedWriter.swift */,
+				F9E362DA1D45662900327955 /* FileWriter.swift */,
+				"__PBXFileRef_Sources/swift-io/FileWriter.swift" /* OutputStreamWriter.swift */,
+				"__PBXFileRef_Sources/swift-io/StringWriter.swift" /* StringWriter.swift */,
+				"__PBXFileRef_Sources/swift-io/Writer.swift" /* Writer.swift */,
+			);
+			name = writer;
 			sourceTree = "<group>";
 		};
 		TestProducts_ /* Tests */ = {
@@ -123,14 +137,11 @@
 		"_______Group_swift_io" /* swift-io */ = {
 			isa = PBXGroup;
 			children = (
+				F9E362DC1D45669B00327955 /* writer */,
 				F9E362D71D454DA900327955 /* csv */,
-				F9E362D81D4551AE00327955 /* BufferedWriter.swift */,
 				"__PBXFileRef_Sources/swift-io/Exception.swift" /* Exception.swift */,
-				"__PBXFileRef_Sources/swift-io/FileWriter.swift" /* OutputStreamWriter.swift */,
 				"__PBXFileRef_Sources/swift-io/IOException.swift" /* IOException.swift */,
 				"__PBXFileRef_Sources/swift-io/Reader.swift" /* Reader.swift */,
-				"__PBXFileRef_Sources/swift-io/StringWriter.swift" /* StringWriter.swift */,
-				"__PBXFileRef_Sources/swift-io/Writer.swift" /* Writer.swift */,
 				__PBXFileRef_swift_io_Info.plist /* swift_io_Info.plist */,
 			);
 			name = "swift-io";
@@ -140,7 +151,7 @@
 		"_______Group_swift_ioTestSuite" /* swift-ioTestSuite */ = {
 			isa = PBXGroup;
 			children = (
-				"__PBXFileRef_Tests/swift-io/FileWriterTests.swift" /* OutputStreamWriterTests.swift */,
+				"__PBXFileRef_Tests/swift-io/FileWriterTests.swift" /* FileWriterTests.swift */,
 				"__PBXFileRef_Tests/swift-io/StringWriterTests.swift" /* StringWriterTests.swift */,
 				__PBXFileRef_swift_ioTestSuite_Info.plist /* swift_ioTestSuite_Info.plist */,
 			);
@@ -237,6 +248,7 @@
 				"__src_cc_ref_Sources/swift-io/Reader.swift" /* Reader.swift in Sources */,
 				"__src_cc_ref_Sources/swift-io/StringWriter.swift" /* StringWriter.swift in Sources */,
 				"__src_cc_ref_Sources/swift-io/Writer.swift" /* Writer.swift in Sources */,
+				F9E362DB1D45662900327955 /* FileWriter.swift in Sources */,
 				"__src_cc_ref_Sources/swift-io/csv/CSVWriter.swift" /* CSVWriter.swift in Sources */,
 				F9E362D91D4551AE00327955 /* BufferedWriter.swift in Sources */,
 			);
@@ -246,7 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				"__src_cc_ref_Tests/swift-io/FileWriterTests.swift" /* OutputStreamWriterTests.swift in Sources */,
+				"__src_cc_ref_Tests/swift-io/FileWriterTests.swift" /* FileWriterTests.swift in Sources */,
 				"__src_cc_ref_Tests/swift-io/StringWriterTests.swift" /* StringWriterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

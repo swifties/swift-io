@@ -17,18 +17,33 @@
 import Foundation
 
 /**
- Simple synchronized writer into String object
- **/
-public class StringWriter: BufferedWriter
+ Simple Writer into String object
+ This writer ignores calls to flush() or close()
+ */
+public class StringWriter: Writer
 {
+    public static let DEFAULT_STRING_ENCODING = String.Encoding.utf8
     public private(set) var string: String
     
     public init() {
-        string = String()
-        super.init(bufferSize: 0)
+        self.string = String()
+    }
+
+    public func write(data: Data) throws
+    {
+        self.string.append(String(data: data, encoding: StringWriter.DEFAULT_STRING_ENCODING)!)
     }
     
-    override func flushData(data: Data) throws {
-        string.append(String(data: data, encoding: BufferedWriter.STRING_ENCODING)!)
+    public func write(string: String) throws
+    {
+        self.string.append(string)
+    }
+    
+    public func flush() throws
+    {
+    }
+    
+    public func close() throws
+    {
     }
 }

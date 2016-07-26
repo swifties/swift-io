@@ -25,5 +25,7 @@ public enum IOException: ErrorProtocol {
     case ErrorCreatingFile              (url: URL)
     case ErrorWritingIntoFile           (url: URL)
     case ErrorReadingFile               (url: URL)
-    case StreamAlreadyClosed
+
+    case ErrorWritingIntoStream         (sourceDescription: String)
+    case StreamAlreadyClosed            (sourceDescription: String)
 }
