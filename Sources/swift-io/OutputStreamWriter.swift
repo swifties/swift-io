@@ -21,17 +21,15 @@ import Foundation
 */
 public class OutputStreamWriter: BufferedWriter
 {
-    var stream: NSOutputStream
-    var closed: Bool
+    var stream: OutputStream
     
     /**
      Initializer to write data into the passed stream.
      - Parameter stream: Stream which needs to be already opened
      */
-    init(stream: NSOutputStream, bufferSize: Int = BufferedWriter.DEFAULT_BUFFER_SIZE, sourceDescription: String? = nil) //TODO
+    init(stream: OutputStream, bufferSize: Int = BufferedWriter.DEFAULT_BUFFER_SIZE, sourceDescription: String? = nil) //TODO
     {
         self.stream = stream
-        self.closed = false
         super.init(sourceDescription: sourceDescription ?? stream.description, bufferSize: bufferSize)
     }
     
@@ -59,8 +57,9 @@ public class OutputStreamWriter: BufferedWriter
     }
     
     override public func close() throws {
-        try super.close()
-        stream.close()
-        closed = true
+        if(!closed) {
+            try super.close()
+            stream.close()
+        }
     }
 }

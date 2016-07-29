@@ -136,7 +136,7 @@ public class CSVWriter {
         quote or new line characters.
      - Throws: IOException
      */
-    public func writeAll<StringArraySequence: Sequence where StringArraySequence.Iterator.Element == [String]>(allLines: StringArraySequence, applyQuotesToAll: Bool) throws
+    public func writeAll<StringArraySequence: Sequence>(allLines: StringArraySequence, applyQuotesToAll: Bool) throws where StringArraySequence.Iterator.Element == [String]
     {
         for line in allLines {
             try writeNext(line: line, applyQuotesToAll: applyQuotesToAll)

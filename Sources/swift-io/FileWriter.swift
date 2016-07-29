@@ -30,24 +30,22 @@ public class FileWriter: OutputStreamWriter
     {
         let fileManager = FileManager.default
         
-        guard let path = url.path else { throw IOException.InvalidPath(url: url) }
-        
         //create file if not exists
-        if(!fileManager.fileExists(atPath: path)) {
-            if(!fileManager.createFile(atPath: path, contents: nil, attributes: nil)) {
+        if(!fileManager.fileExists(atPath: url.path)) {
+            if(!fileManager.createFile(atPath: url.path, contents: nil, attributes: nil)) {
                 throw IOException.ErrorCreatingFile(url: url)
             }
         }
         
-        if(!FileManager.default.isWritableFile(atPath: path)) {
+        if(!FileManager.default.isWritableFile(atPath: url.path)) {
             throw IOException.ErrorWritingIntoFile(url: url)
         }
         
-        if let stream = NSOutputStream(url: url, append: appendFile)
+        if let stream = OutputStream(url: url, append: appendFile)
         {
             stream.schedule(in: RunLoop.current, forMode: .defaultRunLoopMode)
             stream.open()
-            super.init(stream: stream, bufferSize: bufferSize ?? BufferedWriter.DEFAULT_BUFFER_SIZE, sourceDescription: url.absoluteString ?? url.description)
+            super.init(stream: stream, bufferSize: bufferSize ?? BufferedWriter.DEFAULT_BUFFER_SIZE, sourceDescription: url.absoluteString)
         } else {
             throw IOException.ErrorWritingIntoFile(url: url)
         }

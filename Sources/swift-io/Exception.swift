@@ -16,7 +16,7 @@
 
 import Foundation
 
-public enum Exception: ErrorProtocol {
+public enum Exception: Error {
     case MethodNotImplemented
 
     case InvalidData                    (string: String)

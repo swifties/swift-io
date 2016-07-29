@@ -70,6 +70,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F927D5A01D4AD5BC00DC970E /* reader */ = {
+			isa = PBXGroup;
+			children = (
+				"__PBXFileRef_Sources/swift-io/Reader.swift" /* Reader.swift */,
+			);
+			name = reader;
+			sourceTree = "<group>";
+		};
 		F9E362D71D454DA900327955 /* csv */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,11 +145,11 @@
 		"_______Group_swift_io" /* swift-io */ = {
 			isa = PBXGroup;
 			children = (
+				F927D5A01D4AD5BC00DC970E /* reader */,
 				F9E362DC1D45669B00327955 /* writer */,
 				F9E362D71D454DA900327955 /* csv */,
 				"__PBXFileRef_Sources/swift-io/Exception.swift" /* Exception.swift */,
 				"__PBXFileRef_Sources/swift-io/IOException.swift" /* IOException.swift */,
-				"__PBXFileRef_Sources/swift-io/Reader.swift" /* Reader.swift */,
 				__PBXFileRef_swift_io_Info.plist /* swift_io_Info.plist */,
 			);
 			name = "swift-io";

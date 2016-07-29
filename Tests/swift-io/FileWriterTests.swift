@@ -34,13 +34,23 @@ class FileWriterTests: XCTestCase
         
         do {
             try writer.flush()
-            XCTAssertTrue(false) //unreachable - dlouble flush will fail
+            XCTAssertTrue(false) //unreachable - flush after close will fail
         } catch IOException.StreamAlreadyClosed {
             XCTAssertTrue(true) //this is fine
         } catch {
             XCTAssertTrue(false) //unknown exception?
         }
-
+        
+        //test write after close
+        do {
+            try writer.write(string: "?")
+            XCTAssertTrue(false) //unreachable - flush after close will fail
+        } catch IOException.StreamAlreadyClosed {
+            XCTAssertTrue(true) //this is fine
+        } catch {
+            XCTAssertTrue(false) //unknown exception?
+        }
+        
         
         let s = try! String(contentsOf: url)
         XCTAssertEqual(s, strings.joined(separator: ""))

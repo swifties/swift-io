@@ -18,7 +18,7 @@ import Foundation
 /**
     IOException
  */
-public enum IOException: ErrorProtocol {
+public enum IOException: Error {
 
     case FileNotFound                   (url: URL)
     case InvalidPath                    (url: URL)

@@ -19,7 +19,8 @@ import Foundation
 
 /**
  Simple unsynchronized buffered writer.
- Subclases need to implemend flushData(_) and close() methods.
+ Subclases need to implemend flushData(_) and close() methods
+ child close method needs to call super.close
  deinit() calls close() automatically
  */
 public class BufferedWriter: Writer {
@@ -27,7 +28,8 @@ public class BufferedWriter: Writer {
     
     let bufferSize:                 Int
     let sourceDescription:          String
-    var buffer:                     Data
+    let buffer:                     NSMutableData
+    var closed:                     Bool
     
     /**
      Initializer
@@ -36,7 +38,8 @@ public class BufferedWriter: Writer {
     init(sourceDescription: String, bufferSize: Int = DEFAULT_BUFFER_SIZE) {
         self.sourceDescription      = sourceDescription
         self.bufferSize             = bufferSize
-        self.buffer                 = Data(capacity: bufferSize)!
+        self.buffer                 = NSMutableData(capacity: bufferSize)!
+        self.closed                 = false
     }
     
     deinit {
@@ -53,12 +56,10 @@ public class BufferedWriter: Writer {
      */
     public func flush() throws {
         //if closed, this will throw an exception
-        try flushData(data: buffer)
-        
-        //refresh buffer only when needed
-        if(buffer.count > 0) {
-            self.buffer = Data(capacity: bufferSize)!
-        }
+        try flushData(data: buffer as Data)
+
+        //reset - reuse the buffer
+        buffer.length = 0
     }
     
     /**
@@ -67,7 +68,8 @@ public class BufferedWriter: Writer {
      */
     public func write(data: Data) throws
     {
-        if(buffer.count + data.count > bufferSize) {
+        //if closed, pass to flush so proper exception is thrown
+        if(closed || buffer.length + data.count > bufferSize) {
             try flush()
             try flushData(data: data)
         } else {
@@ -87,9 +89,10 @@ public class BufferedWriter: Writer {
      Closes the stream by flushing the data
      */
     public func close() throws {
-        if(buffer.count > 0) {
-            try flushData(data: buffer)
+        if(buffer.length > 0) {
+            try flushData(data: buffer as Data)
         }
+        self.closed = true
     }
 
     /**
