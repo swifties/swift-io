@@ -19,7 +19,6 @@ import Foundation
 public enum Exception: Error {
     case MethodNotImplemented
 
-    case InvalidData                    (string: String)
-    case IndexOutOfRange                (range: Range<Int>, index: Int)
-    case ArraySizeTooSmall              (size: Int, requestedSize: Int)
+    case StringCannotBeConvertedToByteArray (string: String)
+    case DataCannotBeConvertedToString      (encoding: String.Encoding)
 }

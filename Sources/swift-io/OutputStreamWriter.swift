@@ -19,47 +19,48 @@ import Foundation
 /**
  Simple unsychronized buffered OutputStreamWriter implementation
 */
-public class OutputStreamWriter: BufferedWriter
+public class OutputStreamWriter: Writer
 {
-    var stream: OutputStream
+    let stream:             OutputStream
+    let sourceDescription:  String
+    var closed:             Bool
     
     /**
      Initializer to write data into the passed stream.
      - Parameter stream: Stream which needs to be already opened
      */
-    init(stream: OutputStream, bufferSize: Int = BufferedWriter.DEFAULT_BUFFER_SIZE, sourceDescription: String? = nil) //TODO
+    init(stream: OutputStream, sourceDescription: String? = nil)
     {
         self.stream = stream
-        super.init(sourceDescription: sourceDescription ?? stream.description, bufferSize: bufferSize)
+        self.sourceDescription = sourceDescription ?? stream.description
+        self.stream.open()
+        self.closed = false
     }
     
-    override func flushData(data: Data) throws {
+    public func write(data: [UInt8], startIndex: Int, count: Int) throws
+    {
         if(closed) {
             throw IOException.StreamAlreadyClosed(sourceDescription: sourceDescription)
         }
         
-        var count = 0
+        var totalWritten = 0
         
         //write loop in case data are not written in one piece
-        while(count < data.count) {
-            let dataToWrite = count == 0 ? data : data.subdata(in: Range(data.startIndex.advanced(by: count)..<data.endIndex))
-            let bytesWritten = try dataToWrite.withUnsafeBytes({
-                (bytes: UnsafePointer<UInt8>) throws -> Int in
-                    let count = stream.write(bytes, maxLength: dataToWrite.count)
-                    return count
-            })
+        while(totalWritten < data.count) {
+            let dataToWrite = Array(data[startIndex+totalWritten..<startIndex+count])
+            let bytesWritten = stream.write(dataToWrite, maxLength: dataToWrite.count)
             
             if ( bytesWritten <= 0) {
-                throw IOException.ErrorWritingIntoStream(sourceDescription: sourceDescription)
+                throw IOException.ErrorWritingIntoStream(sourceDescription: sourceDescription, error: stream.streamError)
             }
-            count += bytesWritten
+            totalWritten += bytesWritten
         }
     }
     
-    override public func close() throws {
+    public func close() throws {
         if(!closed) {
-            try super.close()
             stream.close()
+            closed = true
         }
     }
 }

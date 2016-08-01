@@ -26,32 +26,8 @@ public protocol Writer {
      Writes Data to this stream
      - Parameter data: Data to be written into the stream
      - Throws: IOException if an I/O error occurs
-    */
-    func write(data: Data) throws
-
-    /**
-     Writes String to this stream
-     - Parameter data: Data to be written into the stream
-     - Throws: IOException if an I/O error occurs
      */
-    func write(string: String) throws
-    
-    /**
-     Flushes the stream.  If the stream has saved any characters from the
-     various write() methods in a buffer, write them immediately to their
-     intended destination.  Then, if that destination is another character or
-     byte stream, flush it.  Thus one flush() invocation will flush all the
-     buffers in a chain of Writers and OutputStreams.
-    
-     <p> If the intended destination of this stream is an abstraction provided
-     by the underlying operating system, for example a file, then flushing the
-     stream guarantees only that bytes previously written to the stream are
-     passed to the operating system for writing; it does not guarantee that
-     they are actually written to a physical device such as a disk drive.
-    
-     - Throws: IOException if an I/O error occurs
-    */
-    func flush() throws
+    func write(data: [UInt8], startIndex: Int, count: Int) throws
     
     /**
       Closes the stream, flushing it first. Once the stream has been closed,
@@ -61,5 +37,31 @@ public protocol Writer {
       - Throws IOException if an I/O error occurs
     */
     func close() throws
+}
+
+public extension Writer {
+
+    public func write(data: [UInt8]) throws
+    {
+        try write(data: data, startIndex: 0, count: data.count)
+    }
+    
+    /**
+     Writes Data to this stream
+     - Parameter data: Data to be written into the stream
+     - Throws: IOException if an I/O error occurs
+     */
+    public func write(data: Data) throws {
+        let array = data.withUnsafeBytes { (bytes: UnsafePointer<UInt8>)->[UInt8] in
+            return Array(UnsafeBufferPointer<UInt8>(start: bytes, count: data.count/sizeof(UInt8.self)))
+        }
+        
+        try write(data: array, startIndex: 0, count: array.count)
+    }
+    
+    public func write(string: String) throws {
+        try write(data: Array(string.utf8))
+    }
+    
 }
 

@@ -28,10 +28,10 @@ public protocol Reader {
      - Parameter buffer: buffer to be filled from the Reader.
      - Parameter maxCount: number of bytes to be read. If count exceeds the capacity of the buffer, Exception.ArraySizeTooSmall will be thrown.
      
-     - Returns: the number of bytes read or -1 when at the end.
+     - Returns: False when at the end.
      - Throws: exception if read error occurs
     */
-    func read(buffer: inout Data, maxCount: Int) throws -> Int;
+    func read(buffer: inout [UInt8]) throws -> Int;
     
     
     /**

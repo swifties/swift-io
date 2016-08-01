@@ -144,14 +144,6 @@ public class CSVWriter {
     }
     
     /**
-     Flush underlying stream to writer.
-     - Throws: IOException If bad things happen
-    */
-    public func flush() throws {
-        try writer.flush()
-    }
-    
-    /**
      Close the underlying stream writer flushing any buffered content.
      - Throws: IOException If bad things happen
     */

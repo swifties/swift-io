@@ -22,25 +22,28 @@ import Foundation
  */
 public class StringWriter: Writer
 {
-    public static let DEFAULT_STRING_ENCODING = String.Encoding.utf8
     public private(set) var string: String
     
     public init() {
         self.string = String()
     }
 
-    public func write(data: Data) throws
+    public func write(data: [UInt8], startIndex: Int, count: Int) throws
     {
-        self.string.append(String(data: data, encoding: StringWriter.DEFAULT_STRING_ENCODING)!)
+        let encoding = String.Encoding.utf8
+        let bytes = Data(bytes: data[startIndex..<startIndex+count])
+        
+        if let string = String(data: bytes, encoding: encoding)
+        {
+            try write(string: string)
+        } else {
+            throw Exception.DataCannotBeConvertedToString(encoding: encoding)
+        }
     }
     
     public func write(string: String) throws
     {
         self.string.append(string)
-    }
-    
-    public func flush() throws
-    {
     }
     
     public func close() throws

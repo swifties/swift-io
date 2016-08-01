@@ -23,9 +23,10 @@ public enum IOException: Error {
     case FileNotFound                   (url: URL)
     case InvalidPath                    (url: URL)
     case ErrorCreatingFile              (url: URL)
-    case ErrorWritingIntoFile           (url: URL)
+    case FieIsNotWritable               (url: URL)
     case ErrorReadingFile               (url: URL)
 
-    case ErrorWritingIntoStream         (sourceDescription: String)
+    case ErrorWritingIntoStream         (sourceDescription: String, error: Error?)
+    case ErrorReadingFromStream         (sourceDescription: String, error: Error?)
     case StreamAlreadyClosed            (sourceDescription: String)
 }

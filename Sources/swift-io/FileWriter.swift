@@ -26,7 +26,7 @@ public class FileWriter: OutputStreamWriter
      - Parameter bufferSize: size of data buffer, default 1MB
      - Throws: IOException if initialization is not successfull
      */
-    init(url: URL, appendFile: Bool = false, bufferSize: Int? = nil) throws
+    init(url: URL, appendFile: Bool = false) throws
     {
         let fileManager = FileManager.default
         
@@ -38,16 +38,15 @@ public class FileWriter: OutputStreamWriter
         }
         
         if(!FileManager.default.isWritableFile(atPath: url.path)) {
-            throw IOException.ErrorWritingIntoFile(url: url)
+            throw IOException.FieIsNotWritable(url: url)
         }
         
         if let stream = OutputStream(url: url, append: appendFile)
         {
             stream.schedule(in: RunLoop.current, forMode: .defaultRunLoopMode)
-            stream.open()
-            super.init(stream: stream, bufferSize: bufferSize ?? BufferedWriter.DEFAULT_BUFFER_SIZE, sourceDescription: url.absoluteString)
+            super.init(stream: stream, sourceDescription: url.absoluteString)
         } else {
-            throw IOException.ErrorWritingIntoFile(url: url)
+            throw IOException.FieIsNotWritable(url: url)
         }
     }
 
@@ -60,6 +59,6 @@ public class FileWriter: OutputStreamWriter
      */
     convenience init(file: String, appendFile: Bool = false, bufferSize: Int? = nil) throws
     {
-        try self.init(url: URL(fileURLWithPath: file), appendFile: appendFile, bufferSize: bufferSize)
+        try self.init(url: URL(fileURLWithPath: file), appendFile: appendFile)
     }
 }

@@ -20,7 +20,7 @@ class FileWriterTests: XCTestCase
     func test_write() {
         let url = URL(fileURLWithPath: NSTemporaryDirectory()+"file.txt")
         
-        let writer = try! FileWriter(url: url, appendFile: false, bufferSize: 5)
+        let writer = try! FileWriter(url: url, appendFile: false)
         defer {
             try! writer.close()
         }
@@ -31,15 +31,6 @@ class FileWriterTests: XCTestCase
             try! writer.write(string: s)
         }
         try! writer.close()
-        
-        do {
-            try writer.flush()
-            XCTAssertTrue(false) //unreachable - flush after close will fail
-        } catch IOException.StreamAlreadyClosed {
-            XCTAssertTrue(true) //this is fine
-        } catch {
-            XCTAssertTrue(false) //unknown exception?
-        }
         
         //test write after close
         do {
