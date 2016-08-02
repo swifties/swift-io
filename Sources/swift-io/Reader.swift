@@ -31,7 +31,7 @@ public protocol Reader {
      - Returns: False when at the end.
      - Throws: exception if read error occurs
     */
-    func read(buffer: inout [UInt8]) throws -> Int;
+    func read(buffer: inout [UInt8]) throws -> Int?
     
     
     /**
@@ -41,5 +41,5 @@ public protocol Reader {
      
       - Throws: Exception if an I/O error occurs
      */
-    func close() throws;
+    func close() throws
 }

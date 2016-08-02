@@ -30,18 +30,22 @@ public class StringWriter: Writer
 
     public func write(data: [UInt8], startIndex: Int, count: Int) throws
     {
+        if(startIndex < 0 || startIndex + count > data.count) {
+            throw Exception.RangeException(length: data.count, startIndex: startIndex, count: count)
+        }
+        
         let encoding = String.Encoding.utf8
         let bytes = Data(bytes: data[startIndex..<startIndex+count])
-        
+
         if let string = String(data: bytes, encoding: encoding)
         {
-            try write(string: string)
+            write(string: string)
         } else {
             throw Exception.DataCannotBeConvertedToString(encoding: encoding)
         }
     }
     
-    public func write(string: String) throws
+    public func write(string: String)
     {
         self.string.append(string)
     }

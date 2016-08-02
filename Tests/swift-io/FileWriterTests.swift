@@ -63,7 +63,7 @@ class FileWriterTests: XCTestCase
     }
     
     func test_unwritable() {
-        let writer = try? FileWriter(file: "/rootX/file.sh", appendFile: false, bufferSize: 5)
+        let writer = try? FileWriter(file: "/rootX/file.sh", appendFile: false)
         XCTAssertNil(writer)
     }
 }

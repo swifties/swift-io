@@ -21,10 +21,9 @@ import Foundation
 public enum IOException: Error {
 
     case FileNotFound                   (url: URL)
-    case InvalidPath                    (url: URL)
     case ErrorCreatingFile              (url: URL)
     case FieIsNotWritable               (url: URL)
-    case ErrorReadingFile               (url: URL)
+    case FieIsNotReadable               (url: URL)
 
     case ErrorWritingIntoStream         (sourceDescription: String, error: Error?)
     case ErrorReadingFromStream         (sourceDescription: String, error: Error?)

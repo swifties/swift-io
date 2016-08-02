@@ -37,10 +37,18 @@ public class OutputStreamWriter: Writer
         self.closed = false
     }
     
+    deinit {
+        try? close()
+    }
+    
     public func write(data: [UInt8], startIndex: Int, count: Int) throws
     {
         if(closed) {
             throw IOException.StreamAlreadyClosed(sourceDescription: sourceDescription)
+        }
+        
+        if(startIndex < 0 || startIndex + count > data.count) {
+            throw Exception.RangeException(length: data.count, startIndex: startIndex, count: count)
         }
         
         var totalWritten = 0
@@ -63,4 +71,5 @@ public class OutputStreamWriter: Writer
             closed = true
         }
     }
+
 }

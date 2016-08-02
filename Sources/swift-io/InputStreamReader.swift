@@ -34,6 +34,9 @@ class InputStreamReader: Reader
         self.closed = false
     }
     
+    deinit {
+        try? close()
+    }
     
     /**
      Attempts to read characters into the specified character buffer.
@@ -44,13 +47,17 @@ class InputStreamReader: Reader
      - Returns: the number of bytes read or -1 when at the end.
      - Throws: exception if read error occurs
      */
-    func read(buffer: inout [UInt8]) throws -> Int
+    func read(buffer: inout [UInt8]) throws -> Int?
     {
         if(closed) {
             throw IOException.StreamAlreadyClosed(sourceDescription: sourceDescription)
         }
         
         let count = stream.read(&buffer, maxLength: buffer.count)
+        
+        if(count == 0) {
+            return nil
+        }
         
         if(count == -1) {
             throw IOException.ErrorReadingFromStream(sourceDescription: sourceDescription, error: stream.streamError)

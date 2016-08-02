@@ -11,15 +11,28 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  
- Created by dusan@saiko.cz on 04/07/16.
-*/
-
+ Created by Dusan Saiko on 02/08/16.
+ */
 import Foundation
 
-public enum Exception: Error {
-    case MethodNotImplemented
-
-    case StringCannotBeConvertedToByteArray (string: String)
-    case DataCannotBeConvertedToString      (encoding: String.Encoding)
-    case RangeException                     (length: Int, startIndex: Int, count: Int)
+public class BufferedReader
+{
+    let reader: Reader
+    
+    public init(reader: Reader) {
+        self.reader = reader
+    }
+    
+    deinit {
+        try? close()
+    }
+    
+    public func readLine() throws -> String?
+    {
+    }
+    
+    public func close() throws
+    {
+        try reader.close()
+    }
 }
