@@ -48,14 +48,14 @@ public class OutputStreamWriter: Writer
         }
         
         if(startIndex < 0 || startIndex + count > data.count) {
-            throw Exception.RangeException(length: data.count, startIndex: startIndex, count: count)
+            throw Exception.RangeException(existingRange: 0 ..< data.count, requestedRange: startIndex ..< count)
         }
         
         var totalWritten = 0
         
         //write loop in case data are not written in one piece
         while(totalWritten < data.count) {
-            let dataToWrite = Array(data[startIndex+totalWritten..<startIndex+count])
+            let dataToWrite = Array(data[startIndex + totalWritten ..< startIndex + count])
             let bytesWritten = stream.write(dataToWrite, maxLength: dataToWrite.count)
             
             if ( bytesWritten <= 0) {

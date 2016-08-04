@@ -5,3 +5,4 @@
 - consider using struts somewhere
 - measure memory leaks
 - csv -> json
+- urf 8 as param?

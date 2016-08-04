@@ -59,9 +59,13 @@ public extension Writer {
         try write(data: array, startIndex: 0, count: array.count)
     }
     
-    public func write(string: String) throws {
-        try write(data: Array(string.utf8))
+    public func write(string: String, encoding: String.Encoding = StringWriter.DEFAUTL_ENCODING) throws {
+        if let data = string.data(using: encoding) {
+            try write(data: data)
+        } else {
+            //can happen if we try to encode String in encoding not supporting all given characters
+            throw Exception.InvalidStringEncoding(string: string, requestedEncoding: encoding)
+        }
     }
-    
 }
 

@@ -15,12 +15,12 @@ class StringWriterTests: XCTestCase
         let s1 = "Text "
         let s2 = "News"
         
-        try! stream.write(string: s1)
-        try! stream.write(string: s2)
+        stream.write(string: s1)
+        stream.write(string: s2)
         
-        try! stream.close()
-        try! stream.close()
+        stream.close()
+        stream.close()
 
-        XCTAssertEqual(stream.string, s1+s2)
+        XCTAssertEqual(stream.string, s1 + s2)
     }
 }

@@ -22,26 +22,30 @@ import Foundation
  */
 public class StringWriter: Writer
 {
+    static let DEFAUTL_ENCODING = String.Encoding.utf8
+
     public private(set) var string: String
     
-    public init() {
+    let encoding: String.Encoding
+    
+    public init(encoding: String.Encoding = StringWriter.DEFAUTL_ENCODING) {
         self.string = String()
+        self.encoding = encoding
     }
 
     public func write(data: [UInt8], startIndex: Int, count: Int) throws
     {
         if(startIndex < 0 || startIndex + count > data.count) {
-            throw Exception.RangeException(length: data.count, startIndex: startIndex, count: count)
+            throw Exception.RangeException(existingRange: 0 ..< data.count, requestedRange: startIndex ..< count)
         }
         
-        let encoding = String.Encoding.utf8
-        let bytes = Data(bytes: data[startIndex..<startIndex+count])
+        let dataToWrite = Data(bytes: data[startIndex ..< startIndex + count])
 
-        if let string = String(data: bytes, encoding: encoding)
+        if let string = String(data: dataToWrite, encoding: encoding)
         {
             write(string: string)
         } else {
-            throw Exception.DataCannotBeConvertedToString(encoding: encoding)
+            throw Exception.InvalidDataEncoding(data: dataToWrite, requestedEncoding: encoding)
         }
     }
     
@@ -50,7 +54,7 @@ public class StringWriter: Writer
         self.string.append(string)
     }
     
-    public func close() throws
+    public func close()
     {
     }
 }

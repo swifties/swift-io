@@ -17,18 +17,79 @@ import Foundation
 
 public class BufferedReader
 {
-    let reader: Reader
+    static let DEFAULT_BUFFER_SIZE = 8 * 1024
+    static let LINE_END_CHARACTERS = ["\r\n", "\n", "\r"]
     
-    public init(reader: Reader) {
+    let reader: Reader
+    let encoding: String.Encoding
+
+    var readerBuffer: [UInt8]
+    var buffer: Data
+    var lineEndings: [Data]
+    var endOfData: Bool
+    
+    
+    public init(_ reader: Reader, encoding: String.Encoding = StringWriter.DEFAUTL_ENCODING, bufferSize: Int = BufferedReader.DEFAULT_BUFFER_SIZE) {
         self.reader = reader
+        self.buffer = Data(capacity: bufferSize)
+        self.encoding = encoding
+        self.lineEndings = BufferedReader.LINE_END_CHARACTERS.map({
+            (eol: String) -> Data in
+            return eol.data(using: encoding)!
+        })
+        self.readerBuffer = [UInt8](repeating: 0, count: bufferSize)
+        self.endOfData = false
     }
     
     deinit {
         try? close()
     }
-    
+
     public func readLine() throws -> String?
     {
+        func findEOL(startIndex: Int = 0) -> Range<Int>? {
+            for eol in lineEndings {
+                if let range = buffer.range(of: eol, options: [], in: startIndex ..< buffer.count) {
+                    return range
+                }
+            }
+            return nil
+        }
+        
+        if(endOfData) {
+            return nil
+        }
+
+        var range = findEOL()
+        var findIndex = buffer.count
+        
+        while (range == nil) {
+            if let count = try reader.read(buffer: &readerBuffer) {
+                buffer.append(readerBuffer, count: count)
+                range = findEOL(startIndex: findIndex)
+                findIndex = buffer.count
+            } else {
+                //no more data
+                endOfData = true
+
+                if(buffer.count > 0) {
+                    //return last line
+                    let line = String(data: buffer, encoding: encoding)
+                    buffer.removeAll(keepingCapacity: false)
+                    return line
+                } else {
+                    return nil
+                }
+            }
+        }
+
+        if let range = range {
+            let line = String(data: buffer.subdata(in: 0 ..< range.lowerBound), encoding: encoding)
+            buffer.removeSubrange(0 ..< range.upperBound)
+            return line
+        }
+        
+        return nil
     }
     
     public func close() throws

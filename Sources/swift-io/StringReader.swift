@@ -18,27 +18,33 @@ import Foundation
 
 public class StringReader: Reader
 {
-    let data: [UInt8]
+    let data: Data
     var index: Int
     
-    public init(string: String) {
-        self.data = Array(string.utf8)
+    public init(string: String, encoding: String.Encoding = StringWriter.DEFAUTL_ENCODING) throws
+    {
+        guard let data = string.data(using: encoding) else
+        {
+            //can happen if we try to encode String in encoding not supporting all given characters
+            throw Exception.InvalidStringEncoding(string: string, requestedEncoding: encoding)
+        }
+        
+        self.data = data
         index = 0
     }
     
-    public func read(buffer: inout [UInt8]) throws -> Int?
+    public func read(buffer: inout [UInt8]) -> Int?
     {
         if(index >= data.count) {
             return nil
         }
         
-        var n = 0
-        while(index < data.count && n < buffer.count) {
-            buffer[n] = data[index]
-            index += 1
-            n += 1
-        }
-        return n
+        let count = min(data.count - index, buffer.count)
+        buffer.removeAll(keepingCapacity: true)
+        buffer.append(contentsOf: data[index ..< index + count])
+        index = index + count
+        
+        return count
     }
     
     public func close() throws

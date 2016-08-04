@@ -9,7 +9,7 @@ import XCTest
 class FileWriterTests: XCTestCase
 {
     func test_closing() {
-        let writer = try! FileWriter(file: NSTemporaryDirectory()+"file.txt")
+        let writer = try! FileWriter(file: NSTemporaryDirectory() + "file.txt")
         defer {
             try! writer.close()
         }
@@ -18,7 +18,7 @@ class FileWriterTests: XCTestCase
     }
     
     func test_write() {
-        let url = URL(fileURLWithPath: NSTemporaryDirectory()+"file.txt")
+        let url = URL(fileURLWithPath: NSTemporaryDirectory() + "file.txt")
         
         let writer = try! FileWriter(url: url, appendFile: false)
         defer {
@@ -48,7 +48,7 @@ class FileWriterTests: XCTestCase
     }
     
     func test_append() {
-        let url = URL(fileURLWithPath: NSTemporaryDirectory()+"file.txt")
+        let url = URL(fileURLWithPath: NSTemporaryDirectory() + "file.txt")
         
         let writer1 = try! FileWriter(url: url, appendFile: false)
         try! writer1.write(string: "Hello ")

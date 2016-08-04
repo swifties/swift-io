@@ -19,7 +19,7 @@ import Foundation
 public enum Exception: Error {
     case MethodNotImplemented
 
-    case StringCannotBeConvertedToByteArray (string: String)
-    case DataCannotBeConvertedToString      (encoding: String.Encoding)
-    case RangeException                     (length: Int, startIndex: Int, count: Int)
+    case InvalidStringEncoding              (string: String, requestedEncoding: String.Encoding)
+    case InvalidDataEncoding                (data: Data, requestedEncoding: String.Encoding)
+    case RangeException                     (existingRange: Range<Int>, requestedRange: Range<Int>)
 }
