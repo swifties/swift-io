@@ -24,13 +24,13 @@ public class StringWriter: Writer
 {
     static let DEFAUTL_ENCODING = String.Encoding.utf8
 
-    public private(set) var string: String
+    public private(set) var stringBuffer: String
     
     let encoding: String.Encoding
     
-    public init(encoding: String.Encoding = StringWriter.DEFAUTL_ENCODING) {
-        self.string = String()
-        self.encoding = encoding
+    public init(dataEncoding: String.Encoding = StringWriter.DEFAUTL_ENCODING) {
+        self.stringBuffer = String()
+        self.encoding = dataEncoding
     }
 
     public func write(data: [UInt8], startIndex: Int, count: Int) throws
@@ -43,15 +43,15 @@ public class StringWriter: Writer
 
         if let string = String(data: dataToWrite, encoding: encoding)
         {
-            write(string: string)
+            write(string)
         } else {
             throw Exception.InvalidDataEncoding(data: dataToWrite, requestedEncoding: encoding)
         }
     }
     
-    public func write(string: String)
+    public func write(_ string: String)
     {
-        self.string.append(string)
+        self.stringBuffer.append(string)
     }
     
     public func close()

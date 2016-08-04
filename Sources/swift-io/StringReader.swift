@@ -21,12 +21,12 @@ public class StringReader: Reader
     let data: Data
     var index: Int
     
-    public init(string: String, encoding: String.Encoding = StringWriter.DEFAUTL_ENCODING) throws
+    public init(string: String, dataEncoding: String.Encoding = StringWriter.DEFAUTL_ENCODING) throws
     {
-        guard let data = string.data(using: encoding) else
+        guard let data = string.data(using: dataEncoding) else
         {
             //can happen if we try to encode String in encoding not supporting all given characters
-            throw Exception.InvalidStringEncoding(string: string, requestedEncoding: encoding)
+            throw Exception.InvalidStringEncoding(string: string, requestedEncoding: dataEncoding)
         }
         
         self.data = data

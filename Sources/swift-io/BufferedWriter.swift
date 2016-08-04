@@ -15,3 +15,42 @@
  */
 
 import Foundation
+
+public class BufferedWriter: Writer
+{
+    let writer: Writer
+    let bufferSize: Int
+    var buffer: Data
+    
+    public init(_ writer: Writer, bufferSize: Int = BufferedReader.DEFAULT_BUFFER_SIZE) {
+        self.writer = writer
+        self.bufferSize = bufferSize
+        self.buffer = Data(capacity: bufferSize)
+    }
+    
+    deinit {
+        try? close()
+    }
+    
+    public func write(data: [UInt8], startIndex: Int, count: Int) throws
+    {
+        if(count + buffer.count > bufferSize) {
+            try flush()
+            try writer.write(data: data, startIndex: startIndex, count: count)
+        } else {
+            buffer.append(Array(data[startIndex ..< startIndex + count]), count: count)
+        }
+    }
+    
+    public func close() throws
+    {
+        try flush()
+        try writer.close()
+    }
+    
+    func flush() throws {
+        try writer.write(buffer)
+        buffer.removeAll(keepingCapacity: true)
+    }
+    
+}

@@ -189,7 +189,7 @@ public class CSVWriter {
         }
         
         appendable.append(lineEnd)
-        try writer.write(string: appendable)
+        try writer.write(appendable)
     }
     
     /**

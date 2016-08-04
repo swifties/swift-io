@@ -41,7 +41,7 @@ public protocol Writer {
 
 public extension Writer {
 
-    public func write(data: [UInt8]) throws
+    public func write(_ data: [UInt8]) throws
     {
         try write(data: data, startIndex: 0, count: data.count)
     }
@@ -51,7 +51,7 @@ public extension Writer {
      - Parameter data: Data to be written into the stream
      - Throws: IOException if an I/O error occurs
      */
-    public func write(data: Data) throws {
+    public func write(_ data: Data) throws {
         let array = data.withUnsafeBytes { (bytes: UnsafePointer<UInt8>)->[UInt8] in
             return Array(UnsafeBufferPointer<UInt8>(start: bytes, count: data.count/sizeof(UInt8.self)))
         }
@@ -59,12 +59,12 @@ public extension Writer {
         try write(data: array, startIndex: 0, count: array.count)
     }
     
-    public func write(string: String, encoding: String.Encoding = StringWriter.DEFAUTL_ENCODING) throws {
-        if let data = string.data(using: encoding) {
-            try write(data: data)
+    public func write(_ string: String, dataEncoding: String.Encoding = StringWriter.DEFAUTL_ENCODING) throws {
+        if let data = string.data(using: dataEncoding) {
+            try write(data)
         } else {
             //can happen if we try to encode String in encoding not supporting all given characters
-            throw Exception.InvalidStringEncoding(string: string, requestedEncoding: encoding)
+            throw Exception.InvalidStringEncoding(string: string, requestedEncoding: dataEncoding)
         }
     }
 }

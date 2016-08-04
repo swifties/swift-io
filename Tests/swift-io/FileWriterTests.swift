@@ -28,13 +28,13 @@ class FileWriterTests: XCTestCase
         let strings = ["Test\n", "Text!", "    ", "\n", "1234567890"]
 
         for s in strings {
-            try! writer.write(string: s)
+            try! writer.write(s)
         }
         try! writer.close()
         
         //test write after close
         do {
-            try writer.write(string: "?")
+            try writer.write("?")
             XCTAssertTrue(false) //unreachable - flush after close will fail
         } catch IOException.StreamAlreadyClosed {
             XCTAssertTrue(true) //this is fine
@@ -51,11 +51,11 @@ class FileWriterTests: XCTestCase
         let url = URL(fileURLWithPath: NSTemporaryDirectory() + "file.txt")
         
         let writer1 = try! FileWriter(url: url, appendFile: false)
-        try! writer1.write(string: "Hello ")
+        try! writer1.write("Hello ")
         try! writer1.close()
 
         let writer2 = try! FileWriter(url: url, appendFile: true)
-        try! writer2.write(string: "World!")
+        try! writer2.write("World!")
         try! writer2.close()
 
         let s = try! String(contentsOf: url)
