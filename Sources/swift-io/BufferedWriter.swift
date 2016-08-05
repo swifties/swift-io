@@ -32,11 +32,11 @@ public class BufferedWriter: Writer
         try? close()
     }
     
-    public func write(data: [UInt8], startIndex: Int, count: Int) throws
+    public func write(_ data: [UInt8], startIndex: Int, count: Int) throws
     {
         if(count + buffer.count > bufferSize) {
             try flush()
-            try writer.write(data: data, startIndex: startIndex, count: count)
+            try writer.write(data, startIndex: startIndex, count: count)
         } else {
             buffer.append(Array(data[startIndex ..< startIndex + count]), count: count)
         }

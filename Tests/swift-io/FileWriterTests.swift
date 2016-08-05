@@ -8,7 +8,7 @@ import XCTest
 
 class FileWriterTests: XCTestCase
 {
-    func test_closing() {
+    func test_Closing() {
         let writer = try! FileWriter(file: NSTemporaryDirectory() + "file.txt")
         defer {
             try! writer.close()
@@ -17,7 +17,7 @@ class FileWriterTests: XCTestCase
         try! writer.close()
     }
     
-    func test_write() {
+    func test_Write() {
         let url = URL(fileURLWithPath: NSTemporaryDirectory() + "file.txt")
         
         let writer = try! FileWriter(url: url, appendFile: false)
@@ -35,19 +35,18 @@ class FileWriterTests: XCTestCase
         //test write after close
         do {
             try writer.write("?")
-            XCTAssertTrue(false) //unreachable - flush after close will fail
+            XCTFail() //unreachable - flush after close will fail
         } catch IOException.StreamAlreadyClosed {
-            XCTAssertTrue(true) //this is fine
+            //expected
         } catch {
-            XCTAssertTrue(false) //unknown exception?
+            XCTFail()
         }
-        
         
         let s = try! String(contentsOf: url)
         XCTAssertEqual(s, strings.joined(separator: ""))
     }
     
-    func test_append() {
+    func test_Append() {
         let url = URL(fileURLWithPath: NSTemporaryDirectory() + "file.txt")
         
         let writer1 = try! FileWriter(url: url, appendFile: false)
@@ -62,7 +61,7 @@ class FileWriterTests: XCTestCase
         XCTAssertEqual(s, "Hello World!")
     }
     
-    func test_unwritable() {
+    func test_Unwritable() {
         let writer = try? FileWriter(file: "/rootX/file.sh", appendFile: false)
         XCTAssertNil(writer)
     }

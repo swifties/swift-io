@@ -29,7 +29,7 @@ public class OutputStreamWriter: Writer
      Initializer to write data into the passed stream.
      - Parameter stream: Stream which needs to be already opened
      */
-    init(stream: NSOutputStream, sourceDescription: String? = nil)
+    init(_ stream: NSOutputStream, sourceDescription: String? = nil)
     {
         self.stream = stream
         self.sourceDescription = sourceDescription ?? stream.description
@@ -41,7 +41,7 @@ public class OutputStreamWriter: Writer
         try? close()
     }
     
-    public func write(data: [UInt8], startIndex: Int, count: Int) throws
+    public func write(_ data: [UInt8], startIndex: Int, count: Int) throws
     {
         if(closed) {
             throw IOException.StreamAlreadyClosed(sourceDescription: sourceDescription)

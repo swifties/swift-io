@@ -44,7 +44,7 @@ public class FileWriter: OutputStreamWriter
         if let stream = NSOutputStream(url: url, append: appendFile)
         {
             stream.schedule(in: RunLoop.current, forMode: .defaultRunLoopMode)
-            super.init(stream: stream, sourceDescription: url.absoluteString)
+            super.init(stream, sourceDescription: url.absoluteString)
         } else {
             throw IOException.FieIsNotWritable(url: url)
         }

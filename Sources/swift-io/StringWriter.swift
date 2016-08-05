@@ -33,7 +33,7 @@ public class StringWriter: Writer
         self.encoding = dataEncoding
     }
 
-    public func write(data: [UInt8], startIndex: Int, count: Int) throws
+    public func write(_ data: [UInt8], startIndex: Int, count: Int) throws
     {
         if(startIndex < 0 || startIndex + count > data.count) {
             throw Exception.RangeException(existingRange: 0 ..< data.count, requestedRange: startIndex ..< count)

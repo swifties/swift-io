@@ -27,7 +27,7 @@ public protocol Writer {
      - Parameter data: Data to be written into the stream
      - Throws: IOException if an I/O error occurs
      */
-    func write(data: [UInt8], startIndex: Int, count: Int) throws
+    func write(_ data: [UInt8], startIndex: Int, count: Int) throws
     
     /**
       Closes the stream, flushing it first. Once the stream has been closed,
@@ -43,7 +43,7 @@ public extension Writer {
 
     public func write(_ data: [UInt8]) throws
     {
-        try write(data: data, startIndex: 0, count: data.count)
+        try write(data, startIndex: 0, count: data.count)
     }
     
     /**
@@ -56,7 +56,7 @@ public extension Writer {
             return Array(UnsafeBufferPointer<UInt8>(start: bytes, count: data.count/sizeof(UInt8.self)))
         }
         
-        try write(data: array, startIndex: 0, count: array.count)
+        try write(array, startIndex: 0, count: array.count)
     }
     
     public func write(_ string: String, dataEncoding: String.Encoding = StringWriter.DEFAUTL_ENCODING) throws {

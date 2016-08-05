@@ -23,7 +23,7 @@ class StringReaderTests: XCTestCase
         "we had everything before us, we had nothing before us\n" +
         "\n"
     
-    func test_simpleRead() {
+    func test_SimpleRead() {
         let reader = try! StringReader(string: StringReaderTests.TEST_STRING)
         var buffer = [UInt8](repeating: 0, count: 1024 * 8)
         
@@ -37,7 +37,7 @@ class StringReaderTests: XCTestCase
         XCTAssertEqual(s, StringReaderTests.TEST_STRING)
     }
     
-    func test_bufferedRead() {
+    func test_BufferedRead() {
         let reader = try! BufferedReader(StringReader(string: StringReaderTests.TEST_STRING))
         
         var line = try! reader.readLine()
@@ -50,7 +50,7 @@ class StringReaderTests: XCTestCase
         XCTAssertEqual(count, 8)
     }
     
-    func test_bufferedReadSmallBuffer() {
+    func test_BufferedReadSmallBuffer() {
         let reader = try! BufferedReader(StringReader(string: StringReaderTests.TEST_STRING), bufferSize: 5)
         
         var line = try! reader.readLine()
