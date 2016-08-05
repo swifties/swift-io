@@ -21,7 +21,7 @@ import Foundation
 */
 public class OutputStreamWriter: Writer
 {
-    let stream:             OutputStream
+    let stream:             NSOutputStream
     let sourceDescription:  String
     var closed:             Bool
     
@@ -29,7 +29,7 @@ public class OutputStreamWriter: Writer
      Initializer to write data into the passed stream.
      - Parameter stream: Stream which needs to be already opened
      */
-    init(stream: OutputStream, sourceDescription: String? = nil)
+    init(stream: NSOutputStream, sourceDescription: String? = nil)
     {
         self.stream = stream
         self.sourceDescription = sourceDescription ?? stream.description

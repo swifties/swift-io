@@ -41,7 +41,7 @@ public class FileWriter: OutputStreamWriter
             throw IOException.FieIsNotWritable(url: url)
         }
         
-        if let stream = OutputStream(url: url, append: appendFile)
+        if let stream = NSOutputStream(url: url, append: appendFile)
         {
             stream.schedule(in: RunLoop.current, forMode: .defaultRunLoopMode)
             super.init(stream: stream, sourceDescription: url.absoluteString)
