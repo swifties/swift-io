@@ -9,7 +9,7 @@ import XCTest
 class FileWriterTests: XCTestCase
 {
     func test_Closing() {
-        let writer = try! FileWriter(file: NSTemporaryDirectory() + "file.txt")
+        let writer = try! FileWriter(NSTemporaryDirectory() + "file.txt")
         defer {
             try! writer.close()
         }
@@ -20,11 +20,8 @@ class FileWriterTests: XCTestCase
     func test_Write() {
         let url = URL(fileURLWithPath: NSTemporaryDirectory() + "file.txt")
         
-        let writer = try! FileWriter(url: url, appendFile: false)
-        defer {
-            try! writer.close()
-        }
-        
+        let writer = try! FileWriter(url, appendFile: false)
+
         let strings = ["Test\n", "Text!", "    ", "\n", "1234567890"]
 
         for s in strings {
@@ -49,11 +46,11 @@ class FileWriterTests: XCTestCase
     func test_Append() {
         let url = URL(fileURLWithPath: NSTemporaryDirectory() + "file.txt")
         
-        let writer1 = try! FileWriter(url: url, appendFile: false)
+        let writer1 = try! FileWriter(url, appendFile: false)
         try! writer1.write("Hello ")
         try! writer1.close()
 
-        let writer2 = try! FileWriter(url: url, appendFile: true)
+        let writer2 = try! FileWriter(url, appendFile: true)
         try! writer2.write("World!")
         try! writer2.close()
 
@@ -62,7 +59,38 @@ class FileWriterTests: XCTestCase
     }
     
     func test_Unwritable() {
-        let writer = try? FileWriter(file: "/rootX/file.sh", appendFile: false)
-        XCTAssertNil(writer)
+        var writer = try! FileWriter("/rootX/file.sh", appendFile: false)
+        do {
+            try writer.write("AAAAA")
+            XCTFail()
+        } catch IOException.ErrorWritingIntoStream(_, _) {
+            //expected
+        } catch {
+            XCTFail()
+        }
+        
+        do {
+            writer = try FileWriter(URL(string: "unknown://rootX/file.sh")!)
+            try writer.write("AAAAA")
+            XCTFail()
+        } catch IOException.FileIsNotWritable(_) {
+            //expected
+        } catch {
+            XCTFail()
+        }
+
+    }
+    
+    func test_InvalidEncoding() {
+        let writer = try! FileWriter(URL(fileURLWithPath: NSTemporaryDirectory() + "file.txt"), appendFile: false)
+
+        do {
+            try writer.write("ČŘŠŤĎŇ", dataEncoding: .ascii)
+            XCTFail()
+        } catch Exception.InvalidStringEncoding(_, _) {
+            //expected
+        } catch {
+            XCTFail()
+        }
     }
 }

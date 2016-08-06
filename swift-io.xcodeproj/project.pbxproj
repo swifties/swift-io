@@ -11,6 +11,8 @@
 		F90B2F541D53C7CF000AA0CC /* BufferedWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90B2F531D53C7CF000AA0CC /* BufferedWriterTests.swift */; };
 		F94BC55B1D4D63A5002EE668 /* InputStreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94BC55A1D4D63A5002EE668 /* InputStreamReader.swift */; };
 		F95D315C1D54C79D00854E5C /* OutputStreamWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95D315B1D54C79D00854E5C /* OutputStreamWriterTests.swift */; };
+		F95D31601D555F8C00854E5C /* FileReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95D315F1D555F8C00854E5C /* FileReaderTests.swift */; };
+		F95D31621D55664D00854E5C /* InputStreamReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95D31611D55664D00854E5C /* InputStreamReaderTests.swift */; };
 		F967AA951D5149970096EC1F /* BufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F967AA941D5149970096EC1F /* BufferedReader.swift */; };
 		F967AA971D5149B80096EC1F /* BufferedWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F967AA961D5149B80096EC1F /* BufferedWriter.swift */; };
 		F967AA991D515C720096EC1F /* StringReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F967AA981D515C720096EC1F /* StringReader.swift */; };
@@ -43,6 +45,9 @@
 		F90B2F531D53C7CF000AA0CC /* BufferedWriterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferedWriterTests.swift; sourceTree = "<group>"; };
 		F94BC55A1D4D63A5002EE668 /* InputStreamReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputStreamReader.swift; sourceTree = "<group>"; };
 		F95D315B1D54C79D00854E5C /* OutputStreamWriterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputStreamWriterTests.swift; sourceTree = "<group>"; };
+		F95D315D1D55182700854E5C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F95D315F1D555F8C00854E5C /* FileReaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileReaderTests.swift; sourceTree = "<group>"; };
+		F95D31611D55664D00854E5C /* InputStreamReaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputStreamReaderTests.swift; sourceTree = "<group>"; };
 		F967AA941D5149970096EC1F /* BufferedReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferedReader.swift; sourceTree = "<group>"; };
 		F967AA961D5149B80096EC1F /* BufferedWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferedWriter.swift; sourceTree = "<group>"; };
 		F967AA981D515C720096EC1F /* StringReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringReader.swift; sourceTree = "<group>"; };
@@ -128,6 +133,7 @@
 		"___RootGroup_" = {
 			isa = PBXGroup;
 			children = (
+				F95D315D1D55182700854E5C /* README.md */,
 				F99C1EF11D51FCE00034170D /* TODO.md */,
 				__PBXFileRef_Package.swift /* Package.swift */,
 				"_____Configs_" /* Configs */,
@@ -180,7 +186,9 @@
 			isa = PBXGroup;
 			children = (
 				F90B2F531D53C7CF000AA0CC /* BufferedWriterTests.swift */,
+				F95D315F1D555F8C00854E5C /* FileReaderTests.swift */,
 				"__PBXFileRef_Tests/swift-io/FileWriterTests.swift" /* FileWriterTests.swift */,
+				F95D31611D55664D00854E5C /* InputStreamReaderTests.swift */,
 				F99C1EF51D52AEEB0034170D /* StringReaderTests.swift */,
 				"__PBXFileRef_Tests/swift-io/StringWriterTests.swift" /* StringWriterTests.swift */,
 				F95D315B1D54C79D00854E5C /* OutputStreamWriterTests.swift */,
@@ -293,6 +301,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				F95D31621D55664D00854E5C /* InputStreamReaderTests.swift in Sources */,
+				F95D31601D555F8C00854E5C /* FileReaderTests.swift in Sources */,
 				F99C1EF71D52AF230034170D /* StringReaderTests.swift in Sources */,
 				F95D315C1D54C79D00854E5C /* OutputStreamWriterTests.swift in Sources */,
 				"__src_cc_ref_Tests/swift-io/FileWriterTests.swift" /* FileWriterTests.swift in Sources */,

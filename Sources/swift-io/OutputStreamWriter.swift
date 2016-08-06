@@ -67,8 +67,8 @@ public class OutputStreamWriter: Writer
     
     public func close() throws {
         if(!closed) {
-            stream.close()
             closed = true
+            stream.close()
         }
     }
 

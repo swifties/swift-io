@@ -63,8 +63,8 @@ public class BufferedReader
         var range = findEOL()
         var findIndex = buffer.count
         
-        while (range == nil) {
-            if let count = try reader.read(buffer: &readerBuffer) {
+        while (range == nil && !endOfData) {
+            if let count = try reader.read(&readerBuffer) {
                 buffer.append(readerBuffer, count: count)
                 range = findEOL(startIndex: findIndex)
                 findIndex = buffer.count
@@ -78,7 +78,8 @@ public class BufferedReader
                     buffer.removeAll(keepingCapacity: false)
                     return line
                 } else {
-                    return nil
+                    //will return nil
+                    endOfData = true
                 }
             }
         }

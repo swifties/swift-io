@@ -21,7 +21,7 @@ public class StringReader: Reader
     let data: Data
     var index: Int
     
-    public init(string: String, dataEncoding: String.Encoding = StringWriter.DEFAUTL_ENCODING) throws
+    public init(_ string: String, dataEncoding: String.Encoding = StringWriter.DEFAUTL_ENCODING) throws
     {
         guard let data = string.data(using: dataEncoding) else
         {
@@ -33,7 +33,7 @@ public class StringReader: Reader
         index = 0
     }
     
-    public func read(buffer: inout [UInt8]) -> Int?
+    public func read(_ buffer: inout [UInt8]) -> Int?
     {
         if(index >= data.count) {
             return nil

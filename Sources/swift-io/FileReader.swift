@@ -25,30 +25,19 @@ class FileReader: InputStreamReader {
      - Parameter bufferSize: size of data buffer, default 1MB
      - Throws: IOException if initialization is not successfull
      */
-    init(url: URL) throws
+    init(_ url: URL) throws
     {
-        let fileManager = FileManager.default
-        
-        //create file if not exists
-        if(!fileManager.fileExists(atPath: url.path)) {
-            throw IOException.FileNotFound(url: url)
-        }
-        
-        if(!FileManager.default.isReadableFile(atPath: url.path)) {
-            throw IOException.FieIsNotReadable(url: url)
-        }
-        
         if let stream = InputStream(url: url)
         {
             stream.schedule(in: RunLoop.current, forMode: .defaultRunLoopMode)
-            super.init(stream: stream, sourceDescription: url.absoluteString)
+            super.init(stream, sourceDescription: url.absoluteString)
         } else {
-            throw IOException.FieIsNotReadable(url: url)
+            throw IOException.FileIsNotReadable(url: url)
         }
     }
     
-    convenience init(file: String) throws
+    convenience init(_ path: String) throws
     {
-        try self.init(url: URL(fileURLWithPath: file))
+        try self.init(URL(fileURLWithPath: path))
     }
 }

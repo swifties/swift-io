@@ -21,13 +21,13 @@ class StringReaderTests: XCTestCase
         "it was the season of Light, it was the season of Darkness,\n" +
         "it was the spring of hope, it was the winter of despair,\n" +
         "we had everything before us, we had nothing before us\n" +
-        "\n"
+        "The End."
     
     func test_SimpleRead() {
-        let reader = try! StringReader(string: StringReaderTests.TEST_STRING)
+        let reader = try! StringReader(StringReaderTests.TEST_STRING)
         var buffer = [UInt8](repeating: 0, count: 1024 * 8)
         
-        let count = reader.read(buffer: &buffer)
+        let count = reader.read(&buffer)
         XCTAssertNotNil(count)
         
         var data = Data()
@@ -38,7 +38,7 @@ class StringReaderTests: XCTestCase
     }
     
     func test_BufferedRead() {
-        let reader = try! BufferedReader(StringReader(string: StringReaderTests.TEST_STRING))
+        let reader = try! BufferedReader(StringReader(StringReaderTests.TEST_STRING))
         
         var line = try! reader.readLine()
         var count = 0
@@ -50,8 +50,14 @@ class StringReaderTests: XCTestCase
         XCTAssertEqual(count, 8)
     }
     
+    func test_BufferedReadEmptyString() {
+        let reader = try! BufferedReader(StringReader(""))
+        let line = try! reader.readLine()
+        XCTAssertNil(line)
+    }
+    
     func test_BufferedReadSmallBuffer() {
-        let reader = try! BufferedReader(StringReader(string: StringReaderTests.TEST_STRING), bufferSize: 5)
+        let reader = try! BufferedReader(StringReader(StringReaderTests.TEST_STRING), bufferSize: 5)
         
         var line = try! reader.readLine()
         var count = 0
@@ -61,5 +67,19 @@ class StringReaderTests: XCTestCase
         }
         
         XCTAssertEqual(count, 8)
+        XCTAssertNil(try! reader.readLine())
     }
+    
+    func test_InvalidEncoding() {
+        
+        do {
+            _ = try BufferedReader(StringReader("ČŘŠŤĎŇ", dataEncoding: .ascii), bufferSize: 5)
+            XCTFail()
+        } catch Exception.InvalidStringEncoding(_, _) {
+            //expected
+        } catch {
+            XCTFail()
+        }
+    }
+
 }

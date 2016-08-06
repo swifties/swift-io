@@ -6,3 +6,6 @@
 - measure memory leaks
 - csv -> json
 - urf 8 as param?
+- readme. guidelines, api, html api?, 
+- gzip input / output
+- perf tests vs java - csv, gzip

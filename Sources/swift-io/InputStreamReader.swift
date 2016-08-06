@@ -26,7 +26,7 @@ class InputStreamReader: Reader
      Initializer to write data into the passed stream.
      - Parameter stream: Stream which needs to be already opened
      */
-    init(stream: InputStream, sourceDescription: String? = nil)
+    init(_ stream: InputStream, sourceDescription: String? = nil)
     {
         self.stream = stream
         self.sourceDescription = sourceDescription ?? stream.description
@@ -47,7 +47,7 @@ class InputStreamReader: Reader
      - Returns: the number of bytes read or -1 when at the end.
      - Throws: exception if read error occurs
      */
-    func read(buffer: inout [UInt8]) throws -> Int?
+    func read(_ buffer: inout [UInt8]) throws -> Int?
     {
         if(closed) {
             throw IOException.StreamAlreadyClosed(sourceDescription: sourceDescription)
@@ -76,6 +76,7 @@ class InputStreamReader: Reader
      */
     func close() throws {
         if(!closed) {
+            closed = true
             stream.close()
         }
     }
