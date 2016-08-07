@@ -47,7 +47,8 @@ public extension Writer {
     }
     
     /**
-     Writes Data to this stream
+     Writes Data to this stream.
+     
      - Parameter data: Data to be written into the stream
      - Throws: IOException if an I/O error occurs
      */

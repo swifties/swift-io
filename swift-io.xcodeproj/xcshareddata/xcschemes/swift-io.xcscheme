@@ -9,7 +9,7 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "NO"
-            buildForProfiling = "NO"
+            buildForProfiling = "YES"
             buildForArchiving = "NO"
             buildForAnalyzing = "YES">
             <BuildableReference
@@ -17,6 +17,20 @@
                BlueprintIdentifier = "______Target_swift_io"
                BuildableName = "swift_io.framework"
                BlueprintName = "swift-io"
+               ReferencedContainer = "container:swift-io.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "YES"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "______Target_swift_ioTestSuite"
+               BuildableName = "swift-ioTestSuite.xctest"
+               BlueprintName = "swift-ioTestSuite"
                ReferencedContainer = "container:swift-io.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
