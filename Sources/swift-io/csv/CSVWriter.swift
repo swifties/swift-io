@@ -21,9 +21,7 @@ import Foundation
 /**
  * Simple CSV writer released under a commercial-friendly license.
  */
-public class CSVWriter {
-
-    public static let   INITIAL_STRING_SIZE = 1024
+public class CSVWriter: Closeable {
 
     /**
      * The character used for escaping quotes.

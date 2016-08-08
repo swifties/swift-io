@@ -20,7 +20,7 @@ import Foundation
 /**
  Swift version of the java Writer interface
 */
-public protocol Writer {
+public protocol Writer: Closeable {
     
     /**
      Writes Data to this stream
@@ -28,15 +28,6 @@ public protocol Writer {
      - Throws: IOException if an I/O error occurs
      */
     func write(_ data: [UInt8], startIndex: Int, count: Int) throws
-    
-    /**
-      Closes the stream, flushing it first. Once the stream has been closed,
-      further write() or flush() invocations will cause an IOException to be
-      thrown. Closing a previously closed stream has no effect.
-     
-      - Throws IOException if an I/O error occurs
-    */
-    func close() throws
 }
 
 public extension Writer {

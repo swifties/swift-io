@@ -20,7 +20,7 @@ import Foundation
 /**
  Swift version of the java Reader interface
  */
-public protocol Reader {
+public protocol Reader: Closeable {
     
     /**
      Attempts to read characters into the specified character buffer.
@@ -32,14 +32,4 @@ public protocol Reader {
      - Throws: exception if read error occurs
     */
     func read(_ buffer: inout [UInt8]) throws -> Int?
-    
-    
-    /**
-      Closes the stream and releases any system resources associated with
-      it. Once the stream has been closed, further reads will throw an IOException.
-      Closing a previously closed stream has no effect.
-     
-      - Throws: Exception if an I/O error occurs
-     */
-    func close() throws
 }

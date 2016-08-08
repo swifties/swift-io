@@ -15,7 +15,7 @@
  */
 import Foundation
 
-public class BufferedReader
+public class BufferedReader: Closeable
 {
     static let DEFAULT_BUFFER_SIZE = 8 * 1024
     static let LINE_END_CHARACTERS = ["\r\n", "\n", "\r"]

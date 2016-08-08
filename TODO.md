@@ -9,3 +9,4 @@
 - readme. guidelines, api, html api?, 
 - gzip input / output
 - perf tests vs java - csv, gzip
+- csv reader: json, nextObject
