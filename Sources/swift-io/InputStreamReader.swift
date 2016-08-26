@@ -16,26 +16,38 @@
 
 import Foundation
 
-class InputStreamReader: Reader
+public class InputStreamReader: Reader
 {
-    let stream: InputStream
-    let sourceDescription: String
-    var closed: Bool
+    let stream:             InputStream
+    let description:        String
+    let encoding:           String.Encoding
+    let bufferSize:         Int
+
+    var data:               Data
+    var buffer:             [UInt8]
     
     /**
      Initializer to write data into the passed stream.
      - Parameter stream: Stream which needs to be already opened
      */
-    init(_ stream: InputStream, sourceDescription: String? = nil)
+    init(_ stream: InputStream, encoding: String.Encoding = DEFAULT_ENCODING, bufferSize: Int = DEFAULT_BUFFER_SIZE, description: String? = nil)
     {
         self.stream = stream
-        self.sourceDescription = sourceDescription ?? stream.description
-        self.stream.open()
-        self.closed = false
+        self.encoding = encoding
+        self.bufferSize = max(bufferSize, 1) //MINIMUM_BUFFER_SIZE)
+        self.description = description ?? stream.description
+
+        self.data = Data(capacity: bufferSize)
+        self.buffer = [UInt8](repeating: 0, count: bufferSize)
+        
+        if(stream.streamStatus == .notOpen)
+        {
+            self.stream.open()
+        }
     }
     
     deinit {
-        try? close()
+        close()
     }
     
     /**
@@ -47,23 +59,50 @@ class InputStreamReader: Reader
      - Returns: the number of bytes read or -1 when at the end.
      - Throws: exception if read error occurs
      */
-    func read(_ buffer: inout [UInt8]) throws -> Int?
+    public func read() throws -> String?
     {
-        if(closed) {
-            throw IOException.StreamAlreadyClosed(sourceDescription: sourceDescription)
+        if(stream.streamStatus == .closed)
+        {
+            throw IOException.StreamAlreadyClosed(description: description)
         }
-        
+
+        if(stream.streamStatus == .closed)
+        {
+            throw IOException.StreamAlreadyClosed(description: description)
+        }
+
         let count = stream.read(&buffer, maxLength: buffer.count)
+
+        if(count == -1) {
+            throw IOException.ErrorReadingFromStream(error: stream.streamError, description: description)
+        }
+
+        data.append(buffer, count: count)
         
-        if(count == 0) {
+        if(stream.streamStatus == .atEnd)
+        {
+            if(data.count > 0) {
+                if let lastPart = String(bytes: data, encoding: encoding) {
+                    data.removeAll()
+                    return lastPart
+                } else {
+                    throw Exception.InvalidDataEncoding(data: data, requestedEncoding: encoding, description: description)
+                }
+            }
             return nil
         }
-        
-        if(count == -1) {
-            throw IOException.ErrorReadingFromStream(sourceDescription: sourceDescription, error: stream.streamError)
+
+        if let string = String(data: data, encoding: encoding) {
+            let data2 = string.data(using: encoding)!
+            
+            if(data.count == data2.count && data == data2)
+            {
+                data.removeAll()
+                return string
+            }
         }
         
-        return count
+        return ""
     }
     
     
@@ -74,10 +113,7 @@ class InputStreamReader: Reader
      
      - Throws: Exception if an I/O error occurs
      */
-    func close() throws {
-        if(!closed) {
-            closed = true
-            stream.close()
-        }
+    public func close() {
+        stream.close()
     }
 }

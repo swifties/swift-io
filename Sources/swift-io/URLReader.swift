@@ -16,28 +16,17 @@
 
 import Foundation
 
-class FileReader: InputStreamReader {
-    
-    /**
-     Initializer to write data into url
-     - Parameter url: file url to write to
-     - Parameter appendFile: True if file should be appended
-     - Parameter bufferSize: size of data buffer, default 1MB
-     - Throws: IOException if initialization is not successfull
-     */
-    init(_ url: URL) throws
+typealias FileReader = URLReader
+
+public class URLReader: InputStreamReader
+{
+    init(_ url: URL, encoding: String.Encoding = DEFAULT_ENCODING, bufferSize: Int = DEFAULT_BUFFER_SIZE, description: String? = nil) throws
     {
         if let stream = InputStream(url: url)
         {
-            stream.schedule(in: RunLoop.current, forMode: .defaultRunLoopMode)
-            super.init(stream, sourceDescription: url.absoluteString)
+            super.init(stream, encoding: encoding, bufferSize: bufferSize, description: description ?? url.absoluteString)
         } else {
             throw IOException.FileIsNotReadable(url: url)
         }
-    }
-    
-    convenience init(_ path: String) throws
-    {
-        try self.init(URL(fileURLWithPath: path))
     }
 }

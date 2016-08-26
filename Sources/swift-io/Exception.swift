@@ -19,7 +19,7 @@ import Foundation
 public enum Exception: Error {
     case MethodNotImplemented
 
-    case InvalidStringEncoding              (string: String, requestedEncoding: String.Encoding)
-    case InvalidDataEncoding                (data: Data, requestedEncoding: String.Encoding)
-    case RangeException                     (existingRange: Range<Int>, requestedRange: Range<Int>)
+    case InvalidStringEncoding              (string: String, requestedEncoding: String.Encoding, description: String?)
+    case InvalidDataEncoding                (data: Data, requestedEncoding: String.Encoding, description: String?)
+    case RangeException                     (existingRange: Range<Int>, requestedRange: Range<Int>, description: String?)
 }

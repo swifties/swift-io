@@ -16,35 +16,35 @@
 
 import Foundation
 
-public class FileWriter: OutputStreamWriter
-{
-
-    /**
-     Initializer to write data into url
-     - Parameter url: file url to write to
-     - Parameter appendFile: True if file should be appended
-     - Parameter bufferSize: size of data buffer, default 1MB
-     - Throws: IOException if initialization is not successfull
-     */
-    init(_ url: URL, appendFile: Bool = false) throws
-    {
-        if let stream = NSOutputStream(url: url, append: appendFile)
-        {
-            stream.schedule(in: RunLoop.current, forMode: .defaultRunLoopMode)
-            super.init(stream, sourceDescription: url.absoluteString)
-        } else {
-            throw IOException.FileIsNotWritable(url: url)
-        }
-    }
-
-    /**
-     Initializer to write data into file
-     - Parameter file: file path to write to
-     - Parameter appendFile: True if file should be appended
-     - Throws: IOException if initialization is not successfull
-     */
-    convenience init(_ path: String, appendFile: Bool = false) throws
-    {
-        try self.init(URL(fileURLWithPath: path), appendFile: appendFile)
-    }
-}
+//public class FileWriter: OutputStreamWriter
+//{
+//
+//    /**
+//     Initializer to write data into url
+//     - Parameter url: file url to write to
+//     - Parameter appendFile: True if file should be appended
+//     - Parameter bufferSize: size of data buffer, default 1MB
+//     - Throws: IOException if initialization is not successfull
+//     */
+//    init(_ url: URL, appendFile: Bool = false) throws
+//    {
+//        if let stream = OutputStream(url: url, append: appendFile)
+//        {
+//            stream.schedule(in: RunLoop.current, forMode: .defaultRunLoopMode)
+//            super.init(stream, sourceDescription: url.absoluteString)
+//        } else {
+//            throw IOException.FileIsNotWritable(url: url)
+//        }
+//    }
+//
+//    /**
+//     Initializer to write data into file
+//     - Parameter file: file path to write to
+//     - Parameter appendFile: True if file should be appended
+//     - Throws: IOException if initialization is not successfull
+//     */
+//    convenience init(_ path: String, appendFile: Bool = false) throws
+//    {
+//        try self.init(URL(fileURLWithPath: path), appendFile: appendFile)
+//    }
+//}

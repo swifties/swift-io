@@ -17,7 +17,6 @@ import Foundation
 
 public class BufferedReader: Closeable
 {
-    static let DEFAULT_BUFFER_SIZE = 8 * 1024
     static let LINE_END_CHARACTERS = ["\r\n", "\n", "\r"]
     
     let reader: Reader
@@ -29,7 +28,7 @@ public class BufferedReader: Closeable
     var endOfData: Bool
     
     
-    public init(_ reader: Reader, encoding: String.Encoding = StringWriter.DEFAUTL_ENCODING, bufferSize: Int = BufferedReader.DEFAULT_BUFFER_SIZE) {
+    public init(_ reader: Reader, encoding: String.Encoding = DEFAULT_ENCODING, bufferSize: Int = DEFAULT_BUFFER_SIZE) {
         self.reader = reader
         self.buffer = Data(capacity: bufferSize)
         self.encoding = encoding
@@ -63,26 +62,26 @@ public class BufferedReader: Closeable
         var range = findEOL()
         var findIndex = buffer.count
         
-        while (range == nil && !endOfData) {
-            if let count = try reader.read(&readerBuffer) {
-                buffer.append(readerBuffer, count: count)
-                range = findEOL(startIndex: findIndex)
-                findIndex = buffer.count
-            } else {
-                //no more data
-                endOfData = true
-
-                if(buffer.count > 0) {
-                    //return last line
-                    let line = String(data: buffer, encoding: encoding)
-                    buffer.removeAll(keepingCapacity: false)
-                    return line
-                } else {
-                    //will return nil
-                    endOfData = true
-                }
-            }
-        }
+//        while (range == nil && !endOfData) {
+//            if let count = try reader.read(&readerBuffer) {
+//                buffer.append(readerBuffer, count: count)
+//                range = findEOL(startIndex: findIndex)
+//                findIndex = buffer.count
+//            } else {
+//                //no more data
+//                endOfData = true
+//
+//                if(buffer.count > 0) {
+//                    //return last line
+//                    let line = String(data: buffer, encoding: encoding)
+//                    buffer.removeAll(keepingCapacity: false)
+//                    return line
+//                } else {
+//                    //will return nil
+//                    endOfData = true
+//                }
+//            }
+//        }
 
         if let range = range {
             let line = String(data: buffer.subdata(in: 0 ..< range.lowerBound), encoding: encoding)

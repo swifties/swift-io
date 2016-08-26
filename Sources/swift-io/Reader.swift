@@ -23,13 +23,10 @@ import Foundation
 public protocol Reader: Closeable {
     
     /**
-     Attempts to read characters into the specified character buffer.
+     Attempts to read string from the Reader
      
-     - Parameter buffer: buffer to be filled from the Reader.
-     - Parameter maxCount: number of bytes to be read. If count exceeds the capacity of the buffer, Exception.ArraySizeTooSmall will be thrown.
-     
-     - Returns: False when at the end.
-     - Throws: exception if read error occurs
+     - Returns: Nil when at the end. Multiple reads from the end of the reader will all return nil.
+     - Throws: exception if read error occurs or if the stream is already closed
     */
-    func read(_ buffer: inout [UInt8]) throws -> Int?
+    func read() throws -> String?
 }

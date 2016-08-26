@@ -16,38 +16,16 @@
 
 import Foundation
 
-public class StringReader: Reader
+public class StringReader: InputStreamReader
 {
-    let data: Data
-    var index: Int
-    
-    public init(_ string: String, dataEncoding: String.Encoding = StringWriter.DEFAUTL_ENCODING) throws
+    public init(_ string: String, encoding: String.Encoding = DEFAULT_ENCODING, bufferSize: Int = DEFAULT_BUFFER_SIZE, desciption: String? = nil) throws
     {
-        guard let data = string.data(using: dataEncoding) else
+        guard let data = string.data(using: encoding) else
         {
             //can happen if we try to encode String in encoding not supporting all given characters
-            throw Exception.InvalidStringEncoding(string: string, requestedEncoding: dataEncoding)
+            throw Exception.InvalidStringEncoding(string: string, requestedEncoding: encoding, description: desciption)
         }
-        
-        self.data = data
-        index = 0
-    }
-    
-    public func read(_ buffer: inout [UInt8]) -> Int?
-    {
-        if(index >= data.count) {
-            return nil
-        }
-        
-        let count = min(data.count - index, buffer.count)
-        buffer.removeAll(keepingCapacity: true)
-        buffer.append(contentsOf: data[index ..< index + count])
-        index = index + count
-        
-        return count
-    }
-    
-    public func close() throws
-    {
+
+        super.init(InputStream(data: data), encoding: encoding, bufferSize: bufferSize, description: desciption)
     }
 }
