@@ -11,3 +11,4 @@
 - perf tests vs java - csv, gzip
 - csv reader: json, nextObject
 //TODO: test read one UTF-8 character with buffer size 1b
+introduce min buffer size

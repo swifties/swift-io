@@ -20,6 +20,6 @@ public enum Exception: Error {
     case MethodNotImplemented
 
     case InvalidStringEncoding              (string: String, requestedEncoding: String.Encoding, description: String?)
-    case InvalidDataEncoding                (data: Data, requestedEncoding: String.Encoding, description: String?)
+    case InvalidDataEncoding                (requestedEncoding: String.Encoding, description: String?)
     case RangeException                     (existingRange: Range<Int>, requestedRange: Range<Int>, description: String?)
 }

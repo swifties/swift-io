@@ -18,14 +18,14 @@ import Foundation
 
 public class StringReader: InputStreamReader
 {
-    public init(_ string: String, encoding: String.Encoding = DEFAULT_ENCODING, bufferSize: Int = DEFAULT_BUFFER_SIZE, desciption: String? = nil) throws
+    public init(_ string: String, bufferSize: Int = DEFAULT_BUFFER_SIZE, desciption: String? = nil) throws
     {
-        guard let data = string.data(using: encoding) else
+        guard let data = string.data(using: DEFAULT_ENCODING) else
         {
             //can happen if we try to encode String in encoding not supporting all given characters
-            throw Exception.InvalidStringEncoding(string: string, requestedEncoding: encoding, description: desciption)
+            throw Exception.InvalidStringEncoding(string: string, requestedEncoding: DEFAULT_ENCODING, description: desciption)
         }
 
-        super.init(InputStream(data: data), encoding: encoding, bufferSize: bufferSize, description: desciption)
+        try super.init(InputStream(data: data), encoding: DEFAULT_ENCODING, bufferSize: bufferSize, description: desciption)
     }
 }

@@ -24,7 +24,7 @@ public class URLReader: InputStreamReader
     {
         if let stream = InputStream(url: url)
         {
-            super.init(stream, encoding: encoding, bufferSize: bufferSize, description: description ?? url.absoluteString)
+            try super.init(stream, encoding: encoding, bufferSize: bufferSize, description: description ?? url.absoluteString)
         } else {
             throw IOException.FileIsNotReadable(url: url)
         }

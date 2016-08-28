@@ -30,11 +30,20 @@ public class InputStreamReader: Reader
      Initializer to write data into the passed stream.
      - Parameter stream: Stream which needs to be already opened
      */
-    init(_ stream: InputStream, encoding: String.Encoding = DEFAULT_ENCODING, bufferSize: Int = DEFAULT_BUFFER_SIZE, description: String? = nil)
+    init(_ stream: InputStream, encoding: String.Encoding = DEFAULT_ENCODING, bufferSize: Int = DEFAULT_BUFFER_SIZE, description: String? = nil) throws
     {
+        switch encoding {
+        case String.Encoding.utf16, String.Encoding.unicode:
+            throw Exception.InvalidDataEncoding(requestedEncoding: encoding, description: "Can not use unspecified .utf16 encoding. Use .utf16BigEndian or .utf16LittleEndian instead.")
+        case String.Encoding.utf32:
+            throw Exception.InvalidDataEncoding(requestedEncoding: encoding, description: "Can not use unspecified .utf32 encoding. Use .utf32BigEndian or .utf32LittleEndian instead.")
+        default:
+            break
+            
+        }
         self.stream = stream
         self.encoding = encoding
-        self.bufferSize = max(bufferSize, 1) //MINIMUM_BUFFER_SIZE)
+        self.bufferSize = max(bufferSize, MINIMUM_BUFFER_SIZE)
         self.description = description ?? stream.description
 
         self.data = Data(capacity: bufferSize)
@@ -86,23 +95,36 @@ public class InputStreamReader: Reader
                     data.removeAll()
                     return lastPart
                 } else {
-                    throw Exception.InvalidDataEncoding(data: data, requestedEncoding: encoding, description: description)
+                    throw Exception.InvalidDataEncoding(requestedEncoding: encoding, description: description)
                 }
             }
             return nil
         }
 
-        if let string = String(data: data, encoding: encoding) {
-            let data2 = string.data(using: encoding)!
-            
-            if(data.count == data2.count && data == data2)
+        //read in chunks of 4 (utf32)
+        let DATA_UNIT_SIZE = 4
+        var result = ""
+        
+        
+        var index = DATA_UNIT_SIZE
+        while(index < data.count) {
+            while(index < data.count)
             {
-                data.removeAll()
-                return string
+                let chunk = data.subdata(in: 0..<index)
+                if let  string = String(data: chunk, encoding: encoding),
+                        string.characters.count > 0
+                {
+                    result.append(string)
+                    data.removeSubrange(0..<index)
+                    index = DATA_UNIT_SIZE
+                    break
+                }
+                index += DATA_UNIT_SIZE
             }
         }
         
-        return ""
+        
+        return result
     }
     
     
