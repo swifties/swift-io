@@ -17,83 +17,48 @@ import Foundation
 
 public class BufferedReader: Closeable
 {
-    static let LINE_END_CHARACTERS = ["\r\n", "\n", "\r"]
-    
     let reader: Reader
-    let encoding: String.Encoding
-
-    var readerBuffer: [UInt8]
-    var buffer: Data
-    var lineEndings: [Data]
-    var endOfData: Bool
+    var buffer: String
     
-    
-    public init(_ reader: Reader, encoding: String.Encoding = DEFAULT_ENCODING, bufferSize: Int = DEFAULT_BUFFER_SIZE) {
+    public init(_ reader: Reader) {
         self.reader = reader
-        self.buffer = Data(capacity: bufferSize)
-        self.encoding = encoding
-        self.lineEndings = BufferedReader.LINE_END_CHARACTERS.map({
-            (eol: String) -> Data in
-            return eol.data(using: encoding)!
-        })
-        self.readerBuffer = [UInt8](repeating: 0, count: bufferSize)
-        self.endOfData = false
+        buffer = String()
     }
     
     deinit {
-        try? close()
+        close()
     }
 
     public func readLine() throws -> String?
     {
-        func findEOL(startIndex: Int = 0) -> Range<Int>? {
-            for eol in lineEndings {
-                if let range = buffer.range(of: eol, options: [], in: startIndex ..< buffer.count) {
-                    return range
-                }
-            }
-            return nil
-        }
-        
-        if(endOfData) {
-            return nil
-        }
 
-        var range = findEOL()
-        var findIndex = buffer.count
-        
-//        while (range == nil && !endOfData) {
-//            if let count = try reader.read(&readerBuffer) {
-//                buffer.append(readerBuffer, count: count)
-//                range = findEOL(startIndex: findIndex)
-//                findIndex = buffer.count
-//            } else {
-//                //no more data
-//                endOfData = true
-//
-//                if(buffer.count > 0) {
-//                    //return last line
-//                    let line = String(data: buffer, encoding: encoding)
-//                    buffer.removeAll(keepingCapacity: false)
-//                    return line
-//                } else {
-//                    //will return nil
-//                    endOfData = true
-//                }
-//            }
+//        //: Playground - noun: a place where people can play
+//        
+//        import Foundation
+//        
+//        let string: NSString = "ahoj\n\nworld"
+//        let stringLength = string.length
+//        
+//        var startIndex: Int = 0
+//        var lineEndIndex: Int = 0
+//        var contentsEndIndex: Int = 0
+//        
+//        var range: NSRange
+//        
+//        while (lineEndIndex < stringLength)
+//        {
+//            range = NSMakeRange(lineEndIndex, 0)
+//            string.getLineStart(&startIndex, end: &lineEndIndex, contentsEnd: &contentsEndIndex, for: range)
+//            
+//            let line = string.substring(with: NSMakeRange(startIndex, contentsEndIndex - startIndex))
+//            print("Line: \(line)")
 //        }
-
-        if let range = range {
-            let line = String(data: buffer.subdata(in: 0 ..< range.lowerBound), encoding: encoding)
-            buffer.removeSubrange(0 ..< range.upperBound)
-            return line
-        }
         
         return nil
     }
     
-    public func close() throws
+    public func close()
     {
-        try reader.close()
+        reader.close()
     }
 }

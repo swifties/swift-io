@@ -18,15 +18,46 @@ import Foundation
 
 
 /**
- Swift version of the java Reader interface
+    Reader interface
+    Reader will return next string from the source.
+    Size of the string returned is dependent on the Reader implementation.
  */
 public protocol Reader: Closeable {
     
     /**
      Attempts to read string from the Reader
      
-     - Returns: Nil when at the end. Multiple reads from the end of the reader will all return nil.
-     - Throws: exception if read error occurs or if the stream is already closed
+     - Returns: Next string from the source. Size of the string is dependent on the implementation of the reader.
+                Return value can be empty string which would mean Reader is waiting for more data to come.
+                Nil when at the end. Multiple reads from the end of the reader will all return nil.
+     - Throws: Exception if read error occurs or if the Reader is already closed
     */
     func read() throws -> String?
+    
+    
+    /** 
+     Close the Reader
+    **/
+    func close()
 }
+
+extension Reader {
+    
+    /**
+        Read all strings from the Reader and pass it to the inline closure
+     
+        - Parameter fce: closure which accepts part of the string as a parameter
+        - Throws: Exception if read error occurs or if the Reader is already closed
+    */
+    func readAll(fce: ((String) -> ())) throws
+    {
+        while(true) {
+            if let s = try read() {
+                fce(s)
+            } else {
+                break
+            }
+        }
+    }
+}
+

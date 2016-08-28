@@ -16,8 +16,20 @@
 
 import Foundation
 
+/**
+ Reader to read data from passed String
+ */
 public class StringReader: InputStreamReader
 {
+    
+    /**
+     Create reader from String data
+     
+     - Parameter string: String to read from
+     - Throws: Exception if stream can not be created or opened
+     
+     - SeeAlso: InputStreamReader
+     */
     public init(_ string: String, bufferSize: Int = DEFAULT_BUFFER_SIZE, desciption: String? = nil) throws
     {
         guard let data = string.data(using: DEFAULT_ENCODING) else

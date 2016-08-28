@@ -10,6 +10,14 @@
 import XCTest
 @testable import swift_io
 
+extension Reader {
+    func readAll() throws -> String  {
+        var s = String()
+        try readAll() { s.append($0) }
+        return s
+    }
+}
+
 class InputStreamReaderTests: XCTestCase
 {
     let encodings = [
@@ -50,18 +58,9 @@ class InputStreamReaderTests: XCTestCase
         for encoding in encodings {
             let data = "Č".data(using: encoding)!
 
-            var result = ""
             
             let reader = try! InputStreamReader(InputStream(data:data), encoding: encoding)
-            
-            while(true) {
-                if let s = try! reader.read() {
-                    result.append(s)
-                } else {
-                    break
-                }
-                
-            }
+            let result = try! reader.readAll()
             XCTAssertEqual(result, "Č")
         }
     }
@@ -70,18 +69,9 @@ class InputStreamReaderTests: XCTestCase
         for encoding in encodings {
             let data = "Č".data(using: encoding)!
 
-            var result = ""
-            
             let reader = try! InputStreamReader(InputStream(data:data), encoding: encoding, bufferSize: 1)
+            let result = try!reader.readAll()
             
-            while(true) {
-                if let s = try! reader.read() {
-                    result.append(s)
-                } else {
-                    break
-                }
-                
-            }
             XCTAssertEqual(result, "Č")
         }
     }
@@ -92,17 +82,8 @@ class InputStreamReaderTests: XCTestCase
 
             let data = text.data(using: encoding)!
         
-            var result = ""
             let reader = try! InputStreamReader(InputStream(data:data), encoding: encoding)
-            
-            while(true) {
-                if let s = try! reader.read() {
-                    result.append(s)
-                } else {
-                    break
-                }
-                
-            }
+            let result = try!reader.readAll()
             XCTAssertEqual(result, text)
         }
     }
@@ -114,19 +95,8 @@ class InputStreamReaderTests: XCTestCase
             
             let data = text.data(using: encoding)!
             
-            var result = ""
             let reader = try! InputStreamReader(InputStream(data:data), encoding: encoding, bufferSize: 2)
-            
-            while(true) {
-                if let s = try! reader.read() {
-                    result.append(s)
-                } else {
-                    break
-                }
-                
-            }
-            print(encoding)
-            print(result)
+            let result = try!reader.readAll()
             XCTAssertEqual(result, text)
         }
     }
@@ -152,19 +122,8 @@ class InputStreamReaderTests: XCTestCase
             
             let data = text.data(using: encoding)!
             
-            var result = ""
             let reader = try! InputStreamReader(InputStream(data:data), encoding: encoding, bufferSize: 2)
-            
-            while(true) {
-                if let s = try! reader.read() {
-                    result.append(s)
-                } else {
-                    break
-                }
-                
-            }
-            print(encoding)
-            print(result)
+            let result = try!reader.readAll()
             XCTAssertEqual(result, text)
         }
     }
@@ -179,19 +138,8 @@ class InputStreamReaderTests: XCTestCase
             
             let data = text.data(using: encoding)!
             
-            var result = ""
             let reader = try! InputStreamReader(InputStream(data:data), encoding: encoding)
-            
-            while(true) {
-                if let s = try! reader.read() {
-                    result.append(s)
-                } else {
-                    break
-                }
-                
-            }
-            print(encoding)
-            print(result)
+            let result = try!reader.readAll()
             XCTAssertEqual(result, text)
         }
     }

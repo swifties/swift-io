@@ -20,10 +20,8 @@ import Foundation
  */
 public enum IOException: Error {
 
-    case FileNotFound                   (url: URL)
-    case ErrorCreatingFile              (url: URL)
-    case FileIsNotWritable              (url: URL)
-    case FileIsNotReadable              (url: URL)
+    case URLIsNotWritable               (url: URL)
+    case URLIsNotReadable               (url: URL)
 
     case ErrorWritingIntoStream         (error: Error?, description: String?)
     case ErrorReadingFromStream         (error: Error?, description: String?)

@@ -12,3 +12,6 @@
 - csv reader: json, nextObject
 //TODO: test read one UTF-8 character with buffer size 1b
 introduce min buffer size
+
+https://www.appcoda.com/swift-markdown/
+buffered reader - file with no \r, empty lines etc
