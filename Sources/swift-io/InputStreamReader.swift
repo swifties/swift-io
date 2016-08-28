@@ -19,15 +19,19 @@ import Foundation
 /**
  Reader to read Strings from InputStream
  */
-public class InputStreamReader: Reader
+public class InputStreamReader: Reader, CustomStringConvertible
 {
     let stream:             InputStream
-    let description:        String
+    let streamDescription:  String
     let encoding:           String.Encoding
     let bufferSize:         Int
 
     var data:               Data
     var buffer:             [UInt8]
+    
+    public var description: String {
+        return "\(type(of: self)): \(streamDescription)"
+    }
     
     /**
      Initializer to read strings from the stream
@@ -59,7 +63,7 @@ public class InputStreamReader: Reader
         self.stream = stream
         self.encoding = encoding
         self.bufferSize = max(bufferSize, MINIMUM_BUFFER_SIZE)
-        self.description = description ?? stream.description
+        self.streamDescription = description ?? stream.description
 
         self.data = Data(capacity: self.bufferSize)
         self.buffer = [UInt8](repeating: 0, count: self.bufferSize)
@@ -143,6 +147,10 @@ public class InputStreamReader: Reader
             }
         }
         
+        if(result == "" && data.count > MINIMUM_BUFFER_SIZE) {
+            //could not find any string in the data
+            throw Exception.InvalidDataEncoding(requestedEncoding: encoding, description: description)
+        }
         
         return result
     }
@@ -156,4 +164,6 @@ public class InputStreamReader: Reader
     public func close() {
         stream.close()
     }
+    
+    
 }

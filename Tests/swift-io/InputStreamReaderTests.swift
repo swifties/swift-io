@@ -141,6 +141,8 @@ class InputStreamReaderTests: XCTestCase
             let reader = try! InputStreamReader(InputStream(data:data), encoding: encoding)
             let result = try!reader.readAll()
             XCTAssertEqual(result, text)
+            
+            XCTAssertNil(try! reader.read())
         }
     }
 

@@ -15,3 +15,4 @@ introduce min buffer size
 
 https://www.appcoda.com/swift-markdown/
 buffered reader - file with no \r, empty lines etc
+reader + writer - test on long text
