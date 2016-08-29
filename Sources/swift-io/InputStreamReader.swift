@@ -21,13 +21,20 @@ import Foundation
  */
 public class InputStreamReader: Reader, CustomStringConvertible
 {
-    let stream:             InputStream
-    let streamDescription:  String
-    let encoding:           String.Encoding
-    let bufferSize:         Int
+    static let UTF16LE_BOM:     [UInt8] = [0xFF, 0xFE]
+    static let UTF16BE_BOM:     [UInt8] = [0xFE, 0xFF]
+    static let UTF32LE_BOM:     [UInt8] = [0xFF, 0xFE, 0x00, 0x00]
+    static let UTF32BE_BOM:     [UInt8] = [0x00, 0x00, 0xFE, 0xFF]
 
-    var data:               Data
-    var buffer:             [UInt8]
+    let stream:                 InputStream
+    let streamDescription:      String
+    let bufferSize:             Int
+    let dataUnitSize:           Int
+
+    var data:                   [UInt8]
+    var buffer:                 [UInt8]
+    var encoding:               String.Encoding
+    var firstData:              Bool
     
     public var description: String {
         return "\(type(of: self)): \(streamDescription)"
@@ -41,8 +48,6 @@ public class InputStreamReader: Reader, CustomStringConvertible
      - Parameter bufferSize: Buffer size to use. DEFAULT_BUFFER_SIZE by default, minimum MINIMUM_BUFFER_SIZE.
      - Parameter description: Description to be shown at errors etc. For example file path, http address etc.
      
-     - Remark: Encoding can not be generic utf16, utf32 or unicode. Use .utf16BigEndian .utf16LittleEndian etc. instead.
-
      - SeeAlso: DEFAULT_ENCODING
      - SeeAlso: DEFAULT_BUFFER_SIZE
      - SeeAlso: MINIMUM_BUFFER_SIZE
@@ -51,22 +56,29 @@ public class InputStreamReader: Reader, CustomStringConvertible
      */
     init(_ stream: InputStream, encoding: String.Encoding = DEFAULT_ENCODING, bufferSize: Int = DEFAULT_BUFFER_SIZE, description: String? = nil) throws
     {
-        switch encoding {
-        case String.Encoding.utf16, String.Encoding.unicode:
-            throw Exception.InvalidDataEncoding(requestedEncoding: encoding, description: "Can not use unspecific .utf16 encoding. Use .utf16BigEndian or .utf16LittleEndian instead.")
-        case String.Encoding.utf32:
-            throw Exception.InvalidDataEncoding(requestedEncoding: encoding, description: "Can not use unspecific .utf32 encoding. Use .utf32BigEndian or .utf32LittleEndian instead.")
-        default:
-            break
-            
-        }
         self.stream = stream
         self.encoding = encoding
         self.bufferSize = max(bufferSize, MINIMUM_BUFFER_SIZE)
         self.streamDescription = description ?? stream.description
+        self.firstData = true
 
-        self.data = Data(capacity: self.bufferSize)
+        self.data = [UInt8]()
         self.buffer = [UInt8](repeating: 0, count: self.bufferSize)
+        
+        self.dataUnitSize = {
+            switch encoding {
+            case String.Encoding.utf32,
+                 String.Encoding.utf32LittleEndian,
+                 String.Encoding.utf32BigEndian:
+                return 4
+            case String.Encoding.utf16,
+                 String.Encoding.utf16LittleEndian,
+                 String.Encoding.utf16BigEndian:
+                return 2
+            default:
+                return 1
+            }
+        }()
         
         if(stream.streamStatus == .notOpen)
         {
@@ -76,6 +88,66 @@ public class InputStreamReader: Reader, CustomStringConvertible
     
     deinit {
         close()
+    }
+    
+
+    /**
+     Analyze data header for BOM sequences
+     
+     - SeeAlso: https://en.wikipedia.org/wiki/Byte_order_mark
+    */
+    private func analyzeBOM() throws {
+        if(encoding == String.Encoding.utf16)
+        {
+            //need to specify utf16 encoding reading BOM
+            if(data.starts(with: InputStreamReader.UTF16LE_BOM)) {
+                encoding = String.Encoding.utf16LittleEndian
+                data.removeSubrange(0 ..< InputStreamReader.UTF16LE_BOM.count)
+            }
+            else if(data.starts(with: InputStreamReader.UTF16BE_BOM)) {
+                encoding = String.Encoding.utf16BigEndian
+                data.removeSubrange(0 ..< InputStreamReader.UTF16BE_BOM.count)
+            } else {
+                throw Exception.InvalidDataEncoding(requestedEncoding: encoding, description: "\(description): UTF-16 data without BOM. Please Use UTF-16LE or UTF-16BE instead.")
+            }
+        } else if (encoding == String.Encoding.utf32) {
+            //need to specify utf32 encoding reading BOM
+            if(data.starts(with: InputStreamReader.UTF32LE_BOM)) {
+                encoding = String.Encoding.utf32LittleEndian
+                data.removeSubrange(0 ..< InputStreamReader.UTF32LE_BOM.count)
+            }
+            else if(data.starts(with: InputStreamReader.UTF32BE_BOM)) {
+                encoding = String.Encoding.utf32BigEndian
+                data.removeSubrange(0 ..< InputStreamReader.UTF32BE_BOM.count)
+            } else {
+                throw Exception.InvalidDataEncoding(requestedEncoding: encoding, description: "\(description): UTF-32 data without BOM. Please Use UTF-32LE or UTF-32BE instead.")
+            }
+            
+        }
+    }
+    
+    /**
+     Read next part of data into buffer
+     */
+    private func readNext() throws
+    {
+        if(stream.streamStatus == .closed)
+        {
+            throw IOException.StreamAlreadyClosed(description: description)
+        }
+        
+        let count = stream.read(&buffer, maxLength: buffer.count)
+        
+        if(count == -1) {
+            throw IOException.ErrorReadingFromStream(error: stream.streamError, description: description)
+        }
+        
+        data.append(contentsOf: buffer[0 ..< count])
+        
+        if(firstData) {
+            firstData = false
+            try analyzeBOM()
+        }
     }
     
     /**
@@ -91,18 +163,7 @@ public class InputStreamReader: Reader, CustomStringConvertible
      */
     public func read() throws -> String?
     {
-        if(stream.streamStatus == .closed)
-        {
-            throw IOException.StreamAlreadyClosed(description: description)
-        }
-
-        let count = stream.read(&buffer, maxLength: buffer.count)
-
-        if(count == -1) {
-            throw IOException.ErrorReadingFromStream(error: stream.streamError, description: description)
-        }
-
-        data.append(buffer, count: count)
+        try readNext()
         
         if(stream.streamStatus == .atEnd)
         {
@@ -117,19 +178,18 @@ public class InputStreamReader: Reader, CustomStringConvertible
             return nil
         }
 
-        //read in chunks of 4 (utf32)
-        let DATA_UNIT_SIZE = 4
         var result = ""
-        
-        var index = DATA_UNIT_SIZE
+
+        //read in chunks
+        var index = dataUnitSize
         while(index < data.count)
         {
             //try to read 0..<index from the data as String
-            //if it does not work, we will increase the index position
+            //if it is not enough, we will increment the chunk size
             while(index < data.count)
             {
-                let chunk = data.subdata(in: 0..<index)
-                if let  string = String(data: chunk, encoding: encoding),
+                let chunk = data[0 ..< index]
+                if let  string = String(bytes: chunk, encoding: encoding),
                         string.characters.count > 0
                 {
                     //we were able to read the string chunk, 
@@ -140,10 +200,10 @@ public class InputStreamReader: Reader, CustomStringConvertible
                     data.removeSubrange(0..<index)
                     
                     //reset index position
-                    index = DATA_UNIT_SIZE
+                    index = dataUnitSize
                     break
                 }
-                index += DATA_UNIT_SIZE
+                index += dataUnitSize
             }
         }
         
@@ -164,6 +224,4 @@ public class InputStreamReader: Reader, CustomStringConvertible
     public func close() {
         stream.close()
     }
-    
-    
 }

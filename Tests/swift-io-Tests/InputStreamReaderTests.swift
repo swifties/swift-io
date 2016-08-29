@@ -21,6 +21,8 @@ extension Reader {
 class InputStreamReaderTests: XCTestCase
 {
     let encodings = [
+        String.Encoding.utf32,
+        String.Encoding.utf16,
         String.Encoding.utf8,
         String.Encoding.windowsCP1250,
         String.Encoding.utf32BigEndian,
@@ -144,22 +146,5 @@ class InputStreamReaderTests: XCTestCase
             
             XCTAssertNil(try! reader.read())
         }
-    }
-
-    
-    func test_UnsupportedEncodings() {
-        let data = "Č".data(using: .utf8)!
-
-        var reader = try? InputStreamReader(InputStream(data:data), encoding: .utf16)
-        XCTAssertNil(reader)
-
-        reader = try? InputStreamReader(InputStream(data:data), encoding: .utf32)
-        XCTAssertNil(reader)
-
-        reader = try? InputStreamReader(InputStream(data:data), encoding: .unicode)
-        XCTAssertNil(reader)
-
-        reader = try? InputStreamReader(InputStream(data:data), encoding: .utf8)
-        XCTAssertNotNil(reader)
     }
 }
