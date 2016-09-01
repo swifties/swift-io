@@ -31,7 +31,7 @@ public class InputStreamReader: Reader, CustomStringConvertible
     let bufferSize:             Int
     let dataUnitSize:           Int
 
-    var data:                   [UInt8]
+    var data:                   Data
     var buffer:                 [UInt8]
     var encoding:               String.Encoding
     var firstData:              Bool
@@ -62,7 +62,7 @@ public class InputStreamReader: Reader, CustomStringConvertible
         self.streamDescription = description ?? stream.description
         self.firstData = true
 
-        self.data = [UInt8]()
+        self.data = Data(capacity: self.bufferSize)
         self.buffer = [UInt8](repeating: 0, count: self.bufferSize)
         
         self.dataUnitSize = {
@@ -96,34 +96,34 @@ public class InputStreamReader: Reader, CustomStringConvertible
      
      - SeeAlso: https://en.wikipedia.org/wiki/Byte_order_mark
     */
-    private func analyzeBOM() throws {
+    private func analyzeBOM()  throws -> Int {
         if(encoding == String.Encoding.utf16)
         {
             //need to specify utf16 encoding reading BOM
-            if(data.starts(with: InputStreamReader.UTF16LE_BOM)) {
+            if(buffer.starts(with: InputStreamReader.UTF16LE_BOM)) {
                 encoding = String.Encoding.utf16LittleEndian
-                data.removeSubrange(0 ..< InputStreamReader.UTF16LE_BOM.count)
+                return InputStreamReader.UTF16LE_BOM.count
             }
-            else if(data.starts(with: InputStreamReader.UTF16BE_BOM)) {
+            else if(buffer.starts(with: InputStreamReader.UTF16BE_BOM)) {
                 encoding = String.Encoding.utf16BigEndian
-                data.removeSubrange(0 ..< InputStreamReader.UTF16BE_BOM.count)
+                return InputStreamReader.UTF16BE_BOM.count
             } else {
                 throw Exception.InvalidDataEncoding(requestedEncoding: encoding, description: "\(description): UTF-16 data without BOM. Please Use UTF-16LE or UTF-16BE instead.")
             }
         } else if (encoding == String.Encoding.utf32) {
             //need to specify utf32 encoding reading BOM
-            if(data.starts(with: InputStreamReader.UTF32LE_BOM)) {
+            if(buffer.starts(with: InputStreamReader.UTF32LE_BOM)) {
                 encoding = String.Encoding.utf32LittleEndian
-                data.removeSubrange(0 ..< InputStreamReader.UTF32LE_BOM.count)
+                return InputStreamReader.UTF32LE_BOM.count
             }
-            else if(data.starts(with: InputStreamReader.UTF32BE_BOM)) {
+            else if(buffer.starts(with: InputStreamReader.UTF32BE_BOM)) {
                 encoding = String.Encoding.utf32BigEndian
-                data.removeSubrange(0 ..< InputStreamReader.UTF32BE_BOM.count)
+                return InputStreamReader.UTF32BE_BOM.count
             } else {
                 throw Exception.InvalidDataEncoding(requestedEncoding: encoding, description: "\(description): UTF-32 data without BOM. Please Use UTF-32LE or UTF-32BE instead.")
             }
-            
         }
+        return 0
     }
     
     /**
@@ -141,13 +141,15 @@ public class InputStreamReader: Reader, CustomStringConvertible
         if(count == -1) {
             throw IOException.ErrorReadingFromStream(error: stream.streamError, description: description)
         }
-        
-        data.append(contentsOf: buffer[0 ..< count])
+
+        var skipBytes = 0
         
         if(firstData) {
             firstData = false
-            try analyzeBOM()
+            skipBytes = try analyzeBOM()
         }
+
+        data.append(contentsOf: buffer[skipBytes ..< count])
     }
     
     /**
@@ -182,13 +184,15 @@ public class InputStreamReader: Reader, CustomStringConvertible
 
         //read in chunks
         var index = dataUnitSize
-        while(index < data.count)
+        var startIndex = 0
+        
+        while(startIndex + index < data.count)
         {
             //try to read 0..<index from the data as String
             //if it is not enough, we will increment the chunk size
-            while(index < data.count)
+            while(startIndex + index < data.count)
             {
-                let chunk = data[0 ..< index]
+                let chunk = data[startIndex ..< startIndex + index]
                 if let  string = String(bytes: chunk, encoding: encoding),
                         string.characters.count > 0
                 {
@@ -196,17 +200,18 @@ public class InputStreamReader: Reader, CustomStringConvertible
                     //append it to resul
                     result.append(string)
                     
-                    //remove the chunk from data
-                    data.removeSubrange(0..<index)
-                    
                     //reset index position
+                    startIndex += index
                     index = dataUnitSize
                     break
                 }
                 index += dataUnitSize
             }
         }
-        
+
+        //remove the chunk from data
+        data.removeSubrange(0 ..< startIndex)
+
         if(result == "" && data.count > MINIMUM_BUFFER_SIZE) {
             //could not find any string in the data
             throw Exception.InvalidDataEncoding(requestedEncoding: encoding, description: description)
