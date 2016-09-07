@@ -15,6 +15,7 @@
 		F967AA951D5149970096EC1F /* BufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F967AA941D5149970096EC1F /* BufferedReader.swift */; };
 		F967AA971D5149B80096EC1F /* BufferedWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F967AA961D5149B80096EC1F /* BufferedWriter.swift */; };
 		F967AA991D515C720096EC1F /* StringReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F967AA981D515C720096EC1F /* StringReader.swift */; };
+		F97759A81D74DBCF00B4B75A /* PerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97759A71D74DBCF00B4B75A /* PerformanceTests.swift */; };
 		F9B6360C1D739C6400A4961A /* BufferedReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B635FE1D739C4600A4961A /* BufferedReaderTests.swift */; };
 		F9B6360D1D739C6400A4961A /* BufferedWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B635FF1D739C4600A4961A /* BufferedWriterTests.swift */; };
 		F9B6360E1D739C6400A4961A /* FileReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B636001D739C4600A4961A /* FileReaderTests.swift */; };
@@ -53,6 +54,8 @@
 		F967AA941D5149970096EC1F /* BufferedReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferedReader.swift; sourceTree = "<group>"; };
 		F967AA961D5149B80096EC1F /* BufferedWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferedWriter.swift; sourceTree = "<group>"; };
 		F967AA981D515C720096EC1F /* StringReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringReader.swift; sourceTree = "<group>"; };
+		F97759A71D74DBCF00B4B75A /* PerformanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PerformanceTests.swift; path = "Tests/swift-io-Tests/PerformanceTests.swift"; sourceTree = SOURCE_ROOT; };
+		F97759AC1D74DF4500B4B75A /* big.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = big.txt; path = "Tests/swift-io-Tests/big.txt"; sourceTree = SOURCE_ROOT; };
 		F99C1EF11D51FCE00034170D /* TODO.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		F9B635FE1D739C4600A4961A /* BufferedReaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BufferedReaderTests.swift; path = "Tests/swift-io-Tests/BufferedReaderTests.swift"; sourceTree = SOURCE_ROOT; };
 		F9B635FF1D739C4600A4961A /* BufferedWriterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BufferedWriterTests.swift; path = "Tests/swift-io-Tests/BufferedWriterTests.swift"; sourceTree = SOURCE_ROOT; };
@@ -200,8 +203,10 @@
 				F9B636011D739C4600A4961A /* FileWriterTests.swift */,
 				F9B636021D739C4600A4961A /* InputStreamReaderTests.swift */,
 				F9B636031D739C4600A4961A /* OutputStreamWriterTests.swift */,
+				F97759A71D74DBCF00B4B75A /* PerformanceTests.swift */,
 				F9B636041D739C4600A4961A /* StringWriterTests.swift */,
 				__PBXFileRef_swift_ioTestSuite_Info.plist /* swift_ioTestSuite_Info.plist */,
+				F97759AC1D74DF4500B4B75A /* big.txt */,
 			);
 			name = "swift-ioTestSuite";
 			path = "Tests/swift-io";
@@ -257,6 +262,9 @@
 		__RootObject_ /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastUpgradeCheck = 9999;
 				TargetAttributes = {
 					"______Target_swift_io" = {
@@ -319,6 +327,7 @@
 				F9B6360F1D739C6400A4961A /* FileWriterTests.swift in Sources */,
 				F9B636101D739C6400A4961A /* InputStreamReaderTests.swift in Sources */,
 				F9B636111D739C6400A4961A /* OutputStreamWriterTests.swift in Sources */,
+				F97759A81D74DBCF00B4B75A /* PerformanceTests.swift in Sources */,
 				F9B636121D739C6400A4961A /* StringWriterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,6 +405,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = "__PBXFileRef_swift-io.xcodeproj/Configs/Project.xcconfig" /* Project.xcconfig */;
 			buildSettings = {
+				SWIFT_DISABLE_SAFETY_CHECKS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -403,6 +414,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = "__PBXFileRef_swift-io.xcodeproj/Configs/Project.xcconfig" /* Project.xcconfig */;
 			buildSettings = {
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Debug;
 		};
