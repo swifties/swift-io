@@ -32,7 +32,7 @@ public class InputStreamReader: Reader, CustomStringConvertible
     let dataUnitSize:           Int
     
 
-    var data:                   Data
+    var data:                   [UInt8]
     var buffer:                 [UInt8]
     var encoding:               String.Encoding
     var firstData:              Bool
@@ -77,7 +77,7 @@ public class InputStreamReader: Reader, CustomStringConvertible
         self.streamDescription = description ?? stream.description
         self.firstData = true
 
-        self.data = Data(capacity: self.bufferSize)
+        self.data = [UInt8]()
         self.buffer = [UInt8](repeating: 0, count: self.bufferSize)
         
         if(stream.streamStatus == .notOpen)
@@ -151,9 +151,10 @@ public class InputStreamReader: Reader, CustomStringConvertible
         if(firstData) {
             firstData = false
             skipBytes = try analyzeBOM()
+            data.append(contentsOf: buffer[skipBytes ..< count])
+        } else {
+            data.append(contentsOf: buffer[skipBytes ..< count])
         }
-
-        data.append(contentsOf: buffer[skipBytes ..< count])
     }
     
     /**
@@ -184,7 +185,7 @@ public class InputStreamReader: Reader, CustomStringConvertible
             return nil
         }
 
-        if let  string = String(data: data, encoding: encoding),
+        if let  string = String(bytes: data, encoding: encoding),
                 string.characters.count > 0
         {
             data.removeAll()
