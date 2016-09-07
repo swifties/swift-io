@@ -17,7 +17,7 @@ class PerformanceTests: XCTestCase
         let filePath = URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("big.txt", isDirectory: false)
 
 
-//        self.measure {
+        self.measure {
             let reader = try! BufferedReader(FileReader(filePath))
             var lines = 0
             
@@ -27,6 +27,5 @@ class PerformanceTests: XCTestCase
             }
             XCTAssertEqual(lines, 128457)
         }
-//    }
-    
+    }
 }

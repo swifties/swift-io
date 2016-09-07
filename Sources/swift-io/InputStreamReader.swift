@@ -29,16 +29,11 @@ public class InputStreamReader: Reader, CustomStringConvertible
     let stream:                 InputStream
     let streamDescription:      String
     let bufferSize:             Int
-    let dataUnitSize:           Int
 
     var data:                   Data
     var buffer:                 [UInt8]
     var encoding:               String.Encoding
     var firstData:              Bool
-    
-    public var description: String {
-        return "\(type(of: self)): \(streamDescription)"
-    }
     
     /**
      Initializer to read strings from the stream
@@ -58,32 +53,24 @@ public class InputStreamReader: Reader, CustomStringConvertible
     {
         self.stream = stream
         self.encoding = encoding
-        self.bufferSize = max(bufferSize, MINIMUM_BUFFER_SIZE)
+        
+        //make the buffer size a number aligned to 4 bytes
+        self.bufferSize = Int(max(bufferSize, MINIMUM_BUFFER_SIZE) / 4) * 4
+        
         self.streamDescription = description ?? stream.description
         self.firstData = true
 
         self.data = Data(capacity: self.bufferSize)
         self.buffer = [UInt8](repeating: 0, count: self.bufferSize)
         
-        self.dataUnitSize = {
-            switch encoding {
-            case String.Encoding.utf32,
-                 String.Encoding.utf32LittleEndian,
-                 String.Encoding.utf32BigEndian:
-                return 4
-            case String.Encoding.utf16,
-                 String.Encoding.utf16LittleEndian,
-                 String.Encoding.utf16BigEndian:
-                return 2
-            default:
-                return 1
-            }
-        }()
-        
         if(stream.streamStatus == .notOpen)
         {
             self.stream.open()
         }
+    }
+    
+    public var description: String {
+        return "\(type(of: self)): \(streamDescription)"
     }
     
     deinit {
@@ -180,44 +167,51 @@ public class InputStreamReader: Reader, CustomStringConvertible
             return nil
         }
 
-        var result = ""
-
         //read in chunks
-        var index = dataUnitSize
-        var startIndex = 0
-        
-        while(startIndex + index < data.count)
+        if let  string = String(data: data, encoding: encoding),
+                string.characters.count > 0
         {
-            //try to read 0..<index from the data as String
-            //if it is not enough, we will increment the chunk size
-            while(startIndex + index < data.count)
-            {
-                let chunk = data[startIndex ..< startIndex + index]
-                if let  string = String(bytes: chunk, encoding: encoding),
-                        string.characters.count > 0
-                {
-                    //we were able to read the string chunk, 
-                    //append it to resul
-                    result.append(string)
-                    
-                    //reset index position
-                    startIndex += index
-                    index = dataUnitSize
-                    break
-                }
-                index += dataUnitSize
-            }
+            data.removeAll()
+            return string
+        } else {
+            
+            
         }
 
-        //remove the chunk from data
-        data.removeSubrange(0 ..< startIndex)
-
-        if(result == "" && data.count > MINIMUM_BUFFER_SIZE) {
-            //could not find any string in the data
-            throw Exception.InvalidDataEncoding(requestedEncoding: encoding, description: description)
-        }
+//        var startIndex = 0
+//        
+//        while(startIndex + index < data.count)
+//        {
+//            //try to read 0..<index from the data as String
+//            //if it is not enough, we will increment the chunk size
+//            while(startIndex + index < data.count)
+//            {
+//                let chunk = data[startIndex ..< startIndex + index]
+//                if let  string = String(bytes: chunk, encoding: encoding),
+//                        string.characters.count > 0
+//                {
+//                    //we were able to read the string chunk, 
+//                    //append it to resul
+//                    result.append(string)
+//                    
+//                    //reset index position
+//                    startIndex += index
+//                    index = dataUnitSize
+//                    break
+//                }
+//                index += dataUnitSize
+//            }
+//        }
+//
+//        //remove the chunk from data
+//        data.removeSubrange(0 ..< startIndex)
+//
+//        if(result == "" && data.count > MINIMUM_BUFFER_SIZE) {
+//            //could not find any string in the data
+//            throw Exception.InvalidDataEncoding(requestedEncoding: encoding, description: description)
+//        }
         
-        return result
+        return ""
     }
     
     
