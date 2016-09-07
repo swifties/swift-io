@@ -111,7 +111,7 @@ class InputStreamReaderTests: XCTestCase
         let reader = try! FileReader(URL(fileURLWithPath: path))
         
         let s = try! reader.read()
-        XCTAssertNil(s)
+        XCTAssertEqual(s, "")
     }
     
     func test_ChineseSmallBuffer() {

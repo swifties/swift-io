@@ -21,7 +21,8 @@ class BufferedReaderTests: XCTestCase
         "it was the season of Light, it was the season of Darkness,\n" +
         "it was the spring of hope, it was the winter of despair,\n" +
         "we had everything before us, we had nothing before us\n" +
-        "The End."
+        " \n" +
+        " The End."
 
     func test_SimpleRead() {
         let reader = try! StringReader(BufferedReaderTests.TEST_STRING)
@@ -37,7 +38,7 @@ class BufferedReaderTests: XCTestCase
         try! reader.readAllLines() { line in
             count += 1
         }
-        XCTAssertEqual(count, 8)
+        XCTAssertEqual(count, 9)
     }
 
     func test_BufferedReadWithLineEndAtEnd() {
@@ -47,7 +48,7 @@ class BufferedReaderTests: XCTestCase
         try! reader.readAllLines() { line in
             count += 1
         }
-        XCTAssertEqual(count, 8)
+        XCTAssertEqual(count, 9)
     }
 
     func test_BufferedReadEmptyString() {

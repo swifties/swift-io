@@ -71,14 +71,16 @@ public class BufferedReader: Closeable
             }
         }
 
+        // no more string data in the reader
+        
         let line = buffer
         buffer.removeAll()
         atEnd = true
+        close()
         
         //if last line is empty, it is not returned
         if(line == "")
         {
-            close()
             return nil
         }
         

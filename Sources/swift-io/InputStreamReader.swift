@@ -131,33 +131,6 @@ public class InputStreamReader: Reader, CustomStringConvertible
     }
     
     /**
-     Read next part of data into buffer
-     */
-    private func readNext() throws
-    {
-        if(stream.streamStatus == .closed)
-        {
-            throw IOException.StreamAlreadyClosed(description: description)
-        }
-        
-        let count = stream.read(&buffer, maxLength: buffer.count)
-        
-        if(count == -1) {
-            throw IOException.ErrorReadingFromStream(error: stream.streamError, description: description)
-        }
-
-        var skipBytes = 0
-        
-        if(firstData) {
-            firstData = false
-            skipBytes = try analyzeBOM()
-            data.append(contentsOf: buffer[skipBytes ..< count])
-        } else {
-            data.append(contentsOf: buffer[skipBytes ..< count])
-        }
-    }
-    
-    /**
      Reads next String from the stream.
      Max String size retrieved is influenced by buffer size and encoding set in the initializer.
      
@@ -170,32 +143,49 @@ public class InputStreamReader: Reader, CustomStringConvertible
      */
     public func read() throws -> String?
     {
-        try readNext()
-        
-        if(stream.streamStatus == .atEnd)
-        {
-            if(data.count > 0) {
-                if let lastPart = String(bytes: data, encoding: encoding) {
-                    data.removeAll()
-                    return lastPart
-                } else {
-                    throw Exception.InvalidDataEncoding(requestedEncoding: encoding, description: description)
+        if(stream.streamStatus != .open) {
+            if(stream.streamStatus == .atEnd)
+            {
+                if(data.count > 0) {
+                    if let lastPart = String(bytes: data, encoding: encoding) {
+                        data.removeAll(keepingCapacity: false)
+                        return lastPart
+                    } else {
+                        throw Exception.InvalidDataEncoding(requestedEncoding: encoding, description: description)
+                    }
                 }
+                return nil
             }
-            return nil
+            
+            throw IOException.StreamAlreadyClosed(description: description)
+        }
+        
+        let count = stream.read(&buffer, maxLength: buffer.count)
+        
+        if(count == -1) {
+            throw IOException.ErrorReadingFromStream(error: stream.streamError, description: description)
+        }
+        
+        if(firstData) {
+            var skipBytes = 0
+            firstData = false
+            skipBytes = try analyzeBOM()
+            data = Array(buffer[skipBytes ..< count])
+        } else {
+            data.append(contentsOf: buffer[0 ..< count])
         }
 
         if let  string = String(bytes: data, encoding: encoding),
                 string.characters.count > 0
         {
-            data.removeAll()
+            data.removeAll(keepingCapacity: true)
             return string
         } else {
             var size = data.count - dataUnitSize
             while(size > 0) {
                 
                 if let  string = String(bytes: data[0 ..< size], encoding: encoding),
-                    string.characters.count > 0
+                        string.characters.count > 0
                 {
                     data.removeSubrange(0 ..< size)
                     return string
@@ -206,6 +196,11 @@ public class InputStreamReader: Reader, CustomStringConvertible
             
         }
 
+        if(data.count > bufferSize) {
+            //could not find any string in the data
+            throw Exception.InvalidDataEncoding(requestedEncoding: encoding, description: description)
+        }
+        
         return ""
     }
     
