@@ -175,9 +175,9 @@ public class InputStreamReader: Reader, CustomStringConvertible
             data.append(contentsOf: buffer[0 ..< count])
         }
 
-        if let  string = String(bytes: data, encoding: encoding),
-                string.characters.count > 0
+        if let  string = String(bytes: data, encoding: encoding), !string.isEmpty
         {
+            
             data.removeAll(keepingCapacity: true)
             return string
         } else {
