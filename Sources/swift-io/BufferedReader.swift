@@ -24,6 +24,8 @@ public class BufferedReader: Closeable
     var buffer: String
     var atEnd:  Bool
     
+    var startIndex: String.Index
+    
     /**
      Init with reader
     */
@@ -31,6 +33,7 @@ public class BufferedReader: Closeable
         self.reader = reader
         buffer      = String()
         atEnd       = false
+        startIndex  = buffer.startIndex
     }
     
     deinit {
@@ -47,20 +50,23 @@ public class BufferedReader: Closeable
     {
         
         if(atEnd) {
-            reader.close()
             return nil
         }
 
         while(true) {
-            var startIndex  = buffer.startIndex
-            var lineEndIndex = buffer.startIndex
-            var contentsEndIndex = buffer.startIndex
+            var lineEndIndex = startIndex
+            var contentsEndIndex = startIndex
             
             buffer.getLineStart(&startIndex, end: &lineEndIndex, contentsEnd: &contentsEndIndex, for: lineEndIndex..<lineEndIndex)
             
             if(contentsEndIndex != lineEndIndex) {
                 let line = buffer.substring(with: startIndex ..< contentsEndIndex)
-                buffer.removeSubrange(startIndex ..< lineEndIndex)
+                
+                buffer = buffer.substring(from: lineEndIndex)
+                lineEndIndex = buffer.startIndex
+
+                startIndex = lineEndIndex
+                
                 return line
             }
             
@@ -73,8 +79,8 @@ public class BufferedReader: Closeable
 
         // no more string data in the reader
         
-        let line = buffer
-        buffer.removeAll()
+        let line = buffer.substring(with: startIndex ..< buffer.endIndex)
+        buffer = String()
         atEnd = true
         close()
         
