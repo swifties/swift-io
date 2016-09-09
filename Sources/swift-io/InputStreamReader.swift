@@ -143,26 +143,25 @@ public class InputStreamReader: Reader, CustomStringConvertible
      */
     public func read() throws -> String?
     {
-        if(stream.streamStatus != .open) {
-            if(stream.streamStatus == .atEnd)
-            {
-                if(data.count > 0) {
-                    if let lastPart = String(bytes: data, encoding: encoding) {
-                        data.removeAll(keepingCapacity: false)
-                        return lastPart
-                    } else {
-                        throw Exception.InvalidDataEncoding(requestedEncoding: encoding, description: description)
-                    }
+        if(stream.streamStatus == .atEnd)
+        {
+            if(data.count > 0) {
+                if let lastPart = String(bytes: data, encoding: encoding) {
+                    data.removeAll(keepingCapacity: false)
+                    return lastPart
+                } else {
+                    throw Exception.InvalidDataEncoding(requestedEncoding: encoding, description: description)
                 }
-                return nil
             }
-            
-            throw IOException.StreamAlreadyClosed(description: description)
+            return nil
         }
+        
         
         let count = stream.read(&buffer, maxLength: buffer.count)
         
         if(count == -1) {
+            //when error
+            //or when stream already closed
             throw IOException.ErrorReadingFromStream(error: stream.streamError, description: description)
         }
         
@@ -172,7 +171,7 @@ public class InputStreamReader: Reader, CustomStringConvertible
             skipBytes = try analyzeBOM()
             data = Array(buffer[skipBytes ..< count])
         } else {
-            data.append(contentsOf: buffer[0 ..< count])
+            data.append(contentsOf: buffer.prefix(count))
         }
 
         if let  string = String(bytes: data, encoding: encoding), !string.isEmpty
@@ -187,7 +186,7 @@ public class InputStreamReader: Reader, CustomStringConvertible
                 if let  string = String(bytes: data[0 ..< size], encoding: encoding),
                         string.characters.count > 0
                 {
-                    data.removeSubrange(0 ..< size)
+                    data = Array(data.suffix(from: size))
                     return string
                 }
 

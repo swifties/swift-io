@@ -25,5 +25,4 @@ public enum IOException: Error {
 
     case ErrorWritingIntoStream         (error: Error?, description: String?)
     case ErrorReadingFromStream         (error: Error?, description: String?)
-    case StreamAlreadyClosed            (description: String?)
 }

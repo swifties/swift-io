@@ -87,7 +87,7 @@ class BufferedReaderTests: XCTestCase
         do {
             _ = try reader.readLine()
             XCTFail()
-        } catch IOException.StreamAlreadyClosed(_) {
+        } catch IOException.ErrorReadingFromStream(_) {
             //expected
         } catch  {
             XCTFail()

@@ -49,7 +49,7 @@ class InputStreamReaderTests: XCTestCase
         do {
             _ = try reader.read()
             XCTFail()
-        } catch IOException.StreamAlreadyClosed(_) {
+        } catch IOException.ErrorReadingFromStream(_) {
             //expected
         } catch  {
             XCTFail()
