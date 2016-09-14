@@ -25,7 +25,7 @@ class PerformanceTests: XCTestCase
                 (line: String) in
                     lines += 1
             }
-            XCTAssertEqual(lines, 128457)
+            XCTAssertEqual(lines, 642285)
         }
     }
 }
