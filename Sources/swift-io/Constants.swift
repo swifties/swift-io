@@ -8,7 +8,6 @@
 
 import Foundation
 
-let DEFAULT_ENCODING = String.Encoding.utf8
-
-let DEFAULT_BUFFER_SIZE = 1024
-let MINIMUM_BUFFER_SIZE = 32
+let DEFAULT_ENCODING        = String.Encoding.utf8
+let DEFAULT_BUFFER_SIZE     = 1024
+let MINIMUM_BUFFER_SIZE     = 32

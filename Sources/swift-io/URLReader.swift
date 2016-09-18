@@ -19,23 +19,23 @@ import Foundation
 typealias FileReader = URLReader
 
 /** 
-  Reader to read text from URL
+  Read String data from URL
  */
 public class URLReader: InputStreamReader
 {
     /**
-     Create reader from URL InputStream
+     Create a Reader from URL InputStream
      
      - Parameter url: Valid resource URL
      - Throws: Exception if stream can not be created or opened
      
      - SeeAlso: InputStreamReader
     */
-    init(_ url: URL, encoding: String.Encoding = DEFAULT_ENCODING, bufferSize: Int = DEFAULT_BUFFER_SIZE, description: String? = nil) throws
+    public init(_ url: URL, encoding: String.Encoding = DEFAULT_ENCODING, bufferSize: Int = DEFAULT_BUFFER_SIZE, description: String? = nil) throws
     {
         if let stream = InputStream(url: url)
         {
-            try super.init(stream, encoding: encoding, bufferSize: bufferSize, description: description ?? url.absoluteString)
+            super.init(stream, encoding: encoding, bufferSize: bufferSize, description: description ?? url.absoluteString)
         } else {
             throw IOException.URLIsNotReadable(url: url)
         }

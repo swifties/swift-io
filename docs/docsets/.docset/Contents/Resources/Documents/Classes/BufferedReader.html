@@ -14,7 +14,7 @@
     <a title="BufferedReader Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (56% documented)</p>
+        <p><a href="../index.html"> Docs</a> (73% documented)</p>
         <p class="header-right"><a href="https://github.com/swifties/swift-io"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -35,22 +35,13 @@
                 <a href="../Classes/BufferedReader.html">BufferedReader</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/BufferedWriter.html">BufferedWriter</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/CSVWriter.html">CSVWriter</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes.html#/s:C8swift_io10FileWriter">FileWriter</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/OutputStreamWriter.html">OutputStreamWriter</a>
+                <a href="../Classes/InputStreamReader.html">InputStreamReader</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/StringReader.html">StringReader</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/StringWriter.html">StringWriter</a>
+                <a href="../Classes/URLReader.html">URLReader</a>
               </li>
             </ul>
           </li>
@@ -69,10 +60,10 @@
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Protocols/Reader.html">Reader</a>
+                <a href="../Protocols/Closeable.html">Closeable</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/Writer.html">Writer</a>
+                <a href="../Protocols/Reader.html">Reader</a>
               </li>
             </ul>
           </li>
@@ -82,7 +73,13 @@
         <section>
           <section class="section">
             <h1>BufferedReader</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">BufferedReader</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Reader.html">Reader</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/Closeable.html">Closeable</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>Buffered reader class which can read from the reader by lines</p>
 
           </section>
           <section class="section task-group-section">
@@ -91,9 +88,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC8swift_io14BufferedReadercFTPS_6Reader_8encodingVE10FoundationSS8Encoding10bufferSizeSi_S0_"></a>
-                    <a name="//apple_ref/swift/Method/init(_:encoding:bufferSize:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC8swift_io14BufferedReadercFTPS_6Reader_8encodingVE10FoundationSS8Encoding10bufferSizeSi_S0_">init(_:encoding:bufferSize:)</a>
+                    <a name="/s:FC8swift_io14BufferedReadercFPS_6Reader_S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8swift_io14BufferedReadercFPS_6Reader_S0_">init(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -101,11 +98,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Init with Reader</p>
 
                       </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">reader</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Reader.html">Reader</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/BufferedReader.swift#L32-L42">Show on GitHub</a>
+                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/BufferedReader.swift#L30-L34">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -123,11 +128,36 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Read next line from the reader</p>
+
+<div class="aside aside-returns">
+    <p class="aside-title">Returns</p>
+    Next line from the reader without the line end characters, or nill when at the end.
+
+</div>
+
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    Exception when can not read or reader is already closed
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">readLine</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Next line from the reader without the line end characters, or nill when at the end.</p>
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/BufferedReader.swift#L48-L94">Show on GitHub</a>
+                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/BufferedReader.swift#L46-L90">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -135,9 +165,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC8swift_io14BufferedReader5closeFzT_T_"></a>
-                    <a name="//apple_ref/swift/Method/close()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC8swift_io14BufferedReader5closeFzT_T_">close()</a>
+                    <a name="/s:FC8swift_io14BufferedReader4readFzT_GSqSS_"></a>
+                    <a name="//apple_ref/swift/Method/read()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8swift_io14BufferedReader4readFzT_GSqSS_">read()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -145,11 +175,128 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Conforming to the Reader protocol.</p>
+
+<p>Calls to readLine() and read() can be combined.</p>
+
+<div class="aside aside-returns">
+    <p class="aside-title">Returns</p>
+    Next String from the Reader
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">read</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Next String from the Reader</p>
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/BufferedReader.swift#L96-L99">Show on GitHub</a>
+                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/BufferedReader.swift#L99-L111">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8swift_io14BufferedReader5closeFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/close()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8swift_io14BufferedReader5closeFT_T_">close()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Close the Reader</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">close</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/BufferedReader.swift#L116-L119">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC8swift_io14BufferedReader12readAllLinesFzT3fceFSST__T_"></a>
+                    <a name="//apple_ref/swift/Method/readAllLines(fce:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8swift_io14BufferedReader12readAllLinesFzT3fceFSST__T_">readAllLines(fce:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Reads all lines and passes them to closure</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter fce: Closure to handle each line
+
+</div>
+
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    Exception when can not read or reader is already closed
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">readAllLines</span><span class="p">(</span><span class="nv">fce</span><span class="p">:</span> <span class="p">((</span><span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">()))</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fce</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Closure to handle each line</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/BufferedReader.swift#L130-L139">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -159,8 +306,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://github.com/swifties" target="_blank" rel="external">SWIFTIES</a>. All rights reserved. (Last updated: 2016-08-07)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2016 <a class="link" href="https://github.com/swifties" target="_blank" rel="external">SWIFTIES</a>. All rights reserved. (Last updated: 2016-09-18)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

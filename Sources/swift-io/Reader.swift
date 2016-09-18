@@ -20,7 +20,7 @@ import Foundation
 /**
     Reader interface
     Reader will return next string from the source.
-    Size of the string returned is dependent on the Reader implementation.
+    Size of the string returned depends on the Reader implementation.
  */
 public protocol Reader: Closeable {
     
@@ -36,20 +36,21 @@ public protocol Reader: Closeable {
     
     
     /** 
-     Close the Reader
+     Close the Reader silently. 
+     Reads after closing the Reader will throw an exception.
     **/
     func close()
 }
 
-extension Reader {
+public extension Reader {
     
     /**
-        Read all strings from the Reader and pass it to the inline closure
+        Read all strings from the Reader and pass it to the inline function
      
-        - Parameter fce: closure which accepts part of the string as a parameter
+        - Parameter fce: Closure which accepts part of the string as a parameter
         - Throws: Exception if read error occurs or if the Reader is already closed
     */
-    func readAll(fce: ((String) -> ())) throws
+    public func readAll(fce: ((String) -> ())) throws
     {
         while(true) {
             if let s = try read() {
@@ -58,6 +59,22 @@ extension Reader {
                 break
             }
         }
+    }
+    
+    /**
+     Read all from this Reader and return the data as String
+     
+     - Returns: String with all content the Reader can read
+     - Throws: When reading error occurs
+     - Note: Dangerous, reads all data from the Reader into one single String!
+     */
+    public func readAll() throws -> String
+    {
+        var buffer = String()
+        try readAll() {
+            buffer.append($0)
+        }
+        return buffer
     }
 }
 

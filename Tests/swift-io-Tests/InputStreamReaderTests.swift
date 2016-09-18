@@ -10,14 +10,6 @@
 import XCTest
 @testable import swift_io
 
-extension Reader {
-    func readAll() throws -> String  {
-        var s = String()
-        try readAll() { s.append($0) }
-        return s
-    }
-}
-
 class InputStreamReaderTests: XCTestCase
 {
     let encodings = [
@@ -40,7 +32,7 @@ class InputStreamReaderTests: XCTestCase
     }
     
     func test_ReadFromClosed() {
-        let reader = try! InputStreamReader(InputStream(data: Data("test".utf8)))
+        let reader = InputStreamReader(InputStream(data: Data("test".utf8)))
         XCTAssert(reader.description.characters.count > 0)
         
         reader.close()
@@ -61,7 +53,7 @@ class InputStreamReaderTests: XCTestCase
             let data = "Č".data(using: encoding)!
 
             
-            let reader = try! InputStreamReader(InputStream(data:data), encoding: encoding)
+            let reader = InputStreamReader(InputStream(data:data), encoding: encoding)
             let result = try! reader.readAll()
             XCTAssertEqual(result, "Č")
         }
@@ -71,7 +63,7 @@ class InputStreamReaderTests: XCTestCase
         for encoding in encodings {
             let data = "Č".data(using: encoding)!
 
-            let reader = try! InputStreamReader(InputStream(data:data), encoding: encoding, bufferSize: 1)
+            let reader = InputStreamReader(InputStream(data:data), encoding: encoding, bufferSize: 1)
             let result = try!reader.readAll()
             
             XCTAssertEqual(result, "Č")
@@ -84,7 +76,7 @@ class InputStreamReaderTests: XCTestCase
 
             let data = text.data(using: encoding)!
         
-            let reader = try! InputStreamReader(InputStream(data:data), encoding: encoding)
+            let reader = InputStreamReader(InputStream(data:data), encoding: encoding)
             let result = try!reader.readAll()
             XCTAssertEqual(result, text)
         }
@@ -97,7 +89,7 @@ class InputStreamReaderTests: XCTestCase
             
             let data = text.data(using: encoding)!
             
-            let reader = try! InputStreamReader(InputStream(data:data), encoding: encoding, bufferSize: 2)
+            let reader = InputStreamReader(InputStream(data:data), encoding: encoding, bufferSize: 2)
             let result = try!reader.readAll()
             XCTAssertEqual(result, text)
         }
@@ -124,7 +116,7 @@ class InputStreamReaderTests: XCTestCase
             
             let data = text.data(using: encoding)!
             
-            let reader = try! InputStreamReader(InputStream(data:data), encoding: encoding, bufferSize: 2)
+            let reader = InputStreamReader(InputStream(data:data), encoding: encoding, bufferSize: 2)
             let result = try!reader.readAll()
             XCTAssertEqual(result, text)
         }
@@ -140,11 +132,76 @@ class InputStreamReaderTests: XCTestCase
             
             let data = text.data(using: encoding)!
             
-            let reader = try! InputStreamReader(InputStream(data:data), encoding: encoding)
+            let reader = InputStreamReader(InputStream(data:data), encoding: encoding)
             let result = try!reader.readAll()
             XCTAssertEqual(result, text)
             
             XCTAssertNil(try! reader.read())
         }
     }
+    
+    func test_WrongEncoding() {
+        let text = "Hi! 大家好！It's contains Chinese!"
+        
+        let data = text.data(using: .utf8)!
+        
+        do {
+            let reader = InputStreamReader(InputStream(data:data), encoding: .utf16)
+            _ = try reader.readAll()
+            XCTFail()
+        } catch Exception.InvalidDataEncoding(_, _) {
+            //expected
+        } catch  {
+            XCTFail()
+        }
+        
+        do {
+            let reader = InputStreamReader(InputStream(data:data), encoding: .utf32)
+            _ = try reader.readAll()
+            XCTFail()
+        } catch Exception.InvalidDataEncoding(_, _) {
+            //expected
+        } catch  {
+            XCTFail()
+        }
+    }
+    
+    func test_BOMEncoding16() {
+        let text = "Hi! 大家好！It's contains Chinese!"
+        
+        var data = Data(bytes: InputStreamReader.UTF16BE_BOM)
+        data.append(text.data(using: .utf16BigEndian)!)
+        
+        let reader = InputStreamReader(InputStream(data:data), encoding: .utf16)
+        XCTAssertEqual(text, try! reader.readAll())
+    }
+    
+    func test_BOMEncoding32() {
+        let text = "Hi! 大家好！It's contains Chinese!"
+        
+        var data = Data(bytes: InputStreamReader.UTF32BE_BOM)
+        data.append(text.data(using: .utf32BigEndian)!)
+        
+        let reader = InputStreamReader(InputStream(data:data), encoding: .utf32)
+        XCTAssertEqual(text, try! reader.readAll())
+    }
+    
+    func test_NoString() {
+        let data:     [UInt8] = [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]
+        let reader = InputStreamReader(InputStream(data:Data(bytes: data)), encoding: .utf32BigEndian, bufferSize: 8)
+        do {
+            _ = try reader.readAll()
+            XCTFail()
+        } catch Exception.InvalidDataEncoding(_, _) {
+            //expected
+        } catch  {
+            XCTFail()
+        }
+    }
+    
+    func test_InvalidEncoding() {
+        let reader = try? StringReader("ČŘˇÍŤ", encoding: .ascii)
+        XCTAssertNil(reader)
+    }
+
 }

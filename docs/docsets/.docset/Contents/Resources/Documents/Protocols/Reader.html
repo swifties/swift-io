@@ -14,7 +14,7 @@
     <a title="Reader Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (56% documented)</p>
+        <p><a href="../index.html"> Docs</a> (73% documented)</p>
         <p class="header-right"><a href="https://github.com/swifties/swift-io"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -35,22 +35,13 @@
                 <a href="../Classes/BufferedReader.html">BufferedReader</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/BufferedWriter.html">BufferedWriter</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/CSVWriter.html">CSVWriter</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes.html#/s:C8swift_io10FileWriter">FileWriter</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/OutputStreamWriter.html">OutputStreamWriter</a>
+                <a href="../Classes/InputStreamReader.html">InputStreamReader</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/StringReader.html">StringReader</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/StringWriter.html">StringWriter</a>
+                <a href="../Classes/URLReader.html">URLReader</a>
               </li>
             </ul>
           </li>
@@ -69,10 +60,10 @@
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Protocols/Reader.html">Reader</a>
+                <a href="../Protocols/Closeable.html">Closeable</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/Writer.html">Writer</a>
+                <a href="../Protocols/Reader.html">Reader</a>
               </li>
             </ul>
           </li>
@@ -84,11 +75,13 @@
             <h1>Reader</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Reader</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Reader</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Closeable.html">Closeable</a></span></code></pre>
 
                 </div>
               </div>
-            <p>Swift version of the java Reader interface</p>
+            <p>Reader interface
+Reader will return next string from the source.
+Size of the string returned depends on the Reader implementation.</p>
 
           </section>
           <section class="section task-group-section">
@@ -97,9 +90,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP8swift_io6Reader4readFzRGSaVs5UInt8_GSqSi_"></a>
-                    <a name="//apple_ref/swift/Method/read(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP8swift_io6Reader4readFzRGSaVs5UInt8_GSqSi_">read(_:)</a>
+                    <a name="/s:FP8swift_io6Reader4readFzT_GSqSS_"></a>
+                    <a name="//apple_ref/swift/Method/read()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP8swift_io6Reader4readFzT_GSqSS_">read()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -107,29 +100,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Attempts to read characters into the specified character buffer.</p>
-
-<div class="aside aside-parameter">
-    <p class="aside-title">Parameter</p>
-    Parameter buffer: buffer to be filled from the Reader.
-
-</div>
-
-<div class="aside aside-parameter">
-    <p class="aside-title">Parameter</p>
-    <p>Parameter maxCount: number of bytes to be read. If count exceeds the capacity of the buffer, Exception.ArraySizeTooSmall will be thrown.</p>
-
-</div>
+                        <p>Attempts to read string from the Reader</p>
 
 <div class="aside aside-returns">
     <p class="aside-title">Returns</p>
-    <p>False when at the end.</p>
+    Next string from the source. Size of the string is dependent on the implementation of the reader.
+       Return value can be empty string which would mean Reader is waiting for more data to come.
+       Nil when at the end. Multiple reads from the end of the reader will all return nil.
 
 </div>
 
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
-    <p>exception if read error occurs</p>
+    Exception if read error occurs or if the Reader is already closed
 
 </div>
 
@@ -138,7 +121,92 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">read</span><span class="p">(</span><span class="n">_</span> <span class="nv">buffer</span><span class="p">:</span> <span class="k">inout</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Int</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">read</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Next string from the source. Size of the string is dependent on the implementation of the reader. Return value can be empty string which would mean Reader is waiting for more data to come. Nil when at the end. Multiple reads from the end of the reader will all return nil.</p>
+
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/Reader.swift#L35">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP8swift_io6Reader5closeFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/close()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP8swift_io6Reader5closeFT_T_">close()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Close the Reader silently. 
+Reads after closing the Reader will throw an exception.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">close</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/Reader.swift#L42">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FE8swift_ioPS_6Reader7readAllFzT3fceFSST__T_"></a>
+                    <a name="//apple_ref/swift/Method/readAll(fce:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FE8swift_ioPS_6Reader7readAllFzT3fceFSST__T_">readAll(fce:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Read all strings from the Reader and pass it to the inline function</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter fce: Closure which accepts part of the string as a parameter
+
+</div>
+
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    Exception if read error occurs or if the Reader is already closed
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">readAll</span><span class="p">(</span><span class="nv">fce</span><span class="p">:</span> <span class="p">((</span><span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">()))</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -149,25 +217,12 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>buffer</em>
+                                <em>fce</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>buffer to be filled from the Reader.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>maxCount</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>number of bytes to be read. If count exceeds the capacity of the buffer, Exception.ArraySizeTooSmall will be thrown.</p>
+                                  <p>Closure which accepts part of the string as a parameter</p>
 
                                 </div>
                               </td>
@@ -175,13 +230,8 @@
                           </tbody>
                         </table>
                       </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>False when at the end.</p>
-
-                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/Reader.swift#L34">Show on GitHub</a>
+                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/Reader.swift#L53-L62">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -189,23 +239,36 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP8swift_io6Reader5closeFzT_T_"></a>
-                    <a name="//apple_ref/swift/Method/close()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP8swift_io6Reader5closeFzT_T_">close()</a>
+                    <a name="/s:FE8swift_ioPS_6Reader7readAllFzT_SS"></a>
+                    <a name="//apple_ref/swift/Method/readAll()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FE8swift_ioPS_6Reader7readAllFzT_SS">readAll()</a>
                     </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Closes the stream and releases any system resources associated with
-it. Once the stream has been closed, further reads will throw an IOException.
-Closing a previously closed stream has no effect.</p>
+                        <p>Read all from this Reader and return the data as String</p>
+
+<div class="aside aside-returns">
+    <p class="aside-title">Returns</p>
+    String with all content the Reader can read
+
+</div>
 
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
-    Exception if an I/O error occurs
+    When reading error occurs
+
+</div>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Dangerous, reads all data from the Reader into one single String!
 
 </div>
 
@@ -214,12 +277,17 @@ Closing a previously closed stream has no effect.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">close</span><span class="p">()</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">readAll</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>String with all content the Reader can read</p>
+
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/Reader.swift#L44">Show on GitHub</a>
+                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/Reader.swift#L71-L78">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -229,8 +297,8 @@ Closing a previously closed stream has no effect.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://github.com/swifties" target="_blank" rel="external">SWIFTIES</a>. All rights reserved. (Last updated: 2016-08-07)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2016 <a class="link" href="https://github.com/swifties" target="_blank" rel="external">SWIFTIES</a>. All rights reserved. (Last updated: 2016-09-18)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

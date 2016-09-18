@@ -39,6 +39,9 @@ class BufferedReaderTests: XCTestCase
             count += 1
         }
         XCTAssertEqual(count, 9)
+        
+        XCTAssertNil(try! reader.readLine())
+        XCTAssertNil(try! reader.read())
     }
 
     func test_BufferedReadWithLineEndAtEnd() {
@@ -76,8 +79,67 @@ class BufferedReaderTests: XCTestCase
         }
         XCTAssertEqual(buffer, BufferedReaderTests.TEST_STRING + "\n")
         XCTAssertNil(try! reader.readLine())
+        XCTAssertNil(try! reader.read())
     }
 
+    func test_ContentCombiningReadAndReadLine() {
+        let reader = try! BufferedReader(StringReader(BufferedReaderTests.TEST_STRING + "\n"))
+        var buffer = String()
+        
+        while(true) {
+            if let line = try! reader.readLine() {
+                buffer += line + "\n"
+            } else {
+                break
+            }
+
+            if let s = try! reader.read() {
+                buffer += s
+            } else {
+                break
+            }
+            
+            if let line = try! reader.readLine() {
+                buffer += line + "\n"
+            } else {
+                break
+            }
+        }
+        
+        XCTAssertEqual(buffer, BufferedReaderTests.TEST_STRING + "\n")
+        XCTAssertNil(try! reader.readLine())
+        XCTAssertNil(try! reader.read())
+    }
+    
+    func test_ContentCombiningReadAndReadLine2() {
+        let reader = try! BufferedReader(StringReader(BufferedReaderTests.TEST_STRING + "\n", bufferSize: 1))
+        var buffer = String()
+        
+        while(true) {
+            if let s = try! reader.read() {
+                buffer += s
+            } else {
+                break
+            }
+
+            if let line = try! reader.readLine() {
+                buffer += line + "\n"
+            } else {
+                break
+            }
+            
+            if let s = try! reader.read() {
+                buffer += s
+            } else {
+                break
+            }
+        }
+        
+        XCTAssertEqual(buffer, BufferedReaderTests.TEST_STRING + "\n")
+        XCTAssertNil(try! reader.readLine())
+        XCTAssertNil(try! reader.read())
+    }
+    
     func test_ReadFromClosed() {
         let reader = try! BufferedReader(StringReader(BufferedReaderTests.TEST_STRING + "\n"))
         

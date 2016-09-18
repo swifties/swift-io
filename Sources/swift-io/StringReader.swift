@@ -17,7 +17,7 @@
 import Foundation
 
 /**
- Reader to read data from passed String
+ Reader to read data from a String
  */
 public class StringReader: InputStreamReader
 {
@@ -26,18 +26,20 @@ public class StringReader: InputStreamReader
      Create reader from String data
      
      - Parameter string: String to read from
-     - Throws: Exception if stream can not be created or opened
+     - Parameter encoding: Encoding to use for internal data manipulation. In general should stay the DEFAULT_ENCODING by default.
+     - Parameter bufferSize: Buffer size to use. DEFAULT_BUFFER_SIZE by default, minimum MINIMUM_BUFFER_SIZE.
+     - Parameter description: Description to be shown at errors etc. For example file path, http address etc.
      
      - SeeAlso: InputStreamReader
      */
-    public init(_ string: String, bufferSize: Int = DEFAULT_BUFFER_SIZE, desciption: String? = nil) throws
+    public init(_ string: String, bufferSize: Int = DEFAULT_BUFFER_SIZE, encoding: String.Encoding = DEFAULT_ENCODING, desciption: String? = nil) throws
     {
-        guard let data = string.data(using: DEFAULT_ENCODING) else
+        guard let data = string.data(using: encoding) else
         {
             //can happen if we try to encode String in encoding not supporting all given characters
             throw Exception.InvalidStringEncoding(string: string, requestedEncoding: DEFAULT_ENCODING, description: desciption)
         }
 
-        try super.init(InputStream(data: data), encoding: DEFAULT_ENCODING, bufferSize: bufferSize, description: desciption)
+        super.init(InputStream(data: data), encoding: encoding, bufferSize: bufferSize, description: desciption)
     }
 }

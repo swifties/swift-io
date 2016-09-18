@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>StringReader Class Reference</title>
+    <title>URLReader Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/StringReader" class="dashAnchor"></a>
-    <a title="StringReader Class Reference"></a>
+    <a name="//apple_ref/swift/Class/URLReader" class="dashAnchor"></a>
+    <a title="URLReader Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (73% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        StringReader Class Reference
+        URLReader Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -72,14 +72,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>StringReader</h1>
+            <h1>URLReader</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">StringReader</span><span class="p">:</span> <span class="kt"><a href="../Classes/InputStreamReader.html">InputStreamReader</a></span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">URLReader</span><span class="p">:</span> <span class="kt"><a href="../Classes/InputStreamReader.html">InputStreamReader</a></span></code></pre>
 
                 </div>
               </div>
-            <p>Reader to read data from a String</p>
+            <p>Read String data from URL</p>
 
           </section>
           <section class="section task-group-section">
@@ -88,9 +88,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC8swift_io12StringReadercFzTSS10bufferSizeSi8encodingVE10FoundationSS8Encoding10desciptionGSqSS__S0_"></a>
-                    <a name="//apple_ref/swift/Method/init(_:bufferSize:encoding:desciption:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC8swift_io12StringReadercFzTSS10bufferSizeSi8encodingVE10FoundationSS8Encoding10desciptionGSqSS__S0_">init(_:bufferSize:encoding:desciption:)</a>
+                    <a name="/s:FC8swift_io9URLReadercFzTV10Foundation3URL8encodingVES1_SS8Encoding10bufferSizeSi11descriptionGSqSS__S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(_:encoding:bufferSize:description:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8swift_io9URLReadercFzTV10Foundation3URL8encodingVES1_SS8Encoding10bufferSizeSi11descriptionGSqSS__S0_">init(_:encoding:bufferSize:description:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -98,29 +98,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Create reader from String data</p>
+                        <p>Create a Reader from URL InputStream</p>
 
 <div class="aside aside-parameter">
     <p class="aside-title">Parameter</p>
-    Parameter string: String to read from
+    Parameter url: Valid resource URL
 
 </div>
 
-<div class="aside aside-parameter">
-    <p class="aside-title">Parameter</p>
-    Parameter encoding: Encoding to use for internal data manipulation. In general should stay the DEFAULT_ENCODING by default.
-
-</div>
-
-<div class="aside aside-parameter">
-    <p class="aside-title">Parameter</p>
-    Parameter bufferSize: Buffer size to use. DEFAULT_BUFFER_SIZE by default, minimum MINIMUM_BUFFER_SIZE.
-
-</div>
-
-<div class="aside aside-parameter">
-    <p class="aside-title">Parameter</p>
-    <p>Parameter description: Description to be shown at errors etc. For example file path, http address etc.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <p>Exception if stream can not be created or opened</p>
 
 </div>
 
@@ -135,7 +123,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">string</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">bufferSize</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kt">DEFAULT_BUFFER_SIZE</span><span class="p">,</span> <span class="nv">encoding</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="kt">Encoding</span> <span class="o">=</span> <span class="kt">DEFAULT_ENCODING</span><span class="p">,</span> <span class="nv">desciption</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">encoding</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="kt">Encoding</span> <span class="o">=</span> <span class="kt">DEFAULT_ENCODING</span><span class="p">,</span> <span class="nv">bufferSize</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kt">DEFAULT_BUFFER_SIZE</span><span class="p">,</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -146,51 +134,12 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>string</em>
+                                <em>url</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>String to read from</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>encoding</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Encoding to use for internal data manipulation. In general should stay the DEFAULT_ENCODING by default.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>bufferSize</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Buffer size to use. DEFAULT_BUFFER_SIZE by default, minimum MINIMUM_BUFFER_SIZE.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>description</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Description to be shown at errors etc. For example file path, http address etc.</p>
+                                  <p>Valid resource URL</p>
 
                                 </div>
                               </td>
@@ -199,7 +148,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/StringReader.swift#L35-L44">Show on GitHub</a>
+                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/URLReader.swift#L34-L42">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

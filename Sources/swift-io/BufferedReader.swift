@@ -16,16 +16,16 @@
 import Foundation
 
 /**
- Buffered reader class which reads from reader by lines
+ Buffered reader class which can read from the reader by lines
  */
-public class BufferedReader: Closeable
+public class BufferedReader: Reader, Closeable
 {
     let reader: Reader
     var buffer: String
     var atEnd:  Bool
     
     /**
-     Init with reader
+     Init with Reader
     */
     public init(_ reader: Reader) {
         self.reader = reader
@@ -40,7 +40,7 @@ public class BufferedReader: Closeable
     /**
      Read next line from the reader
      
-     - Returns: next line from the reader without the line end characters, or nill when at the end.
+     - Returns: Next line from the reader without the line end characters, or nill when at the end.
      - Throws: Exception when can not read or reader is already closed
     */
     public func readLine() throws -> String?
@@ -63,7 +63,6 @@ public class BufferedReader: Closeable
                 let line = buffer.substring(to: contentsEndIndex)
                 buffer = buffer.substring(from: lineEndIndex)
                 
-                buffer.
                 return line
             }
             
@@ -89,11 +88,43 @@ public class BufferedReader: Closeable
         
         return line
     }
+
+    /**
+     Conforming to the Reader protocol.
+     
+     Calls to readLine() and read() can be combined.
+     
+     - Returns: Next String from the Reader
+    */
+    public func read() throws -> String? {
+        if(atEnd) {
+            return nil
+        }
+        
+        if(!buffer.isEmpty) {
+            let s = buffer;
+            buffer.removeAll(keepingCapacity: true)
+            return s
+        }
+        
+        return try reader.read()
+    }
     
     /**
-      Reads all lines and passes them to closure
+     Close the Reader
+    */
+    public func close()
+    {
+        reader.close()
+    }
+}
+
+
+public extension BufferedReader {
+    /**
+     Reads all lines and passes them to closure
      
-     - Parameter fce: closure to handle each line
+     - Parameter fce: Closure to handle each line
      - Throws: Exception when can not read or reader is already closed
      */
     func readAllLines(fce: ((String) -> ())) throws
@@ -105,10 +136,5 @@ public class BufferedReader: Closeable
                 break
             }
         }
-    }
-    
-    public func close()
-    {
-        reader.close()
     }
 }

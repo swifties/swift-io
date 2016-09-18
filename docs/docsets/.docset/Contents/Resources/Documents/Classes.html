@@ -13,7 +13,7 @@
     <a title="Classes  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (56% documented)</p>
+        <p><a href="index.html"> Docs</a> (73% documented)</p>
         <p class="header-right"><a href="https://github.com/swifties/swift-io"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -34,22 +34,13 @@
                 <a href="Classes/BufferedReader.html">BufferedReader</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/BufferedWriter.html">BufferedWriter</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/CSVWriter.html">CSVWriter</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes.html#/s:C8swift_io10FileWriter">FileWriter</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/OutputStreamWriter.html">OutputStreamWriter</a>
+                <a href="Classes/InputStreamReader.html">InputStreamReader</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/StringReader.html">StringReader</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/StringWriter.html">StringWriter</a>
+                <a href="Classes/URLReader.html">URLReader</a>
               </li>
             </ul>
           </li>
@@ -68,10 +59,10 @@
             <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Protocols/Reader.html">Reader</a>
+                <a href="Protocols/Closeable.html">Closeable</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols/Writer.html">Writer</a>
+                <a href="Protocols/Reader.html">Reader</a>
               </li>
             </ul>
           </li>
@@ -90,41 +81,6 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:C8swift_io18OutputStreamWriter"></a>
-                    <a name="//apple_ref/swift/Class/OutputStreamWriter" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C8swift_io18OutputStreamWriter">OutputStreamWriter</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Simple unsychronized buffered OutputStreamWriter implementation</p>
-
-                        <a href="Classes/OutputStreamWriter.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">OutputStreamWriter</span><span class="p">:</span> <span class="kt"><a href="Protocols/Writer.html">Writer</a></span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/OutputStreamWriter.swift#L22-L75">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:C8swift_io12StringReader"></a>
                     <a name="//apple_ref/swift/Class/StringReader" class="dashAnchor"></a>
                     <a class="token" href="#/s:C8swift_io12StringReader">StringReader</a>
@@ -135,48 +91,20 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Reader to read data from a String</p>
 
                         <a href="Classes/StringReader.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/StringReader.swift#L19-L53">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:C8swift_io12StringWriter"></a>
-                    <a name="//apple_ref/swift/Class/StringWriter" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C8swift_io12StringWriter">StringWriter</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Simple Writer into String object
-This writer ignores calls to flush() or close()</p>
-
-                        <a href="Classes/StringWriter.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">StringWriter</span><span class="p">:</span> <span class="kt"><a href="Protocols/Writer.html">Writer</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">StringReader</span><span class="p">:</span> <span class="kt"><a href="Classes/InputStreamReader.html">InputStreamReader</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/StringWriter.swift#L23-L60">Show on GitHub</a>
+                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/StringReader.swift#L22-L45">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -188,9 +116,9 @@ This writer ignores calls to flush() or close()</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:C8swift_io14BufferedWriter"></a>
-                    <a name="//apple_ref/swift/Class/BufferedWriter" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C8swift_io14BufferedWriter">BufferedWriter</a>
+                    <a name="/s:C8swift_io9URLReader"></a>
+                    <a name="//apple_ref/swift/Class/URLReader" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C8swift_io9URLReader">URLReader</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -198,12 +126,20 @@ This writer ignores calls to flush() or close()</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Read String data from URL</p>
 
-                        <a href="Classes/BufferedWriter.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/URLReader.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">URLReader</span><span class="p">:</span> <span class="kt"><a href="Classes/InputStreamReader.html">InputStreamReader</a></span></code></pre>
+
+                        </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/BufferedWriter.swift#L19-L56">Show on GitHub</a>
+                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/URLReader.swift#L24-L43">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -225,73 +161,55 @@ This writer ignores calls to flush() or close()</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Buffered reader class which can read from the reader by lines</p>
 
                         <a href="Classes/BufferedReader.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/BufferedReader.swift#L18-L100">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:C8swift_io10FileWriter"></a>
-                    <a name="//apple_ref/swift/Class/FileWriter" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C8swift_io10FileWriter">FileWriter</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/FileWriter.swift#L19-L50">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:C8swift_io9CSVWriter"></a>
-                    <a name="//apple_ref/swift/Class/CSVWriter" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C8swift_io9CSVWriter">CSVWriter</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Simple CSV writer released under a commercial-friendly license.</p>
-
-                        <a href="Classes/CSVWriter.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">CSVWriter</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">BufferedReader</span><span class="p">:</span> <span class="kt"><a href="Protocols/Reader.html">Reader</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/Closeable.html">Closeable</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/csv/CSVWriter.swift#L24-L232">Show on GitHub</a>
+                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/BufferedReader.swift#L21-L120">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C8swift_io17InputStreamReader"></a>
+                    <a name="//apple_ref/swift/Class/InputStreamReader" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C8swift_io17InputStreamReader">InputStreamReader</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Reader to read Strings from InputStream</p>
+
+                        <a href="Classes/InputStreamReader.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">InputStreamReader</span><span class="p">:</span> <span class="kt"><a href="Protocols/Reader.html">Reader</a></span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/InputStreamReader.swift#L22-L226">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -301,8 +219,8 @@ This writer ignores calls to flush() or close()</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://github.com/swifties" target="_blank" rel="external">SWIFTIES</a>. All rights reserved. (Last updated: 2016-08-07)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2016 <a class="link" href="https://github.com/swifties" target="_blank" rel="external">SWIFTIES</a>. All rights reserved. (Last updated: 2016-09-18)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

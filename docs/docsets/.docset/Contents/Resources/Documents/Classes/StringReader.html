@@ -14,7 +14,7 @@
     <a title="StringReader Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (56% documented)</p>
+        <p><a href="../index.html"> Docs</a> (73% documented)</p>
         <p class="header-right"><a href="https://github.com/swifties/swift-io"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -35,22 +35,13 @@
                 <a href="../Classes/BufferedReader.html">BufferedReader</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/BufferedWriter.html">BufferedWriter</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/CSVWriter.html">CSVWriter</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes.html#/s:C8swift_io10FileWriter">FileWriter</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/OutputStreamWriter.html">OutputStreamWriter</a>
+                <a href="../Classes/InputStreamReader.html">InputStreamReader</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/StringReader.html">StringReader</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/StringWriter.html">StringWriter</a>
+                <a href="../Classes/URLReader.html">URLReader</a>
               </li>
             </ul>
           </li>
@@ -69,10 +60,10 @@
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Protocols/Reader.html">Reader</a>
+                <a href="../Protocols/Closeable.html">Closeable</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/Writer.html">Writer</a>
+                <a href="../Protocols/Reader.html">Reader</a>
               </li>
             </ul>
           </li>
@@ -82,7 +73,13 @@
         <section>
           <section class="section">
             <h1>StringReader</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">StringReader</span><span class="p">:</span> <span class="kt"><a href="../Classes/InputStreamReader.html">InputStreamReader</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>Reader to read data from a String</p>
 
           </section>
           <section class="section task-group-section">
@@ -91,9 +88,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC8swift_io12StringReadercFzTSS12dataEncodingVE10FoundationSS8Encoding_S0_"></a>
-                    <a name="//apple_ref/swift/Method/init(_:dataEncoding:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC8swift_io12StringReadercFzTSS12dataEncodingVE10FoundationSS8Encoding_S0_">init(_:dataEncoding:)</a>
+                    <a name="/s:FC8swift_io12StringReadercFzTSS10bufferSizeSi8encodingVE10FoundationSS8Encoding10desciptionGSqSS__S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(_:bufferSize:encoding:desciption:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8swift_io12StringReadercFzTSS10bufferSizeSi8encodingVE10FoundationSS8Encoding10desciptionGSqSS__S0_">init(_:bufferSize:encoding:desciption:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -101,35 +98,44 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Create reader from String data</p>
 
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/StringReader.swift#L24-L34">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FP8swift_io6Reader4readFzRGSaVs5UInt8_GSqSi_"></a>
-                    <a name="//apple_ref/swift/Method/read(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP8swift_io6Reader4readFzRGSaVs5UInt8_GSqSi_">read(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter string: String to read from
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter encoding: Encoding to use for internal data manipulation. In general should stay the DEFAULT_ENCODING by default.
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter bufferSize: Buffer size to use. DEFAULT_BUFFER_SIZE by default, minimum MINIMUM_BUFFER_SIZE.
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter description: Description to be shown at errors etc. For example file path, http address etc.</p>
+
+</div>
+
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <p>InputStreamReader</p>
+
+</div>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">read</span><span class="p">(</span><span class="n">_</span> <span class="nv">buffer</span><span class="p">:</span> <span class="k">inout</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Int</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">string</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">bufferSize</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kt">DEFAULT_BUFFER_SIZE</span><span class="p">,</span> <span class="nv">encoding</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="kt">Encoding</span> <span class="o">=</span> <span class="kt">DEFAULT_ENCODING</span><span class="p">,</span> <span class="nv">desciption</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -140,12 +146,12 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>buffer</em>
+                                <em>string</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>buffer to be filled from the Reader.</p>
+                                  <p>String to read from</p>
 
                                 </div>
                               </td>
@@ -153,12 +159,38 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>maxCount</em>
+                                <em>encoding</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>number of bytes to be read. If count exceeds the capacity of the buffer, Exception.ArraySizeTooSmall will be thrown.</p>
+                                  <p>Encoding to use for internal data manipulation. In general should stay the DEFAULT_ENCODING by default.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bufferSize</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Buffer size to use. DEFAULT_BUFFER_SIZE by default, minimum MINIMUM_BUFFER_SIZE.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>description</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Description to be shown at errors etc. For example file path, http address etc.</p>
 
                                 </div>
                               </td>
@@ -166,42 +198,8 @@
                           </tbody>
                         </table>
                       </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>False when at the end.</p>
-
-                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/StringReader.swift#L36-L48">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FP8swift_io6Reader5closeFzT_T_"></a>
-                    <a name="//apple_ref/swift/Method/close()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP8swift_io6Reader5closeFzT_T_">close()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">close</span><span class="p">()</span> <span class="k">throws</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/StringReader.swift#L50-L52">Show on GitHub</a>
+                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/StringReader.swift#L35-L44">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -211,8 +209,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://github.com/swifties" target="_blank" rel="external">SWIFTIES</a>. All rights reserved. (Last updated: 2016-08-07)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2016 <a class="link" href="https://github.com/swifties" target="_blank" rel="external">SWIFTIES</a>. All rights reserved. (Last updated: 2016-09-18)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
