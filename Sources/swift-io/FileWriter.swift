@@ -10,41 +10,26 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
-
- Created by Dusan Saiko on 24/07/16.
-*/
+ 
+ Created by Dusan Saiko on 31/07/16.
+ */
 
 import Foundation
 
-//public class FileWriter: OutputStreamWriter
-//{
-//
-//    /**
-//     Initializer to write data into url
-//     - Parameter url: file url to write to
-//     - Parameter appendFile: True if file should be appended
-//     - Parameter bufferSize: size of data buffer, default 1MB
-//     - Throws: IOException if initialization is not successfull
-//     */
-//    init(_ url: URL, appendFile: Bool = false) throws
-//    {
-//        if let stream = OutputStream(url: url, append: appendFile)
-//        {
-//            stream.schedule(in: RunLoop.current, forMode: .defaultRunLoopMode)
-//            super.init(stream, sourceDescription: url.absoluteString)
-//        } else {
-//            throw IOException.FileIsNotWritable(url: url)
-//        }
-//    }
-//
-//    /**
-//     Initializer to write data into file
-//     - Parameter file: file path to write to
-//     - Parameter appendFile: True if file should be appended
-//     - Throws: IOException if initialization is not successfull
-//     */
-//    convenience init(_ path: String, appendFile: Bool = false) throws
-//    {
-//        try self.init(URL(fileURLWithPath: path), appendFile: appendFile)
-//    }
-//}
+typealias URLWriter = FileWriter
+
+/**
+ Read String data from URL
+ */
+public class FileWriter: OutputStreamWriter
+{
+    public init(_ url: URL, append: Bool = false, encoding: String.Encoding = DEFAULT_ENCODING, description: String? = nil) throws
+    {
+        if let stream = OutputStream(url: url, append: append)
+        {
+            super.init(stream, encoding: encoding, description: description ?? url.absoluteString)
+        } else {
+            throw IOException.URLIsNotWritable(url: url)
+        }
+    }
+}

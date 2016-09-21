@@ -17,47 +17,6 @@
 import Foundation
 
 
-///**
-// Swift version of the java Writer interface
-//*/
-//public protocol Writer: Closeable {
-//    
-//    /**
-//     Writes Data to this stream
-//     - Parameter data: Data to be written into the stream
-//     - Throws: IOException if an I/O error occurs
-//     */
-//    func write(_ data: [UInt8], startIndex: Int, count: Int) throws
-//}
-//
-//public extension Writer {
-//
-//    public func write(_ data: [UInt8]) throws
-//    {
-//        try write(data, startIndex: 0, count: data.count)
-//    }
-//    
-//    /**
-//     Writes Data to this stream.
-//     
-//     - Parameter data: Data to be written into the stream
-//     - Throws: IOException if an I/O error occurs
-//     */
-//    public func write(_ data: Data) throws {
-//        let array = data.withUnsafeBytes { (bytes: UnsafePointer<UInt8>)->[UInt8] in
-//            return Array(UnsafeBufferPointer<UInt8>(start: bytes, count: data.count/MemoryLayout<UInt8>.size))
-//        }
-//        
-//        try write(array, startIndex: 0, count: array.count)
-//    }
-//    
-//    public func write(_ string: String, dataEncoding: String.Encoding = DEFAULT_ENCODING) throws {
-//        if let data = string.data(using: dataEncoding) {
-//            try write(data)
-//        } else {
-//            //can happen if we try to encode String in encoding not supporting all given characters
-//            throw Exception.InvalidStringEncoding(string: string, requestedEncoding: dataEncoding)
-//        }
-//    }
-//}
-
+public protocol Writer: Closeable {
+    func write(_ string: String) throws
+}

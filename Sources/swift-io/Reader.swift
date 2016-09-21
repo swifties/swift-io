@@ -34,12 +34,6 @@ public protocol Reader: Closeable {
     */
     func read() throws -> String?
     
-    
-    /** 
-     Close the Reader silently. 
-     Reads after closing the Reader will throw an exception.
-    **/
-    func close()
 }
 
 public extension Reader {

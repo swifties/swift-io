@@ -95,20 +95,6 @@ public class InputStreamReader: Reader, CustomStringConvertible
     }
     
     /**
-     Returns text description of the Stream. Description can be passed to the Reader initialized.
-     
-     - Return: Text description of the Stream.
-    */
-    public var description: String {
-        return "\(type(of: self)): \(streamDescription)"
-    }
-    
-    deinit {
-        close()
-    }
-    
-
-    /**
      Analyze data header for BOM sequences
      
      - SeeAlso: [Wikipedia](https://en.wikipedia.org/wiki/Byte_order_mark)
@@ -222,5 +208,18 @@ public class InputStreamReader: Reader, CustomStringConvertible
      */
     public func close() {
         stream.close()
+    }
+    
+    /**
+     Returns text description of the Stream. Description can be passed to the Reader initialized.
+     
+     - Return: Text description of the Stream.
+     */
+    public var description: String {
+        return "\(type(of: self)): \(streamDescription)"
+    }
+    
+    deinit {
+        close()
     }
 }

@@ -143,8 +143,8 @@ class BufferedReaderTests: XCTestCase
     func test_ReadFromClosed() {
         let reader = try! BufferedReader(StringReader(BufferedReaderTests.TEST_STRING + "\n"))
         
-        reader.close()
-        reader.close()
+        try! reader.close()
+        try! reader.close()
 
         do {
             _ = try reader.readLine()

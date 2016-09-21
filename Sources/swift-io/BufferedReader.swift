@@ -34,7 +34,7 @@ public class BufferedReader: Reader, Closeable
     }
     
     deinit {
-        close()
+        try? close()
     }
 
     /**
@@ -78,7 +78,7 @@ public class BufferedReader: Reader, Closeable
         let line = buffer.substring(with: startIndex ..< buffer.endIndex)
         buffer = String()
         atEnd = true
-        close()
+        try? close()
         
         //if last line is empty, it is not returned
         if(line == "")
@@ -113,9 +113,9 @@ public class BufferedReader: Reader, Closeable
     /**
      Close the Reader
     */
-    public func close()
+    public func close() throws
     {
-        reader.close()
+        try reader.close()
     }
 }
 

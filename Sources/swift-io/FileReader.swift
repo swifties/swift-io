@@ -16,12 +16,12 @@
 
 import Foundation
 
-typealias FileReader = URLReader
+typealias URLReader = FileReader
 
 /** 
   Read String data from URL
  */
-public class URLReader: InputStreamReader
+public class FileReader: InputStreamReader
 {
     /**
      Create a Reader from URL InputStream
