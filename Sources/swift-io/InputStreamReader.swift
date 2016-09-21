@@ -50,7 +50,7 @@ public class InputStreamReader: Reader, CustomStringConvertible
     /**
      Initializer to read strings from the stream
      
-     - Parameter stream: Stream to read the data from. Stream will be opened if necessary. Stream will be closed at deinit().
+     - Parameter stream: Stream to read the data from. Stream will be opened if necessary.
      - Parameter encoding: Encoding of the data. DEFAULT_ENCODING by default. 
      - Parameter bufferSize: Buffer size to use. DEFAULT_BUFFER_SIZE by default, minimum MINIMUM_BUFFER_SIZE.
      - Parameter description: Description to be shown at errors etc. For example file path, http address etc.
@@ -58,6 +58,8 @@ public class InputStreamReader: Reader, CustomStringConvertible
      - SeeAlso: DEFAULT_ENCODING
      - SeeAlso: DEFAULT_BUFFER_SIZE
      - SeeAlso: MINIMUM_BUFFER_SIZE
+
+     - Note: Stream is closed by calling close() at deinit().
      */
     public init(_ stream: InputStream, encoding: String.Encoding = DEFAULT_ENCODING, bufferSize: Int = DEFAULT_BUFFER_SIZE, description: String? = nil)
     {
@@ -97,7 +99,7 @@ public class InputStreamReader: Reader, CustomStringConvertible
     /**
      Analyze data header for BOM sequences
      
-     - SeeAlso: [Wikipedia](https://en.wikipedia.org/wiki/Byte_order_mark)
+     - SeeAlso: [Wikipedia](https://en.wikipedia.org/wiki/Byte_order_mark).
     */
     private func analyzeBOM()  throws -> Int {
         if(encoding == .utf16)
@@ -138,7 +140,7 @@ public class InputStreamReader: Reader, CustomStringConvertible
                 Empty String can be returned from the reader - which means more data will be read from the stream on next iteration of read().
                 Nil when at the end of the stream.
      
-     - Throws: Exception if read error occurs
+     - Throws: Exception if read error occurs.
      */
     public func read() throws -> String?
     {

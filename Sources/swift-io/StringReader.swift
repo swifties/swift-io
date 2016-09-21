@@ -12,7 +12,7 @@
  limitations under the License.
  
  Created by dusan@saiko.cz on 03/08/16.
- */
+*/
 
 import Foundation
 
@@ -23,14 +23,14 @@ public class StringReader: InputStreamReader
 {
     
     /**
-     Create reader from String data
+     Create reader from String data.
      
-     - Parameter string: String to read from
+     - Parameter string: String to read from.
      - Parameter encoding: Encoding to use for internal data manipulation. In general should stay the DEFAULT_ENCODING by default.
      - Parameter bufferSize: Buffer size to use. DEFAULT_BUFFER_SIZE by default, minimum MINIMUM_BUFFER_SIZE.
      - Parameter description: Description to be shown at errors etc. For example file path, http address etc.
      
-     - SeeAlso: InputStreamReader
+     - SeeAlso: InputStreamReader.
      */
     public init(_ string: String, bufferSize: Int = DEFAULT_BUFFER_SIZE, encoding: String.Encoding = DEFAULT_ENCODING, desciption: String? = nil) throws
     {

@@ -2,63 +2,56 @@
   "warnings": [
     {
       "file": "/Users/dsaiko/development/swift-io/Sources/swift-io/Exception.swift",
-      "line": 19,
-      "symbol": "Exception",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dsaiko/development/swift-io/Sources/swift-io/Exception.swift",
-      "line": 20,
+      "line": 24,
       "symbol": "Exception.MethodNotImplemented",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dsaiko/development/swift-io/Sources/swift-io/Exception.swift",
-      "line": 22,
+      "line": 26,
       "symbol": "Exception.InvalidStringEncoding",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dsaiko/development/swift-io/Sources/swift-io/Exception.swift",
-      "line": 23,
+      "line": 27,
       "symbol": "Exception.InvalidDataEncoding",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dsaiko/development/swift-io/Sources/swift-io/Exception.swift",
-      "line": 24,
+      "line": 28,
       "symbol": "Exception.RangeException",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dsaiko/development/swift-io/Sources/swift-io/IOException.swift",
-      "line": 23,
+      "line": 24,
       "symbol": "IOException.URLIsNotWritable",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dsaiko/development/swift-io/Sources/swift-io/IOException.swift",
-      "line": 24,
+      "line": 25,
       "symbol": "IOException.URLIsNotReadable",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dsaiko/development/swift-io/Sources/swift-io/IOException.swift",
-      "line": 26,
+      "line": 27,
       "symbol": "IOException.ErrorWritingIntoStream",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dsaiko/development/swift-io/Sources/swift-io/IOException.swift",
-      "line": 27,
+      "line": 28,
       "symbol": "IOException.ErrorReadingFromStream",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"

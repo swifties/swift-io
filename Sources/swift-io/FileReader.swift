@@ -12,7 +12,7 @@
  limitations under the License.
  
  Created by Dusan Saiko on 31/07/16.
- */
+*/
 
 import Foundation
 
@@ -26,9 +26,14 @@ public class FileReader: InputStreamReader
     /**
      Create a Reader from URL InputStream
      
-     - Parameter url: Valid resource URL
-     - Throws: Exception if stream can not be created or opened
-     
+     - Parameter url: Valid resource URL.
+     - Parameter encoding: Encoding of the data. DEFAULT_ENCODING by default.
+     - Parameter bufferSize: Buffer size to use. DEFAULT_BUFFER_SIZE by default, minimum MINIMUM_BUFFER_SIZE.
+     - Parameter description: Description to be shown at errors etc. For example file path, http address etc.
+     - Throws: Exception if stream can not be created or opened.
+
+     - Note: Stream is closed by calling close() at deinit().
+
      - SeeAlso: InputStreamReader
     */
     public init(_ url: URL, encoding: String.Encoding = DEFAULT_ENCODING, bufferSize: Int = DEFAULT_BUFFER_SIZE, description: String? = nil) throws

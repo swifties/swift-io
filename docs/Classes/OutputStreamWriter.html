@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>IOException Enum Reference</title>
+    <title>OutputStreamWriter Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Enum/IOException" class="dashAnchor"></a>
-    <a title="IOException Enum Reference"></a>
+    <a name="//apple_ref/swift/Class/OutputStreamWriter" class="dashAnchor"></a>
+    <a title="OutputStreamWriter Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (83% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        IOException Enum Reference
+        OutputStreamWriter Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -98,14 +98,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>IOException</h1>
+            <h1>OutputStreamWriter</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">IOException</span><span class="p">:</span> <span class="kt">Error</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">OutputStreamWriter</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Writer.html">Writer</a></span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                 </div>
               </div>
-            <p>Definitions of io exceptions</p>
+            <p>Write text data to underlaying OutputStream</p>
 
           </section>
           <section class="section task-group-section">
@@ -114,9 +114,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO8swift_io11IOException16URLIsNotWritableFMS0_FT3urlV10Foundation3URL_S0_"></a>
-                    <a name="//apple_ref/swift/Element/URLIsNotWritable" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO8swift_io11IOException16URLIsNotWritableFMS0_FT3urlV10Foundation3URL_S0_">URLIsNotWritable</a>
+                    <a name="/s:FC8swift_io18OutputStreamWriter5writeFzSST_"></a>
+                    <a name="//apple_ref/swift/Method/write(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8swift_io18OutputStreamWriter5writeFzSST_">write(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -124,33 +124,61 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Write string data to the stream</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter string: String to be written
+
+</div>
+
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    If string cannot be converted to given encoding or if write error occurs
+
+</div>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">IOException</span><span class="p">:</span> <span class="kt">Error</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="n">_</span> <span class="nv">string</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>string</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>String to be written</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/IOException.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/OutputStreamWriter.swift#L54-L78">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO8swift_io11IOException16URLIsNotReadableFMS0_FT3urlV10Foundation3URL_S0_"></a>
-                    <a name="//apple_ref/swift/Element/URLIsNotReadable" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO8swift_io11IOException16URLIsNotReadableFMS0_FT3urlV10Foundation3URL_S0_">URLIsNotReadable</a>
+                    <a name="/s:vC8swift_io18OutputStreamWriter11descriptionSS"></a>
+                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC8swift_io18OutputStreamWriter11descriptionSS">description</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -158,33 +186,33 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Returns text description of the Stream. Description can be passed to the Reader initialized.</p>
+
+<ul>
+<li>Return: Text description of the Stream.</li>
+</ul>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">IOException</span><span class="p">:</span> <span class="kt">Error</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/IOException.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/OutputStreamWriter.swift#L85-L87">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO8swift_io11IOException22ErrorWritingIntoStreamFMS0_FT5errorGSqPs5Error__11descriptionGSqSS__S0_"></a>
-                    <a name="//apple_ref/swift/Element/ErrorWritingIntoStream" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO8swift_io11IOException22ErrorWritingIntoStreamFMS0_FT5errorGSqPs5Error__11descriptionGSqSS__S0_">ErrorWritingIntoStream</a>
+                    <a name="/s:FP8swift_io9Closeable5closeFzT_T_"></a>
+                    <a name="//apple_ref/swift/Method/close()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP8swift_io9Closeable5closeFzT_T_">close()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -192,53 +220,23 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Returns text description of the Stream. Description can be passed to the Reader initialized.</p>
+
+<ul>
+<li>Return: Text description of the Stream.</li>
+</ul>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">IOException</span><span class="p">:</span> <span class="kt">Error</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">close</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/IOException.swift#L">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FO8swift_io11IOException22ErrorReadingFromStreamFMS0_FT5errorGSqPs5Error__11descriptionGSqSS__S0_"></a>
-                    <a name="//apple_ref/swift/Element/ErrorReadingFromStream" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO8swift_io11IOException22ErrorReadingFromStreamFMS0_FT5errorGSqPs5Error__11descriptionGSqSS__S0_">ErrorReadingFromStream</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">IOException</span><span class="p">:</span> <span class="kt">Error</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/IOException.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/OutputStreamWriter.swift#L89-L91">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

@@ -16,7 +16,11 @@
 
 import Foundation
 
+/**
+  Definition of generic exceptions.
+ */
 public enum Exception: Error {
+    
     case MethodNotImplemented
 
     case InvalidStringEncoding              (string: String, requestedEncoding: String.Encoding, description: String?)

@@ -11,12 +11,23 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  
- Created by dusan@saiko.cz on 04/07/16.
- */
+ Created by dusan@saiko.cz on 21/09/16.
+*/
 
 import Foundation
 
-
+/**
+ Writer protocol to write text data.
+ */
 public protocol Writer: Closeable {
+    
+    /**
+     Send text data to the Writer.
+     
+     Data is not cached and is passed directly to underlaying objects.
+     
+     - Parameter string: String to write.
+     - Throws: Exception on write error.
+    */
     func write(_ string: String) throws
 }

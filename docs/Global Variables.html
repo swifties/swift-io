@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Enums  Reference</title>
+    <title>Global Variables  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,7 +10,7 @@
     
   </head>
   <body>
-    <a title="Enums  Reference"></a>
+    <a title="Global Variables  Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="index.html"> Docs</a> (83% documented)</p>
@@ -21,7 +21,7 @@
       <p id="breadcrumbs">
         <a href="index.html"> Reference</a>
         <img id="carat" src="img/carat.png" />
-        Enums  Reference
+        Global Variables  Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -97,8 +97,8 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Enums</h1>
-            <p>The following enums are available globally.</p>
+            <h1>Global Variables</h1>
+            <p>The following global variables are available globally.</p>
 
           </section>
           <section class="section task-group-section">
@@ -107,9 +107,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:O8swift_io9Exception"></a>
-                    <a name="//apple_ref/swift/Enum/Exception" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O8swift_io9Exception">Exception</a>
+                    <a name="/s:v8swift_io16DEFAULT_ENCODINGVE10FoundationSS8Encoding"></a>
+                    <a name="//apple_ref/swift/Global/DEFAULT_ENCODING" class="dashAnchor"></a>
+                    <a class="token" href="#/s:v8swift_io16DEFAULT_ENCODINGVE10FoundationSS8Encoding">DEFAULT_ENCODING</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -117,34 +117,29 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Definition of generic exceptions</p>
+                        <p>Default encoding to use for text reads and writes</p>
 
-                        <a href="Enums/Exception.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Exception</span><span class="p">:</span> <span class="kt">Error</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">DEFAULT_ENCODING</span>        <span class="o">=</span> <span class="kt">String</span><span class="o">.</span><span class="kt">Encoding</span><span class="o">.</span><span class="n">utf8</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/Exception.swift#L22-L29">Show on GitHub</a>
+                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/Constants.swift#L22">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:O8swift_io11IOException"></a>
-                    <a name="//apple_ref/swift/Enum/IOException" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O8swift_io11IOException">IOException</a>
+                    <a name="/s:v8swift_io19DEFAULT_BUFFER_SIZESi"></a>
+                    <a name="//apple_ref/swift/Global/DEFAULT_BUFFER_SIZE" class="dashAnchor"></a>
+                    <a class="token" href="#/s:v8swift_io19DEFAULT_BUFFER_SIZESi">DEFAULT_BUFFER_SIZE</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -152,20 +147,49 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Definitions of io exceptions</p>
+                        <p>Default data buffer size for buffered operations. In Bytes.</p>
 
-                        <a href="Enums/IOException.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">IOException</span><span class="p">:</span> <span class="kt">Error</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">DEFAULT_BUFFER_SIZE</span>     <span class="o">=</span> <span class="mi">1024</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/IOException.swift#L22-L29">Show on GitHub</a>
+                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/Constants.swift#L27">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:v8swift_io19MINIMUM_BUFFER_SIZESi"></a>
+                    <a name="//apple_ref/swift/Global/MINIMUM_BUFFER_SIZE" class="dashAnchor"></a>
+                    <a class="token" href="#/s:v8swift_io19MINIMUM_BUFFER_SIZESi">MINIMUM_BUFFER_SIZE</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Minimal buffer size for buffered operations. In Bytes.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">MINIMUM_BUFFER_SIZE</span>     <span class="o">=</span> <span class="mi">32</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/Constants.swift#L32">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

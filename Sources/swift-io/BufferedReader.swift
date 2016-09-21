@@ -12,7 +12,8 @@
  limitations under the License.
  
  Created by Dusan Saiko on 02/08/16.
- */
+*/
+
 import Foundation
 
 /**
@@ -38,10 +39,10 @@ public class BufferedReader: Reader, Closeable
     }
 
     /**
-     Read next line from the reader
+     Read next line from the reader.
      
      - Returns: Next line from the reader without the line end characters, or nill when at the end.
-     - Throws: Exception when can not read or reader is already closed
+     - Throws: Exception when can not read or reader is already closed.
     */
     public func readLine() throws -> String?
     {
@@ -94,7 +95,7 @@ public class BufferedReader: Reader, Closeable
      
      Calls to readLine() and read() can be combined.
      
-     - Returns: Next String from the Reader
+     - Returns: Next String from the Reader.
     */
     public func read() throws -> String? {
         if(atEnd) {
@@ -122,10 +123,10 @@ public class BufferedReader: Reader, Closeable
 
 public extension BufferedReader {
     /**
-     Reads all lines and passes them to closure
+     Reads all lines and passes them to closure.
      
-     - Parameter fce: Closure to handle each line
-     - Throws: Exception when can not read or reader is already closed
+     - Parameter fce: Closure to handle each line.
+     - Throws: Exception when can not read or reader is already closed.
      */
     func readAllLines(fce: ((String) -> ())) throws
     {

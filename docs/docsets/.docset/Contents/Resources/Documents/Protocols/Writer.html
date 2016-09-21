@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>URLReader Class Reference</title>
+    <title>Writer Protocol Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,11 +10,11 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/URLReader" class="dashAnchor"></a>
-    <a title="URLReader Class Reference"></a>
+    <a name="//apple_ref/swift/Protocol/Writer" class="dashAnchor"></a>
+    <a title="Writer Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (73% documented)</p>
+        <p><a href="../index.html"> Docs</a> (83% documented)</p>
         <p class="header-right"><a href="https://github.com/swifties/swift-io"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        URLReader Class Reference
+        Writer Protocol Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -35,13 +35,36 @@
                 <a href="../Classes/BufferedReader.html">BufferedReader</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/FileReader.html">FileReader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FileWriter.html">FileWriter</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/InputStreamReader.html">InputStreamReader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/OutputStreamWriter.html">OutputStreamWriter</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/StringReader.html">StringReader</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/URLReader.html">URLReader</a>
+                <a href="../Classes/StringWriter.html">StringWriter</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v8swift_io19DEFAULT_BUFFER_SIZESi">DEFAULT_BUFFER_SIZE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v8swift_io16DEFAULT_ENCODINGVE10FoundationSS8Encoding">DEFAULT_ENCODING</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v8swift_io19MINIMUM_BUFFER_SIZESi">MINIMUM_BUFFER_SIZE</a>
               </li>
             </ul>
           </li>
@@ -65,6 +88,9 @@
               <li class="nav-group-task">
                 <a href="../Protocols/Reader.html">Reader</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Writer.html">Writer</a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -72,14 +98,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>URLReader</h1>
+            <h1>Writer</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">URLReader</span><span class="p">:</span> <span class="kt"><a href="../Classes/InputStreamReader.html">InputStreamReader</a></span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Writer</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Closeable.html">Closeable</a></span></code></pre>
 
                 </div>
               </div>
-            <p>Read String data from URL</p>
+            <p>Writer protocol to write text data</p>
 
           </section>
           <section class="section task-group-section">
@@ -88,9 +114,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC8swift_io9URLReadercFzTV10Foundation3URL8encodingVES1_SS8Encoding10bufferSizeSi11descriptionGSqSS__S0_"></a>
-                    <a name="//apple_ref/swift/Method/init(_:encoding:bufferSize:description:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC8swift_io9URLReadercFzTV10Foundation3URL8encodingVES1_SS8Encoding10bufferSizeSi11descriptionGSqSS__S0_">init(_:encoding:bufferSize:description:)</a>
+                    <a name="/s:FP8swift_io6Writer5writeFzSST_"></a>
+                    <a name="//apple_ref/swift/Method/write(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP8swift_io6Writer5writeFzSST_">write(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -98,23 +124,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Create a Reader from URL InputStream</p>
+                        <p>Send text data to the Writer.</p>
+
+<p>Data is not cached and is passed directly to underlaying objects.</p>
 
 <div class="aside aside-parameter">
     <p class="aside-title">Parameter</p>
-    Parameter url: Valid resource URL
+    Parameter string: String to write
 
 </div>
 
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
-    <p>Exception if stream can not be created or opened</p>
-
-</div>
-
-<div class="aside aside-see-also">
-    <p class="aside-title">See also</p>
-    <p>InputStreamReader</p>
+    Exception on write error
 
 </div>
 
@@ -123,7 +145,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">encoding</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="kt">Encoding</span> <span class="o">=</span> <span class="kt">DEFAULT_ENCODING</span><span class="p">,</span> <span class="nv">bufferSize</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kt">DEFAULT_BUFFER_SIZE</span><span class="p">,</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="n">_</span> <span class="nv">string</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -134,12 +156,12 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>url</em>
+                                <em>string</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>Valid resource URL</p>
+                                  <p>String to write</p>
 
                                 </div>
                               </td>
@@ -148,7 +170,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/URLReader.swift#L34-L42">Show on GitHub</a>
+                        <a href="https://github.com/swifties/swift-io/blob/release/0.1.0/Sources/swift-io/Writer.swift#L32">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -158,7 +180,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://github.com/swifties" target="_blank" rel="external">SWIFTIES</a>. All rights reserved. (Last updated: 2016-09-18)</p>
+          <p>&copy; 2016 <a class="link" href="https://github.com/swifties" target="_blank" rel="external">SWIFTIES</a>. All rights reserved. (Last updated: 2016-09-21)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

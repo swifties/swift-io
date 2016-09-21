@@ -11,11 +11,14 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  
- Created by dusan@saiko.cz on 04/07/16.
- */
+ Created by dusan@saiko.cz on 21/09/16.
+*/
 
 import Foundation
 
+/**
+ Write text data to underlaying OutputStream
+ */
 public class OutputStreamWriter: Writer, CustomStringConvertible
 {
     let stream:             OutputStream
@@ -24,9 +27,13 @@ public class OutputStreamWriter: Writer, CustomStringConvertible
     
     /**
      Initializer to write data into the passed stream.
-     - Parameter stream: Stream which needs to be already opened
+     
+     - Parameter stream: Stream to write to. Will be opened, if needed.
+     - Parameter encoding: encoding to use for converting text to data bytes. DEFALT_ENCODING by default.
+     - Parameter description: Description to be shown at errors etc. For example file path, http address etc.
+     - Note: Stream is closed by calling close() at deinit().
      */
-    init(_ stream: OutputStream, encoding: String.Encoding = .utf8, description: String? = nil)
+    init(_ stream: OutputStream, encoding: String.Encoding =  DEFAULT_ENCODING, description: String? = nil)
     {
         self.stream = stream
         self.encoding = encoding
@@ -38,12 +45,19 @@ public class OutputStreamWriter: Writer, CustomStringConvertible
         }
     }
     
+    /**
+     Write string data to the stream.
+     
+     - Parameter string: String to be written.
+     - Throws: If string cannot be converted to given encoding or if write error occurs.
+    */
     public func write(_ string: String) throws {
         guard let data = string.data(using: encoding)
         else {
             throw Exception.InvalidStringEncoding(string: string, requestedEncoding: encoding, description: streamDescription)
         }
         
+        //convert to byte array
         let bytes = data.withUnsafeBytes {
             [UInt8](UnsafeBufferPointer(start: $0, count: data.count))
         }
@@ -79,6 +93,4 @@ public class OutputStreamWriter: Writer, CustomStringConvertible
     deinit {
         close()
     }
-    
-
 }

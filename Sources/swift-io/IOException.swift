@@ -12,11 +12,12 @@
  limitations under the License.
  
  Created by dusan@saiko.cz on 04/07/16.
- */
+*/
+
 import Foundation
 
 /**
-    IOException
+   Definitions of io exceptions.
  */
 public enum IOException: Error {
 

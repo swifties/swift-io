@@ -11,18 +11,28 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  
- Created by Dusan Saiko on 31/07/16.
- */
+ Created by dusan@saiko.cz on 21/09/16.
+*/
 
 import Foundation
 
 typealias URLWriter = FileWriter
 
 /**
- Read String data from URL
+ Writer to write string data into URL path.
  */
 public class FileWriter: OutputStreamWriter
 {
+    /**
+     Initializer to write string data to URL path
+     
+     - Parameter url: URL path to write to.
+     - Parameter encoding: encoding to use for converting String to data bytes. DEFAULT_ENCODING by default.
+     - Parameter description: Description to be shown at errors etc. For example file path, http address etc.
+     - Throws: Exception if stream can not be created or opened.
+
+     - Note: Stream is closed by calling close() at deinit().
+    */
     public init(_ url: URL, append: Bool = false, encoding: String.Encoding = DEFAULT_ENCODING, description: String? = nil) throws
     {
         if let stream = OutputStream(url: url, append: append)
