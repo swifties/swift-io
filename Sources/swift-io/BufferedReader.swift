@@ -57,7 +57,7 @@ public class BufferedReader: Reader, Closeable
 
         while(true) {
             
-            buffer.getLineStart(&startIndex, end: &lineEndIndex, contentsEnd: &contentsEndIndex, for: lineEndIndex..<lineEndIndex)
+            buffer.getLineStart(&startIndex, end: &lineEndIndex, contentsEnd: &contentsEndIndex, for: startIndex..<startIndex)
             
             if(contentsEndIndex != lineEndIndex) {
 
@@ -76,10 +76,9 @@ public class BufferedReader: Reader, Closeable
 
         // no more string data in the reader
         
-        let line = buffer.substring(with: startIndex ..< buffer.endIndex)
+        let line = buffer
         buffer = String()
         atEnd = true
-        try? close()
         
         //if last line is empty, it is not returned
         if(line == "")
@@ -117,6 +116,9 @@ public class BufferedReader: Reader, Closeable
     public func close() throws
     {
         try reader.close()
+        buffer.removeAll()
+        //this will allow exception to be thrown on next read
+        atEnd = false
     }
 }
 
