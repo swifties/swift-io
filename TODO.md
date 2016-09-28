@@ -27,3 +27,7 @@ csv
 web archiver + mhtml ...
 
 NOW: run on linux, create readme, regenerate docs, release, tag, merge
+- distribute links
+
+zstd - facebook
+https://www.heronovo.cz/novy-pohled-na-komprimaci-dobe-viceprocesorovych-systemu/

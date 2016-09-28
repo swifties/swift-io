@@ -397,6 +397,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = "__PBXFileRef_swift-io.xcodeproj/Configs/Project.xcconfig" /* Project.xcconfig */;
 			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = fast;
 				SWIFT_DISABLE_SAFETY_CHECKS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
@@ -406,6 +407,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = "__PBXFileRef_swift-io.xcodeproj/Configs/Project.xcconfig" /* Project.xcconfig */;
 			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = 0;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Debug;
