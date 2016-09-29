@@ -1,33 +1,34 @@
-All the time:
+# TODOs
 
-    - file headers
-    - review and regenerate swiftdoc
-    - review method public access
-    - test on linux
+## Before each release:
+
+**Code:**
+
+* test with opensource swift toolchain
+* test on linux
+* test memory leaks
+* compare performance vs java
+* analyze in Xcode 
+* make sure test code coverage is 100% (not less)
 
 
-- measure tests vs Java version
-- consider using struts somewhere
-- measure memory leaks
-- csv -> json
-- urf 8 as param?
-- readme. guidelines, api, html api?, 
-- gzip input / output
-- perf tests vs java - csv, gzip
-- csv reader: json, nextObject
-//TODO: test read one UTF-8 character with buffer size 1b
-introduce min buffer size
+**Syntax:**
 
-https://www.appcoda.com/swift-markdown/
-buffered reader - file with no \r, empty lines etc
-reader + writer - test on long text
-hase - reader writer md5, sha ...
-zip, gzip, tar, to nove
-csv
-web archiver + mhtml ...
+* validate public/private access
+* validate usage of classes vs struts
 
-NOW: run on linux, create readme, regenerate docs, release, tag, merge
-- distribute links
+**Documentation:**
 
-zstd - facebook
-https://www.heronovo.cz/novy-pohled-na-komprimaci-dobe-viceprocesorovych-systemu/
+* review documentation - regenerate swift docs
+* validate file headers
+* update README.md
+* create proper tag before merging
+
+## Possible features:
+
+* CSV reader / writer
+ * with convertion of CSV to JSON and object parsers?
+* compression: gzip, zip, tar, zstd
+* hashes: md5, crc, sha, including streams
+* web archiver: .webarchive, .mhtml etc
+* logging
