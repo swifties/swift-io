@@ -8,29 +8,15 @@
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "NO"
+            buildForRunning = "YES"
             buildForProfiling = "YES"
-            buildForArchiving = "NO"
+            buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "______Target_swift_io"
-               BuildableName = "swift_io.framework"
-               BlueprintName = "swift-io"
-               ReferencedContainer = "container:swift-io.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "YES"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "______Target_swift_ioTestSuite"
-               BuildableName = "swift-ioTestSuite.xctest"
-               BlueprintName = "swift-ioTestSuite"
+               BlueprintIdentifier = "______Target_SwiftIO"
+               BuildableName = "SwiftIO.framework"
+               BlueprintName = "SwiftIO"
                ReferencedContainer = "container:swift-io.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -40,29 +26,19 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "______Target_swift_ioTestSuite"
-               BuildableName = "swift-ioTestSuite.xctest"
-               BlueprintName = "swift-ioTestSuite"
+               BlueprintIdentifier = "______Target_SwiftIOTests"
+               BuildableName = "SwiftIOTests.xctest"
+               BlueprintName = "SwiftIOTests"
                ReferencedContainer = "container:swift-io.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "______Target_swift_io"
-            BuildableName = "swift_io.framework"
-            BlueprintName = "swift-io"
-            ReferencedContainer = "container:swift-io.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -76,11 +52,20 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "______Target_SwiftIO"
+            BuildableName = "SwiftIO.framework"
+            BlueprintName = "SwiftIO"
+            ReferencedContainer = "container:swift-io.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"

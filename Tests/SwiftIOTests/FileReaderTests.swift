@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import swift_io
+@testable import SwiftIO
 
 class FileReaderTests: XCTestCase
 {

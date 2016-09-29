@@ -10,7 +10,7 @@ import Foundation
 
 import Foundation
 import XCTest
-@testable import swift_io
+@testable import SwiftIO
 
 class OutputStreamWriterTests: XCTestCase
 {
