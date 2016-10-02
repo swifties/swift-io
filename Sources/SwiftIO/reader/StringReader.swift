@@ -37,7 +37,7 @@ public class StringReader: InputStreamReader
         guard let data = string.data(using: encoding) else
         {
             //can happen if we try to encode String in encoding not supporting all given characters
-            throw Exception.InvalidStringEncoding(string: string, requestedEncoding: DEFAULT_ENCODING, description: desciption)
+            throw Exception.InvalidStringEncoding(string: string, requestedEncoding: encoding, description: desciption)
         }
 
         super.init(InputStream(data: data), encoding: encoding, bufferSize: bufferSize, description: desciption)

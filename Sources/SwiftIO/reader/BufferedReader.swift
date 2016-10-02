@@ -11,13 +11,13 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  
- Created by Dusan Saiko on 02/08/16.
+ Created by dusan@saiko.cz on 02/08/16.
 */
 
 import Foundation
 
 /**
- Buffered reader class which can read from the reader by lines
+ Buffered reader class which can read from reader by lines
  */
 public class BufferedReader: Reader, Closeable
 {
@@ -130,7 +130,7 @@ public extension BufferedReader {
      - Parameter fce: Closure to handle each line.
      - Throws: Exception when can not read or reader is already closed.
      */
-    func readAllLines(fce: ((String) -> ())) throws
+    public func readAllLines(fce: ((String) -> ())) throws
     {
         while(true) {
             if let s = try readLine() {

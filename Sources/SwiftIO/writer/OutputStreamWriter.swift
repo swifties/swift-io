@@ -33,7 +33,7 @@ public class OutputStreamWriter: Writer, CustomStringConvertible
      - Parameter description: Description to be shown at errors etc. For example file path, http address etc.
      - Note: Stream is closed by calling close() at deinit().
      */
-    init(_ stream: OutputStream, encoding: String.Encoding =  DEFAULT_ENCODING, description: String? = nil)
+    public init(_ stream: OutputStream, encoding: String.Encoding =  DEFAULT_ENCODING, description: String? = nil)
     {
         self.stream = stream
         self.encoding = encoding

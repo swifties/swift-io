@@ -11,7 +11,7 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  
- Created by Dusan Saiko on 31/07/16.
+ Created by dusan@saiko.cz on 31/07/16.
 */
 
 import Foundation

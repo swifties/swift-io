@@ -1,6 +1,6 @@
 # TODOs
 
-## Before each release:
+## Release checklist:
 
 **Code:**
 
@@ -24,7 +24,7 @@
 * update README.md
 * create proper tag before merging
 
-## Possible features:
+## Next features:
 
 * CSV reader / writer
  * with convertion of CSV to JSON and object parsers?

@@ -59,7 +59,7 @@ public extension Reader {
      
      - Returns: String with all content the Reader can read.
      - Throws: When reading error occurs.
-     - Note: Dangerous, reads all data from the Reader into one single String!
+     - Note: Dangerous, reads all data from the Reader into one single String
      */
     public func readAll() throws -> String
     {
