@@ -27,7 +27,7 @@ public class MessageDigestMD2: MessageDigest {
         return DIGEST_LENGTH
     }
     
-    public var bytesProcessed: Int
+    public var bytesProcessed: Int = 0
 
     // state, 48 ints
     var X = [Int]()
@@ -36,13 +36,10 @@ public class MessageDigestMD2: MessageDigest {
     var C = [Int]()
     
     public required init() {
-        self.bytesProcessed = 0
         reset()
     }
     
-    public required convenience init(copyOf other: MessageDigestMD2) {
-        self.init()
-        
+    public required init(copyOf other: MessageDigestMD2) {
         self.X = other.X
         self.C = other.C
         self.bytesProcessed = other.bytesProcessed
@@ -54,12 +51,11 @@ public class MessageDigestMD2: MessageDigest {
     }
     
     public func reset() {
-        X = [Int](repeating: 0, count: 48)
-        C = [Int](repeating: 0, count: 16)
+        self.X = [Int](repeating: 0, count: 48)
+        self.C = [Int](repeating: 0, count: 16)
         self.bytesProcessed = 0
         self.buffer.removeAll()
     }
-    
     
     public func update(data: Data) {
         if(buffer.count == 0) {
@@ -81,15 +77,13 @@ public class MessageDigestMD2: MessageDigest {
     }
     
     func update(offset: Int) {
-        for i in 0 ..< 16 {
-            let k: Int = Int(buffer[offset + i] & 0xff)
-            X[16 + i] = Int(k)
-            X[32 + i] = k ^ X[i]
-        }
-        
-        // update the checksum
         var t = C[15]
+
         for i in 0 ..< 16 {
+            let k = Int(buffer[offset + i])
+            X[16 + i] = k
+            X[32 + i] = k ^ X[i]
+
             C[i] ^= MessageDigestMD2.S[X[16 + i] ^ t]
             t = C[i]
         }
