@@ -40,14 +40,14 @@ public extension Reader {
     /**
         Read all strings from the Reader and pass it to the inline function.
      
-        - Parameter fce: Closure which accepts part of the string as a parameter.
+        - Parameter handler: Closure which accepts part of the string as a parameter.
         - Throws: Exception if read error occurs or if the Reader is already closed.
     */
-    public func readAll(fce: ((String) -> ())) throws
+    public func readAll(handler: ((_ s: String) -> Void)) throws
     {
         while(true) {
             if let s = try read() {
-                fce(s)
+                handler(s)
             } else {
                 break
             }

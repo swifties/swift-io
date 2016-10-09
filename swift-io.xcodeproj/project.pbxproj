@@ -7,27 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F92DA6811DA2A21200EEAE78 /* InputStreamSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DA6801DA2A21200EEAE78 /* InputStreamSupport.swift */; };
+		F92DA6831DA2A25E00EEAE78 /* StreamSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DA6821DA2A25E00EEAE78 /* StreamSupport.swift */; };
+		F92DA6851DA2AA0000EEAE78 /* DelegatingInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DA6841DA2AA0000EEAE78 /* DelegatingInputStream.swift */; };
+		F92DA6871DA2AAD700EEAE78 /* DelegatingStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DA6861DA2AAD700EEAE78 /* DelegatingStream.swift */; };
+		F9D9807F1DA194FE00CAB1B5 /* BufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D9807A1DA194FE00CAB1B5 /* BufferedReader.swift */; };
+		F9D980801DA194FE00CAB1B5 /* FileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D9807B1DA194FE00CAB1B5 /* FileReader.swift */; };
+		F9D980811DA194FE00CAB1B5 /* InputStreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D9807C1DA194FE00CAB1B5 /* InputStreamReader.swift */; };
+		F9D980821DA194FE00CAB1B5 /* Reader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D9807D1DA194FE00CAB1B5 /* Reader.swift */; };
+		F9D980831DA194FE00CAB1B5 /* StringReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D9807E1DA194FE00CAB1B5 /* StringReader.swift */; };
+		F9D980881DA1950D00CAB1B5 /* FileWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D980841DA1950D00CAB1B5 /* FileWriter.swift */; };
+		F9D980891DA1950D00CAB1B5 /* OutputStreamWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D980851DA1950D00CAB1B5 /* OutputStreamWriter.swift */; };
+		F9D9808A1DA1950D00CAB1B5 /* StringWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D980861DA1950D00CAB1B5 /* StringWriter.swift */; };
+		F9D9808B1DA1950D00CAB1B5 /* Writer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D980871DA1950D00CAB1B5 /* Writer.swift */; };
+		F9D980901DA1952E00CAB1B5 /* BufferedReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D9808C1DA1952E00CAB1B5 /* BufferedReaderTests.swift */; };
+		F9D980911DA1952E00CAB1B5 /* FileReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D9808D1DA1952E00CAB1B5 /* FileReaderTests.swift */; };
+		F9D980921DA1952E00CAB1B5 /* InputStreamReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D9808E1DA1952E00CAB1B5 /* InputStreamReaderTests.swift */; };
+		F9D980931DA1952E00CAB1B5 /* PerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D9808F1DA1952E00CAB1B5 /* PerformanceTests.swift */; };
+		F9D980971DA1953E00CAB1B5 /* FileWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D980941DA1953E00CAB1B5 /* FileWriterTests.swift */; };
+		F9D980981DA1953E00CAB1B5 /* OutputStreamWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D980951DA1953E00CAB1B5 /* OutputStreamWriterTests.swift */; };
+		F9D980991DA1953E00CAB1B5 /* StringWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D980961DA1953E00CAB1B5 /* StringWriterTests.swift */; };
+		F9D9809C1DA1958B00CAB1B5 /* MessageDigest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D9809B1DA1958B00CAB1B5 /* MessageDigest.swift */; };
+		F9D9809E1DA19CC500CAB1B5 /* MessageDigests-MD2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D9809D1DA19CC500CAB1B5 /* MessageDigests-MD2.swift */; };
+		F9D980A11DA1ADD100CAB1B5 /* MessageDigestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D980A01DA1ADD100CAB1B5 /* MessageDigestTests.swift */; };
+		F9D980A31DA1AE2700CAB1B5 /* MessageDigestsMD2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D980A21DA1AE2700CAB1B5 /* MessageDigestsMD2Tests.swift */; };
+		F9D980A51DA1BE2D00CAB1B5 /* MessageDigestInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D980A41DA1BE2D00CAB1B5 /* MessageDigestInputStream.swift */; };
 		_LinkFileRef_SwiftIO_via_SwiftIOTests /* SwiftIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_SwiftIO" /* SwiftIO.framework */; };
 		__src_cc_ref_Sources/SwiftIO/Closeable.swift /* Closeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftIO/Closeable.swift /* Closeable.swift */; };
 		__src_cc_ref_Sources/SwiftIO/Constants.swift /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftIO/Constants.swift /* Constants.swift */; };
 		__src_cc_ref_Sources/SwiftIO/Exception.swift /* Exception.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftIO/Exception.swift /* Exception.swift */; };
 		__src_cc_ref_Sources/SwiftIO/IOException.swift /* IOException.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftIO/IOException.swift /* IOException.swift */; };
-		__src_cc_ref_Sources/SwiftIO/reader/BufferedReader.swift /* reader/BufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftIO/reader/BufferedReader.swift /* reader/BufferedReader.swift */; };
-		__src_cc_ref_Sources/SwiftIO/reader/FileReader.swift /* reader/FileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftIO/reader/FileReader.swift /* reader/FileReader.swift */; };
-		__src_cc_ref_Sources/SwiftIO/reader/InputStreamReader.swift /* reader/InputStreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftIO/reader/InputStreamReader.swift /* reader/InputStreamReader.swift */; };
-		__src_cc_ref_Sources/SwiftIO/reader/Reader.swift /* reader/Reader.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftIO/reader/Reader.swift /* reader/Reader.swift */; };
-		__src_cc_ref_Sources/SwiftIO/reader/StringReader.swift /* reader/StringReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftIO/reader/StringReader.swift /* reader/StringReader.swift */; };
-		__src_cc_ref_Sources/SwiftIO/writer/FileWriter.swift /* writer/FileWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftIO/writer/FileWriter.swift /* writer/FileWriter.swift */; };
-		__src_cc_ref_Sources/SwiftIO/writer/OutputStreamWriter.swift /* writer/OutputStreamWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftIO/writer/OutputStreamWriter.swift /* writer/OutputStreamWriter.swift */; };
-		__src_cc_ref_Sources/SwiftIO/writer/StringWriter.swift /* writer/StringWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftIO/writer/StringWriter.swift /* writer/StringWriter.swift */; };
-		__src_cc_ref_Sources/SwiftIO/writer/Writer.swift /* writer/Writer.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftIO/writer/Writer.swift /* writer/Writer.swift */; };
-		__src_cc_ref_Tests/SwiftIOTests/BufferedReaderTests.swift /* BufferedReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/SwiftIOTests/BufferedReaderTests.swift /* BufferedReaderTests.swift */; };
-		__src_cc_ref_Tests/SwiftIOTests/FileReaderTests.swift /* FileReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/SwiftIOTests/FileReaderTests.swift /* FileReaderTests.swift */; };
-		__src_cc_ref_Tests/SwiftIOTests/FileWriterTests.swift /* FileWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/SwiftIOTests/FileWriterTests.swift /* FileWriterTests.swift */; };
-		__src_cc_ref_Tests/SwiftIOTests/InputStreamReaderTests.swift /* InputStreamReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/SwiftIOTests/InputStreamReaderTests.swift /* InputStreamReaderTests.swift */; };
-		__src_cc_ref_Tests/SwiftIOTests/OutputStreamWriterTests.swift /* OutputStreamWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/SwiftIOTests/OutputStreamWriterTests.swift /* OutputStreamWriterTests.swift */; };
-		__src_cc_ref_Tests/SwiftIOTests/PerformanceTests.swift /* PerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/SwiftIOTests/PerformanceTests.swift /* PerformanceTests.swift */; };
-		__src_cc_ref_Tests/SwiftIOTests/StringWriterTests.swift /* StringWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/SwiftIOTests/StringWriterTests.swift /* StringWriterTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,36 +50,44 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F92DA6801DA2A21200EEAE78 /* InputStreamSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InputStreamSupport.swift; path = streams/InputStreamSupport.swift; sourceTree = "<group>"; };
+		F92DA6821DA2A25E00EEAE78 /* StreamSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StreamSupport.swift; path = streams/StreamSupport.swift; sourceTree = "<group>"; };
+		F92DA6841DA2AA0000EEAE78 /* DelegatingInputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DelegatingInputStream.swift; path = streams/DelegatingInputStream.swift; sourceTree = "<group>"; };
+		F92DA6861DA2AAD700EEAE78 /* DelegatingStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DelegatingStream.swift; path = streams/DelegatingStream.swift; sourceTree = "<group>"; };
 		F991DBBC1D9DC1E60076252F /* generate-docs.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "generate-docs.sh"; sourceTree = "<group>"; };
 		F991DBBD1D9DC1E60076252F /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		F991DBBE1D9DC1E60076252F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F991DBBF1D9DC1E60076252F /* TODO.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
+		F9D9807A1DA194FE00CAB1B5 /* BufferedReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BufferedReader.swift; path = reader/BufferedReader.swift; sourceTree = "<group>"; };
+		F9D9807B1DA194FE00CAB1B5 /* FileReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileReader.swift; path = reader/FileReader.swift; sourceTree = "<group>"; };
+		F9D9807C1DA194FE00CAB1B5 /* InputStreamReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InputStreamReader.swift; path = reader/InputStreamReader.swift; sourceTree = "<group>"; };
+		F9D9807D1DA194FE00CAB1B5 /* Reader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reader.swift; path = reader/Reader.swift; sourceTree = "<group>"; };
+		F9D9807E1DA194FE00CAB1B5 /* StringReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringReader.swift; path = reader/StringReader.swift; sourceTree = "<group>"; };
+		F9D980841DA1950D00CAB1B5 /* FileWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileWriter.swift; path = writer/FileWriter.swift; sourceTree = "<group>"; };
+		F9D980851DA1950D00CAB1B5 /* OutputStreamWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutputStreamWriter.swift; path = writer/OutputStreamWriter.swift; sourceTree = "<group>"; };
+		F9D980861DA1950D00CAB1B5 /* StringWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringWriter.swift; path = writer/StringWriter.swift; sourceTree = "<group>"; };
+		F9D980871DA1950D00CAB1B5 /* Writer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Writer.swift; path = writer/Writer.swift; sourceTree = "<group>"; };
+		F9D9808C1DA1952E00CAB1B5 /* BufferedReaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BufferedReaderTests.swift; path = reader/BufferedReaderTests.swift; sourceTree = "<group>"; };
+		F9D9808D1DA1952E00CAB1B5 /* FileReaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileReaderTests.swift; path = reader/FileReaderTests.swift; sourceTree = "<group>"; };
+		F9D9808E1DA1952E00CAB1B5 /* InputStreamReaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InputStreamReaderTests.swift; path = reader/InputStreamReaderTests.swift; sourceTree = "<group>"; };
+		F9D9808F1DA1952E00CAB1B5 /* PerformanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PerformanceTests.swift; path = reader/PerformanceTests.swift; sourceTree = "<group>"; };
+		F9D980941DA1953E00CAB1B5 /* FileWriterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileWriterTests.swift; path = writer/FileWriterTests.swift; sourceTree = "<group>"; };
+		F9D980951DA1953E00CAB1B5 /* OutputStreamWriterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutputStreamWriterTests.swift; path = writer/OutputStreamWriterTests.swift; sourceTree = "<group>"; };
+		F9D980961DA1953E00CAB1B5 /* StringWriterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringWriterTests.swift; path = writer/StringWriterTests.swift; sourceTree = "<group>"; };
+		F9D9809B1DA1958B00CAB1B5 /* MessageDigest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageDigest.swift; path = digest/MessageDigest.swift; sourceTree = "<group>"; };
+		F9D9809D1DA19CC500CAB1B5 /* MessageDigests-MD2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MessageDigests-MD2.swift"; path = "digest/MessageDigests-MD2.swift"; sourceTree = "<group>"; };
+		F9D980A01DA1ADD100CAB1B5 /* MessageDigestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageDigestTests.swift; path = digest/MessageDigestTests.swift; sourceTree = "<group>"; };
+		F9D980A21DA1AE2700CAB1B5 /* MessageDigestsMD2Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageDigestsMD2Tests.swift; path = digest/MessageDigestsMD2Tests.swift; sourceTree = "<group>"; };
+		F9D980A41DA1BE2D00CAB1B5 /* MessageDigestInputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageDigestInputStream.swift; path = digest/MessageDigestInputStream.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/SwiftIO/Closeable.swift /* Closeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Closeable.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/SwiftIO/Constants.swift /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/SwiftIO/Exception.swift /* Exception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exception.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/SwiftIO/IOException.swift /* IOException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOException.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/SwiftIO/reader/BufferedReader.swift /* reader/BufferedReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reader/BufferedReader.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/SwiftIO/reader/FileReader.swift /* reader/FileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reader/FileReader.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/SwiftIO/reader/InputStreamReader.swift /* reader/InputStreamReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reader/InputStreamReader.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/SwiftIO/reader/Reader.swift /* reader/Reader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reader/Reader.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/SwiftIO/reader/StringReader.swift /* reader/StringReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reader/StringReader.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/SwiftIO/writer/FileWriter.swift /* writer/FileWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = writer/FileWriter.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/SwiftIO/writer/OutputStreamWriter.swift /* writer/OutputStreamWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = writer/OutputStreamWriter.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/SwiftIO/writer/StringWriter.swift /* writer/StringWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = writer/StringWriter.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/SwiftIO/writer/Writer.swift /* writer/Writer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = writer/Writer.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/SwiftIOTests/BufferedReaderTests.swift /* BufferedReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BufferedReaderTests.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/SwiftIOTests/FileReaderTests.swift /* FileReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReaderTests.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/SwiftIOTests/FileWriterTests.swift /* FileWriterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileWriterTests.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/SwiftIOTests/InputStreamReaderTests.swift /* InputStreamReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputStreamReaderTests.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/SwiftIOTests/OutputStreamWriterTests.swift /* OutputStreamWriterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputStreamWriterTests.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/SwiftIOTests/PerformanceTests.swift /* PerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceTests.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/SwiftIOTests/StringWriterTests.swift /* StringWriterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringWriterTests.swift; sourceTree = "<group>"; };
 		__PBXFileRef_build /* build */ = {isa = PBXFileReference; lastKnownFileType = folder; path = build; sourceTree = "<group>"; };
-		__PBXFileRef_docs /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = "<group>"; };
 		"__PBXFileRef_swift-io.xcodeproj/Configs/Project.xcconfig" /* swift-io.xcodeproj/Configs/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "swift-io.xcodeproj/Configs/Project.xcconfig"; sourceTree = "<group>"; };
 		"_____Product_SwiftIO" /* SwiftIO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftIO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"_____Product_SwiftIOTests" /* SwiftIOTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = SwiftIOTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_SwiftIOTests" /* SwiftIOTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = SwiftIOTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,11 +112,11 @@
 		F991DBBA1D9DB0D50076252F /* reader */ = {
 			isa = PBXGroup;
 			children = (
-				__PBXFileRef_Sources/SwiftIO/reader/BufferedReader.swift /* reader/BufferedReader.swift */,
-				__PBXFileRef_Sources/SwiftIO/reader/FileReader.swift /* reader/FileReader.swift */,
-				__PBXFileRef_Sources/SwiftIO/reader/InputStreamReader.swift /* reader/InputStreamReader.swift */,
-				__PBXFileRef_Sources/SwiftIO/reader/Reader.swift /* reader/Reader.swift */,
-				__PBXFileRef_Sources/SwiftIO/reader/StringReader.swift /* reader/StringReader.swift */,
+				F9D9807A1DA194FE00CAB1B5 /* BufferedReader.swift */,
+				F9D9807B1DA194FE00CAB1B5 /* FileReader.swift */,
+				F9D9807C1DA194FE00CAB1B5 /* InputStreamReader.swift */,
+				F9D9807D1DA194FE00CAB1B5 /* Reader.swift */,
+				F9D9807E1DA194FE00CAB1B5 /* StringReader.swift */,
 			);
 			name = reader;
 			sourceTree = "<group>";
@@ -107,12 +124,63 @@
 		F991DBBB1D9DB0E80076252F /* writer */ = {
 			isa = PBXGroup;
 			children = (
-				__PBXFileRef_Sources/SwiftIO/writer/FileWriter.swift /* writer/FileWriter.swift */,
-				__PBXFileRef_Sources/SwiftIO/writer/OutputStreamWriter.swift /* writer/OutputStreamWriter.swift */,
-				__PBXFileRef_Sources/SwiftIO/writer/StringWriter.swift /* writer/StringWriter.swift */,
-				__PBXFileRef_Sources/SwiftIO/writer/Writer.swift /* writer/Writer.swift */,
+				F9D980841DA1950D00CAB1B5 /* FileWriter.swift */,
+				F9D980851DA1950D00CAB1B5 /* OutputStreamWriter.swift */,
+				F9D980861DA1950D00CAB1B5 /* StringWriter.swift */,
+				F9D980871DA1950D00CAB1B5 /* Writer.swift */,
 			);
 			name = writer;
+			sourceTree = "<group>";
+		};
+		F9D9806E1DA194AD00CAB1B5 /* reader */ = {
+			isa = PBXGroup;
+			children = (
+				F9D9808C1DA1952E00CAB1B5 /* BufferedReaderTests.swift */,
+				F9D9808D1DA1952E00CAB1B5 /* FileReaderTests.swift */,
+				F9D9808E1DA1952E00CAB1B5 /* InputStreamReaderTests.swift */,
+				F9D9808F1DA1952E00CAB1B5 /* PerformanceTests.swift */,
+			);
+			name = reader;
+			sourceTree = "<group>";
+		};
+		F9D9806F1DA194B300CAB1B5 /* writer */ = {
+			isa = PBXGroup;
+			children = (
+				F9D980941DA1953E00CAB1B5 /* FileWriterTests.swift */,
+				F9D980951DA1953E00CAB1B5 /* OutputStreamWriterTests.swift */,
+				F9D980961DA1953E00CAB1B5 /* StringWriterTests.swift */,
+			);
+			name = writer;
+			sourceTree = "<group>";
+		};
+		F9D9809A1DA1956A00CAB1B5 /* digest */ = {
+			isa = PBXGroup;
+			children = (
+				F9D9809B1DA1958B00CAB1B5 /* MessageDigest.swift */,
+				F9D9809D1DA19CC500CAB1B5 /* MessageDigests-MD2.swift */,
+				F9D980A41DA1BE2D00CAB1B5 /* MessageDigestInputStream.swift */,
+			);
+			name = digest;
+			sourceTree = "<group>";
+		};
+		F9D9809F1DA1AD9C00CAB1B5 /* digest */ = {
+			isa = PBXGroup;
+			children = (
+				F9D980A01DA1ADD100CAB1B5 /* MessageDigestTests.swift */,
+				F9D980A21DA1AE2700CAB1B5 /* MessageDigestsMD2Tests.swift */,
+			);
+			name = digest;
+			sourceTree = "<group>";
+		};
+		F9D980A81DA1C1CF00CAB1B5 /* streams */ = {
+			isa = PBXGroup;
+			children = (
+				F92DA6801DA2A21200EEAE78 /* InputStreamSupport.swift */,
+				F92DA6821DA2A25E00EEAE78 /* StreamSupport.swift */,
+				F92DA6841DA2AA0000EEAE78 /* DelegatingInputStream.swift */,
+				F92DA6861DA2AAD700EEAE78 /* DelegatingStream.swift */,
+			);
+			name = streams;
 			sourceTree = "<group>";
 		};
 		TestProducts_ /* Tests */ = {
@@ -134,7 +202,6 @@
 				"_____Configs_" /* Configs */,
 				"_____Sources_" /* Sources */,
 				__PBXFileRef_build /* build */,
-				__PBXFileRef_docs /* docs */,
 				"_______Tests_" /* Tests */,
 				"____Products_" /* Products */,
 			);
@@ -168,12 +235,14 @@
 		"_______Group_SwiftIO" /* SwiftIO */ = {
 			isa = PBXGroup;
 			children = (
-				F991DBBA1D9DB0D50076252F /* reader */,
-				F991DBBB1D9DB0E80076252F /* writer */,
 				__PBXFileRef_Sources/SwiftIO/Closeable.swift /* Closeable.swift */,
 				__PBXFileRef_Sources/SwiftIO/Constants.swift /* Constants.swift */,
+				F9D9809A1DA1956A00CAB1B5 /* digest */,
 				__PBXFileRef_Sources/SwiftIO/Exception.swift /* Exception.swift */,
 				__PBXFileRef_Sources/SwiftIO/IOException.swift /* IOException.swift */,
+				F991DBBA1D9DB0D50076252F /* reader */,
+				F9D980A81DA1C1CF00CAB1B5 /* streams */,
+				F991DBBB1D9DB0E80076252F /* writer */,
 			);
 			name = SwiftIO;
 			path = Sources/SwiftIO;
@@ -182,13 +251,9 @@
 		"_______Group_SwiftIOTests" /* SwiftIOTests */ = {
 			isa = PBXGroup;
 			children = (
-				__PBXFileRef_Tests/SwiftIOTests/BufferedReaderTests.swift /* BufferedReaderTests.swift */,
-				__PBXFileRef_Tests/SwiftIOTests/FileReaderTests.swift /* FileReaderTests.swift */,
-				__PBXFileRef_Tests/SwiftIOTests/FileWriterTests.swift /* FileWriterTests.swift */,
-				__PBXFileRef_Tests/SwiftIOTests/InputStreamReaderTests.swift /* InputStreamReaderTests.swift */,
-				__PBXFileRef_Tests/SwiftIOTests/OutputStreamWriterTests.swift /* OutputStreamWriterTests.swift */,
-				__PBXFileRef_Tests/SwiftIOTests/PerformanceTests.swift /* PerformanceTests.swift */,
-				__PBXFileRef_Tests/SwiftIOTests/StringWriterTests.swift /* StringWriterTests.swift */,
+				F9D9809F1DA1AD9C00CAB1B5 /* digest */,
+				F9D9806E1DA194AD00CAB1B5 /* reader */,
+				F9D9806F1DA194B300CAB1B5 /* writer */,
 			);
 			name = SwiftIOTests;
 			path = Tests/SwiftIOTests;
@@ -245,6 +310,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 9999;
+				TargetAttributes = {
+					"______Target_SwiftIOTests" = {
+						LastSwiftMigration = 0800;
+					};
+				};
 			};
 			buildConfigurationList = "___RootConfs_" /* Build configuration list for PBXProject "swift-io" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -270,18 +340,25 @@
 			buildActionMask = 0;
 			files = (
 				__src_cc_ref_Sources/SwiftIO/Closeable.swift /* Closeable.swift in Sources */,
+				F9D9808A1DA1950D00CAB1B5 /* StringWriter.swift in Sources */,
 				__src_cc_ref_Sources/SwiftIO/Constants.swift /* Constants.swift in Sources */,
+				F92DA6831DA2A25E00EEAE78 /* StreamSupport.swift in Sources */,
+				F9D980801DA194FE00CAB1B5 /* FileReader.swift in Sources */,
+				F9D9809E1DA19CC500CAB1B5 /* MessageDigests-MD2.swift in Sources */,
+				F9D980891DA1950D00CAB1B5 /* OutputStreamWriter.swift in Sources */,
+				F9D980811DA194FE00CAB1B5 /* InputStreamReader.swift in Sources */,
 				__src_cc_ref_Sources/SwiftIO/Exception.swift /* Exception.swift in Sources */,
 				__src_cc_ref_Sources/SwiftIO/IOException.swift /* IOException.swift in Sources */,
-				__src_cc_ref_Sources/SwiftIO/reader/BufferedReader.swift /* reader/BufferedReader.swift in Sources */,
-				__src_cc_ref_Sources/SwiftIO/reader/FileReader.swift /* reader/FileReader.swift in Sources */,
-				__src_cc_ref_Sources/SwiftIO/reader/InputStreamReader.swift /* reader/InputStreamReader.swift in Sources */,
-				__src_cc_ref_Sources/SwiftIO/reader/Reader.swift /* reader/Reader.swift in Sources */,
-				__src_cc_ref_Sources/SwiftIO/reader/StringReader.swift /* reader/StringReader.swift in Sources */,
-				__src_cc_ref_Sources/SwiftIO/writer/FileWriter.swift /* writer/FileWriter.swift in Sources */,
-				__src_cc_ref_Sources/SwiftIO/writer/OutputStreamWriter.swift /* writer/OutputStreamWriter.swift in Sources */,
-				__src_cc_ref_Sources/SwiftIO/writer/StringWriter.swift /* writer/StringWriter.swift in Sources */,
-				__src_cc_ref_Sources/SwiftIO/writer/Writer.swift /* writer/Writer.swift in Sources */,
+				F9D980831DA194FE00CAB1B5 /* StringReader.swift in Sources */,
+				F9D9809C1DA1958B00CAB1B5 /* MessageDigest.swift in Sources */,
+				F9D980821DA194FE00CAB1B5 /* Reader.swift in Sources */,
+				F9D9808B1DA1950D00CAB1B5 /* Writer.swift in Sources */,
+				F92DA6811DA2A21200EEAE78 /* InputStreamSupport.swift in Sources */,
+				F9D980881DA1950D00CAB1B5 /* FileWriter.swift in Sources */,
+				F9D980A51DA1BE2D00CAB1B5 /* MessageDigestInputStream.swift in Sources */,
+				F92DA6871DA2AAD700EEAE78 /* DelegatingStream.swift in Sources */,
+				F92DA6851DA2AA0000EEAE78 /* DelegatingInputStream.swift in Sources */,
+				F9D9807F1DA194FE00CAB1B5 /* BufferedReader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,13 +366,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				__src_cc_ref_Tests/SwiftIOTests/BufferedReaderTests.swift /* BufferedReaderTests.swift in Sources */,
-				__src_cc_ref_Tests/SwiftIOTests/FileReaderTests.swift /* FileReaderTests.swift in Sources */,
-				__src_cc_ref_Tests/SwiftIOTests/FileWriterTests.swift /* FileWriterTests.swift in Sources */,
-				__src_cc_ref_Tests/SwiftIOTests/InputStreamReaderTests.swift /* InputStreamReaderTests.swift in Sources */,
-				__src_cc_ref_Tests/SwiftIOTests/OutputStreamWriterTests.swift /* OutputStreamWriterTests.swift in Sources */,
-				__src_cc_ref_Tests/SwiftIOTests/PerformanceTests.swift /* PerformanceTests.swift in Sources */,
-				__src_cc_ref_Tests/SwiftIOTests/StringWriterTests.swift /* StringWriterTests.swift in Sources */,
+				F9D980A31DA1AE2700CAB1B5 /* MessageDigestsMD2Tests.swift in Sources */,
+				F9D980911DA1952E00CAB1B5 /* FileReaderTests.swift in Sources */,
+				F9D980981DA1953E00CAB1B5 /* OutputStreamWriterTests.swift in Sources */,
+				F9D980971DA1953E00CAB1B5 /* FileWriterTests.swift in Sources */,
+				F9D980A11DA1ADD100CAB1B5 /* MessageDigestTests.swift in Sources */,
+				F9D980901DA1952E00CAB1B5 /* BufferedReaderTests.swift in Sources */,
+				F9D980931DA1952E00CAB1B5 /* PerformanceTests.swift in Sources */,
+				F9D980991DA1953E00CAB1B5 /* StringWriterTests.swift in Sources */,
+				F9D980921DA1952E00CAB1B5 /* InputStreamReaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +408,7 @@
 		_ReleaseConf_SwiftIOTests /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
 				INFOPLIST_FILE = "swift-io.xcodeproj/SwiftIOTests_Info.plist";
@@ -359,6 +439,7 @@
 		"___DebugConf_SwiftIOTests" /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
 				INFOPLIST_FILE = "swift-io.xcodeproj/SwiftIOTests_Info.plist";

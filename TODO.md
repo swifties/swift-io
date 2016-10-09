@@ -16,6 +16,7 @@
 
 * validate public/private access
 * validate usage of classes vs struts
+* consider using mutating keyword
 
 **Documentation:**
 

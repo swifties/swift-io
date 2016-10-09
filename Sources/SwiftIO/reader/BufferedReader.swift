@@ -127,14 +127,14 @@ public extension BufferedReader {
     /**
      Reads all lines and passes them to closure.
      
-     - Parameter fce: Closure to handle each line.
+     - Parameter handler: Closure to handle each line.
      - Throws: Exception when can not read or reader is already closed.
      */
-    public func readAllLines(fce: ((String) -> ())) throws
+    public func readAllLines(handler: ((_ s: String) -> Void)) throws
     {
         while(true) {
             if let s = try readLine() {
-                fce(s)
+                handler(s)
             } else {
                 break
             }
