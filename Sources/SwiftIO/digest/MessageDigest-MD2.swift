@@ -16,67 +16,41 @@
 
 import Foundation
 
-public final class MessageDigestMD2: MessageDigest {
-
-    let BLOCK_SIZE = 16
-    let DIGEST_LENGTH = 16
-
-    var buffer = Data()
-    
-    public var digestLength: Int {
-        return DIGEST_LENGTH
-    }
-    
-    public var bytesProcessed: Int = 0
+public final class MessageDigestMD2: MessageDigestBase {
 
     // state, 48 ints
     var X = [Int]()
     
     // checksum, 16 ints. 
     var C = [Int]()
-    
+
     public required init() {
-        reset()
+        super.init()
+
+        self.blockSize = 16
     }
     
-    public required init(copyOf other: MessageDigestMD2) {
-        self.X = other.X
-        self.C = other.C
+    public required convenience init(copyOf other: MessageDigestMD2) {
+        self.init()
+        
         self.bytesProcessed = other.bytesProcessed
         self.buffer = other.buffer
+        self.X = other.X
+        self.C = other.C
     }
     
-    public func copy() -> MessageDigest {
+    public override func copy() -> MessageDigest {
         return type(of: self).init(copyOf: self)
     }
     
-    public func reset() {
-        self.X = [Int](repeating: 0, count: 48)
-        self.C = [Int](repeating: 0, count: 16)
-        self.bytesProcessed = 0
-        self.buffer.removeAll()
+    override public func reset() {
+        super.reset()
+        
+        X = [Int](repeating: 0, count: 48)
+        C = [Int](repeating: 0, count: 16)
     }
     
-    public func update(data: Data) {
-        if(buffer.count == 0) {
-            buffer = data
-        } else {
-            buffer.append(data)
-        }
-        
-        bytesProcessed += data.count
-        
-        //call update by blocks
-        var start = 0
-        while(start + BLOCK_SIZE <= buffer.count) {
-            update(offset: start)
-            start += BLOCK_SIZE
-        }
-        
-        buffer = buffer.subdata(in: start ..< buffer.count)
-    }
-    
-    func update(offset: Int) {
+    override func update(offset: Int) {
         var t = C[15]
 
         for i in 0 ..< 16 {
@@ -98,8 +72,8 @@ public final class MessageDigestMD2: MessageDigest {
         }
     }
 
-    public func finishAndReturnHash() -> Data {
-        let padValue = 16 - (bytesProcessed & 15)
+    public override func finishAndReturnHash() -> Data {
+        let padValue = Int(16 - (bytesProcessed & 15))
         update(data: MessageDigestMD2.PADDING[padValue])
 
         var cBytes = Data(capacity: 16)

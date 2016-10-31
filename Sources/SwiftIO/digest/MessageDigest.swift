@@ -18,6 +18,7 @@ import Foundation
 
 public final class MessageDigestImpl {
     static public var md2: MessageDigest { return MessageDigestMD2() }
+    static public var md4: MessageDigest { return MessageDigestMD4() }
 }
 
 /**
@@ -29,14 +30,14 @@ public final class MessageDigestImpl {
 public protocol MessageDigest: class {
   
     /**
-     - Returns: The digest length in bytes.
-    */
-    var digestLength: Int { get }
-    
+     - Returns: Size of data block to be processed.
+     */
+    var blockSize: Int { get }
+
     /**
      - Returns: total bytes processed
     */
-    var bytesProcessed: Int { get }
+    var bytesProcessed: UInt64 { get }
 
     /**
      Update the digest using the specified Data.
@@ -53,7 +54,7 @@ public protocol MessageDigest: class {
     func finishAndReturnHash() -> Data
     
     /**
-     copy methor
+     copy method
     */
     func copy() -> MessageDigest
     
@@ -124,6 +125,105 @@ public extension MessageDigest {
         }
         
         return hash()
+    }
+}
+
+
+public class MessageDigestBase: MessageDigest {
+    public  var blockSize: Int          = 0
+    public  var bytesProcessed: UInt64  = 0
+
+    internal var buffer                 = Data()
+    
+    public required init() {
+        reset()
+    }
+
+    public func update(data: Data) {
+        if(buffer.count == 0) {
+            buffer = data
+        } else {
+            buffer.append(data)
+        }
+        
+        bytesProcessed += UInt64(data.count)
+        
+        //call update by blocks
+        var start = 0
+        while(start + blockSize <= buffer.count) {
+            update(offset: start)
+            start += blockSize
+        }
+        
+        if(start > 0) {
+            buffer = buffer.subdata(in: start ..< buffer.count)
+        }
+    }
+
+    public func reset() {
+        self.bytesProcessed = 0
+        self.buffer.removeAll()
+    }
+
+    
+    public func copy() -> MessageDigest {
+        fatalError("Must implement")
+    }
+    
+    func update(offset: Int) {
+        fatalError("Must implement")
+    }
+    
+    public func finishAndReturnHash() -> Data {
+        fatalError("Must implement")
+    }
+}
+
+extension MessageDigestBase {
+    
+    static let defaultPadding: Data = {
+        // we need 128 byte padding for SHA-384/512
+        // and an additional 8 bytes for the high 8 bytes of the 16
+        // byte bit counter in SHA-384/512
+        var data = Data(count: 136)
+        data[0] = UInt8(0x80)
+        
+        return data
+    }()
+
+    func b2iLittle(source: Data, sourceOffset: Int, length: Int, target: inout [Int], targetOffset: Int) {
+        var index = sourceOffset
+        var targetIndex = targetOffset
+        let endIndex = length + sourceOffset
+        
+        while (index < endIndex) {
+            target[targetIndex] =
+                (Int(source[index + 0]) <<  0)        |
+                (Int(source[index + 1]) <<  8)        |
+                (Int(source[index + 2]) <<  16)       |
+                (Int(source[index + 3]) <<  24)
+            
+            targetIndex += 1
+            index += 4
+        }
+    }
+    
+    func i2bLittle(source: [Int], sourceOffset: Int, length: Int, target: inout Data, targetOffset: Int) {
+        var index = sourceOffset
+        var targetIndex = targetOffset
+        let endIndex = length + sourceOffset
+        
+        while(index < endIndex) {
+            let i = source[index]
+            
+            target[targetIndex + 0] = UInt8(i      )
+            target[targetIndex + 1] = UInt8(i >>  8)
+            target[targetIndex + 2] = UInt8(i >> 16)
+            target[targetIndex + 3] = UInt8(i >> 24)
+            
+            targetIndex += 4
+            index += 1
+        }
     }
 }
 

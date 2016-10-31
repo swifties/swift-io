@@ -5,6 +5,7 @@
 **Code:**
 
 * test with opensource swift toolchain
+* test on 32 / 64 bit OS
 * test on linux
 * test memory leaks
 * compare performance vs java
@@ -27,6 +28,7 @@
 
 ## Next features:
 
+* message digest writer
 * CSV reader / writer
  * with convertion of CSV to JSON and object parsers?
 * compression: gzip, zip, tar, zstd

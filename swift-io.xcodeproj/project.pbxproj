@@ -11,6 +11,8 @@
 		F92DA6831DA2A25E00EEAE78 /* StreamSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DA6821DA2A25E00EEAE78 /* StreamSupport.swift */; };
 		F92DA6851DA2AA0000EEAE78 /* DelegatingInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DA6841DA2AA0000EEAE78 /* DelegatingInputStream.swift */; };
 		F92DA6871DA2AAD700EEAE78 /* DelegatingStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DA6861DA2AAD700EEAE78 /* DelegatingStream.swift */; };
+		F96DC0921DC7C6D20033C859 /* MessageDigest-MD4.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96DC0911DC7C6D20033C859 /* MessageDigest-MD4.swift */; };
+		F96DC0941DC807A20033C859 /* MessageDigestsMD4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96DC0931DC807A20033C859 /* MessageDigestsMD4Tests.swift */; };
 		F9D9807F1DA194FE00CAB1B5 /* BufferedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D9807A1DA194FE00CAB1B5 /* BufferedReader.swift */; };
 		F9D980801DA194FE00CAB1B5 /* FileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D9807B1DA194FE00CAB1B5 /* FileReader.swift */; };
 		F9D980811DA194FE00CAB1B5 /* InputStreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D9807C1DA194FE00CAB1B5 /* InputStreamReader.swift */; };
@@ -28,7 +30,7 @@
 		F9D980981DA1953E00CAB1B5 /* OutputStreamWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D980951DA1953E00CAB1B5 /* OutputStreamWriterTests.swift */; };
 		F9D980991DA1953E00CAB1B5 /* StringWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D980961DA1953E00CAB1B5 /* StringWriterTests.swift */; };
 		F9D9809C1DA1958B00CAB1B5 /* MessageDigest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D9809B1DA1958B00CAB1B5 /* MessageDigest.swift */; };
-		F9D9809E1DA19CC500CAB1B5 /* MessageDigests-MD2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D9809D1DA19CC500CAB1B5 /* MessageDigests-MD2.swift */; };
+		F9D9809E1DA19CC500CAB1B5 /* MessageDigest-MD2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D9809D1DA19CC500CAB1B5 /* MessageDigest-MD2.swift */; };
 		F9D980A11DA1ADD100CAB1B5 /* MessageDigestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D980A01DA1ADD100CAB1B5 /* MessageDigestTests.swift */; };
 		F9D980A31DA1AE2700CAB1B5 /* MessageDigestsMD2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D980A21DA1AE2700CAB1B5 /* MessageDigestsMD2Tests.swift */; };
 		F9D980A51DA1BE2D00CAB1B5 /* MessageDigestInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D980A41DA1BE2D00CAB1B5 /* MessageDigestInputStream.swift */; };
@@ -54,6 +56,8 @@
 		F92DA6821DA2A25E00EEAE78 /* StreamSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StreamSupport.swift; path = streams/StreamSupport.swift; sourceTree = "<group>"; };
 		F92DA6841DA2AA0000EEAE78 /* DelegatingInputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DelegatingInputStream.swift; path = streams/DelegatingInputStream.swift; sourceTree = "<group>"; };
 		F92DA6861DA2AAD700EEAE78 /* DelegatingStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DelegatingStream.swift; path = streams/DelegatingStream.swift; sourceTree = "<group>"; };
+		F96DC0911DC7C6D20033C859 /* MessageDigest-MD4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MessageDigest-MD4.swift"; path = "digest/MessageDigest-MD4.swift"; sourceTree = "<group>"; };
+		F96DC0931DC807A20033C859 /* MessageDigestsMD4Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageDigestsMD4Tests.swift; path = digest/MessageDigestsMD4Tests.swift; sourceTree = "<group>"; };
 		F991DBBC1D9DC1E60076252F /* generate-docs.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "generate-docs.sh"; sourceTree = "<group>"; };
 		F991DBBD1D9DC1E60076252F /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		F991DBBE1D9DC1E60076252F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -75,7 +79,7 @@
 		F9D980951DA1953E00CAB1B5 /* OutputStreamWriterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutputStreamWriterTests.swift; path = writer/OutputStreamWriterTests.swift; sourceTree = "<group>"; };
 		F9D980961DA1953E00CAB1B5 /* StringWriterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringWriterTests.swift; path = writer/StringWriterTests.swift; sourceTree = "<group>"; };
 		F9D9809B1DA1958B00CAB1B5 /* MessageDigest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageDigest.swift; path = digest/MessageDigest.swift; sourceTree = "<group>"; };
-		F9D9809D1DA19CC500CAB1B5 /* MessageDigests-MD2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MessageDigests-MD2.swift"; path = "digest/MessageDigests-MD2.swift"; sourceTree = "<group>"; };
+		F9D9809D1DA19CC500CAB1B5 /* MessageDigest-MD2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MessageDigest-MD2.swift"; path = "digest/MessageDigest-MD2.swift"; sourceTree = "<group>"; };
 		F9D980A01DA1ADD100CAB1B5 /* MessageDigestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageDigestTests.swift; path = digest/MessageDigestTests.swift; sourceTree = "<group>"; };
 		F9D980A21DA1AE2700CAB1B5 /* MessageDigestsMD2Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageDigestsMD2Tests.swift; path = digest/MessageDigestsMD2Tests.swift; sourceTree = "<group>"; };
 		F9D980A41DA1BE2D00CAB1B5 /* MessageDigestInputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageDigestInputStream.swift; path = digest/MessageDigestInputStream.swift; sourceTree = "<group>"; };
@@ -157,8 +161,9 @@
 			isa = PBXGroup;
 			children = (
 				F9D9809B1DA1958B00CAB1B5 /* MessageDigest.swift */,
-				F9D9809D1DA19CC500CAB1B5 /* MessageDigests-MD2.swift */,
 				F9D980A41DA1BE2D00CAB1B5 /* MessageDigestInputStream.swift */,
+				F9D9809D1DA19CC500CAB1B5 /* MessageDigest-MD2.swift */,
+				F96DC0911DC7C6D20033C859 /* MessageDigest-MD4.swift */,
 			);
 			name = digest;
 			sourceTree = "<group>";
@@ -168,6 +173,7 @@
 			children = (
 				F9D980A01DA1ADD100CAB1B5 /* MessageDigestTests.swift */,
 				F9D980A21DA1AE2700CAB1B5 /* MessageDigestsMD2Tests.swift */,
+				F96DC0931DC807A20033C859 /* MessageDigestsMD4Tests.swift */,
 			);
 			name = digest;
 			sourceTree = "<group>";
@@ -344,7 +350,7 @@
 				__src_cc_ref_Sources/SwiftIO/Constants.swift /* Constants.swift in Sources */,
 				F92DA6831DA2A25E00EEAE78 /* StreamSupport.swift in Sources */,
 				F9D980801DA194FE00CAB1B5 /* FileReader.swift in Sources */,
-				F9D9809E1DA19CC500CAB1B5 /* MessageDigests-MD2.swift in Sources */,
+				F9D9809E1DA19CC500CAB1B5 /* MessageDigest-MD2.swift in Sources */,
 				F9D980891DA1950D00CAB1B5 /* OutputStreamWriter.swift in Sources */,
 				F9D980811DA194FE00CAB1B5 /* InputStreamReader.swift in Sources */,
 				__src_cc_ref_Sources/SwiftIO/Exception.swift /* Exception.swift in Sources */,
@@ -354,6 +360,7 @@
 				F9D980821DA194FE00CAB1B5 /* Reader.swift in Sources */,
 				F9D9808B1DA1950D00CAB1B5 /* Writer.swift in Sources */,
 				F92DA6811DA2A21200EEAE78 /* InputStreamSupport.swift in Sources */,
+				F96DC0921DC7C6D20033C859 /* MessageDigest-MD4.swift in Sources */,
 				F9D980881DA1950D00CAB1B5 /* FileWriter.swift in Sources */,
 				F9D980A51DA1BE2D00CAB1B5 /* MessageDigestInputStream.swift in Sources */,
 				F92DA6871DA2AAD700EEAE78 /* DelegatingStream.swift in Sources */,
@@ -369,6 +376,7 @@
 				F9D980A31DA1AE2700CAB1B5 /* MessageDigestsMD2Tests.swift in Sources */,
 				F9D980911DA1952E00CAB1B5 /* FileReaderTests.swift in Sources */,
 				F9D980981DA1953E00CAB1B5 /* OutputStreamWriterTests.swift in Sources */,
+				F96DC0941DC807A20033C859 /* MessageDigestsMD4Tests.swift in Sources */,
 				F9D980971DA1953E00CAB1B5 /* FileWriterTests.swift in Sources */,
 				F9D980A11DA1ADD100CAB1B5 /* MessageDigestTests.swift in Sources */,
 				F9D980901DA1952E00CAB1B5 /* BufferedReaderTests.swift in Sources */,
