@@ -431,7 +431,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = SwiftIO;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -455,6 +454,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = "__PBXFileRef_swift-io.xcodeproj/Configs/Project.xcconfig" /* swift-io.xcodeproj/Configs/Project.xcconfig */;
 			buildSettings = {
+				GCC_FAST_MATH = YES;
+				GCC_OPTIMIZATION_LEVEL = fast;
+				LLVM_LTO = YES;
+				SWIFT_DISABLE_SAFETY_CHECKS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -462,6 +466,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = "__PBXFileRef_swift-io.xcodeproj/Configs/Project.xcconfig" /* swift-io.xcodeproj/Configs/Project.xcconfig */;
 			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = 0;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};

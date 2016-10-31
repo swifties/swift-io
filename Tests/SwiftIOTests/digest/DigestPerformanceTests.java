@@ -1,8 +1,6 @@
 package digest;
 
-import java.io.InputStream;
 import java.math.BigInteger;
-import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.nio.file.Files;
 import java.nio.file.Paths;

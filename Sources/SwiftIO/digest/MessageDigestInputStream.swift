@@ -16,7 +16,7 @@
 
 import Foundation
 
-public class MessageDigestInputStream: DelegatingInputStream
+public final class MessageDigestInputStream: DelegatingInputStream
 {
 
     let digest: MessageDigest

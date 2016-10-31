@@ -16,10 +16,8 @@
 
 import Foundation
 
-public class MessageDigestProvider {
-
-    static public var MD2: MessageDigest { get { return MessageDigestMD2() } }
-   
+public final class MessageDigestImpl {
+    static public var md2: MessageDigest { return MessageDigestMD2() }
 }
 
 /**
@@ -28,7 +26,7 @@ public class MessageDigestProvider {
   secure one-way hash functions that take arbitrary-sized data and output a
   fixed-length hash value.
 **/
-public protocol MessageDigest {
+public protocol MessageDigest: class {
   
     /**
      - Returns: The digest length in bytes.
@@ -64,7 +62,6 @@ public protocol MessageDigest {
     */
     func reset()
 }
-
 
 public extension MessageDigest {
     

@@ -27,10 +27,10 @@ class MessageDigestMD2Tests: XCTestCase
     ]
     
     func test_Simple() {
-        let digest = MessageDigestProvider.MD2
+        let digest = MessageDigestImpl.md2
         
         //make sure .MDX property always returns a new object
-        XCTAssert(digest as AnyObject !== MessageDigestProvider.MD2 as AnyObject)
+        XCTAssert(digest as AnyObject !== MessageDigestImpl.md2 as AnyObject)
         
         for test in tests {
             //try string hash
@@ -38,7 +38,7 @@ class MessageDigestMD2Tests: XCTestCase
             
             
             //try input stream hash
-            let digest2 = MessageDigestProvider.MD2
+            let digest2 = MessageDigestImpl.md2
             let stream = MessageDigestInputStream(InputStream(data: test.string.data(using: .utf8)!), digest: digest2)
             try? stream.readAll() {
                 (data: Data) in
@@ -52,7 +52,7 @@ class MessageDigestMD2Tests: XCTestCase
     func test_File() {
         let filePath = URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("random.dat", isDirectory: false)
 
-        let digest = MessageDigestProvider.MD2
+        let digest = MessageDigestImpl.md2
         let stream = MessageDigestInputStream(InputStream(url: filePath)!, digest: digest)
         
         try? stream.readAll() {
@@ -70,7 +70,7 @@ class MessageDigestMD2Tests: XCTestCase
         let data = try! Data(contentsOf: filePath)
   
         self.measure {
-            let digest = MessageDigestProvider.MD2
+            let digest = MessageDigestImpl.md2
             for _ in 0 ..< 1000 {
                 digest.update(data: data)
             }

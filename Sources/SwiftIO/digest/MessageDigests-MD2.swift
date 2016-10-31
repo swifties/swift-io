@@ -16,7 +16,7 @@
 
 import Foundation
 
-public class MessageDigestMD2: MessageDigest {
+public final class MessageDigestMD2: MessageDigest {
 
     let BLOCK_SIZE = 16
     let DIGEST_LENGTH = 16
@@ -98,7 +98,6 @@ public class MessageDigestMD2: MessageDigest {
         }
     }
 
-
     public func finishAndReturnHash() -> Data {
         let padValue = 16 - (bytesProcessed & 15)
         update(data: MessageDigestMD2.PADDING[padValue])
@@ -116,8 +115,7 @@ public class MessageDigestMD2: MessageDigest {
         return Data(hash)
     }
     
-    
-    static let S: [Int] = [
+    static private let S: [Int] = [
         41, 46, 67, 201, 162, 216, 124, 1, 61, 54, 84, 161, 236, 240, 6,
         19, 98, 167, 5, 243, 192, 199, 115, 140, 152, 147, 43, 217, 188,
         76, 130, 202, 30, 155, 87, 60, 253, 212, 224, 22, 103, 66, 111, 24,
@@ -142,7 +140,7 @@ public class MessageDigestMD2: MessageDigest {
     // digest padding. 17 element array.
     // padding[0] is null
     // padding[i] is an array of i time the byte value i (i = 1..16)
-    static let PADDING: [ Data ] = {
+    static private let PADDING: [ Data ] = {
         var result = [ Data ](repeating: Data(), count: 17)
         for i in 1 ..< 17 {
             result[i] = Data([UInt8](repeating: UInt8(i), count: i))

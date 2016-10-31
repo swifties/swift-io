@@ -31,9 +31,7 @@ public class DelegatingInputStream: DelegatingStream, InputStreamSupport {
     }
 
     public var hasBytesAvailable: Bool {
-        get {
             return stream.hasBytesAvailable
-        }
     }
     
     public func read(_ buffer: UnsafeMutablePointer<UInt8>, maxLength len: Int) -> Int {
@@ -56,9 +54,7 @@ class DelegatingInputStreamNativeWrapper: DelegatingStream, InputStreamSupport {
     }
     
     public var hasBytesAvailable: Bool {
-        get {
             return stream.hasBytesAvailable
-        }
     }
     
     public func read(_ buffer: UnsafeMutablePointer<UInt8>, maxLength len: Int) -> Int {

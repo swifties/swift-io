@@ -31,15 +31,11 @@ public class DelegatingStream: StreamSupport
     
     
     public var streamStatus: Stream.Status {
-        get {
             return stream.streamStatus
-        }
     }
     
     public var streamError: Error? {
-        get {
             return stream.streamError
-        }
     }
     
     weak public var delegate: StreamDelegate? {
@@ -85,15 +81,11 @@ class DelegatingStreamNativeWrapper: StreamSupport
     }
 
     var streamStatus: Stream.Status {
-        get {
             return stream.streamStatus
-        }
     }
     
     var streamError: Error? {
-        get {
             return stream.streamError
-        }
     }
 
     weak var delegate: StreamDelegate? {

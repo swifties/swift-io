@@ -20,21 +20,19 @@ class OutputStreamWriterTests: XCTestCase
             var bytesWritten = 0
             var broken = false
 
-            private override var streamError: Error? {
-                get {
+            override var streamError: Error? {
                     return Exception.MethodNotImplemented
-                }
             }
 
-            private override func open() {
-
-            }
-
-            private override func close() {
+            override func open() {
 
             }
 
-            private override func write(_ buffer: UnsafePointer<UInt8>, maxLength len: Int) -> Int {
+            override func close() {
+
+            }
+
+            override func write(_ buffer: UnsafePointer<UInt8>, maxLength len: Int) -> Int {
                 if(broken) {
                     return -1
                 }
@@ -44,10 +42,8 @@ class OutputStreamWriterTests: XCTestCase
                 return 1
             }
             
-            private override var streamStatus: Stream.Status {
-                get {
+            override var streamStatus: Stream.Status {
                     return .open
-                }
             }
 
             func breakStream() {

@@ -16,16 +16,7 @@ class PerformanceTests: XCTestCase
     func test_BigFile() {
         let filePath = URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("big.txt", isDirectory: false)
 
-//TODO: uncomment self.measure block if you want to measure performance
-//Note: How to profile performance using Xcode:
-//      - set debug mode for tests
-//      - place breakpoint at the start of the test method
-//      - start tests, will stop at the breakpoint
-//      - open instruments - Time Profiler
-//      - attach ctest process to the profiler
-//      - resume testing
-        
-//        self.measure {
+        self.measure {
             let reader = try! BufferedReader(FileReader(filePath))
             var lines = 0
             
@@ -34,6 +25,6 @@ class PerformanceTests: XCTestCase
                     lines += 1
             }
             XCTAssertEqual(lines, 1284570)
-//        }
+        }
     }
 }
